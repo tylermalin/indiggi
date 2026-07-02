@@ -62,11 +62,12 @@ nav .right{display:flex;align-items:center;gap:12px;}
 .hero .sub{font-size:19px;color:var(--grey);max-width:600px;margin:22px auto 0;font-weight:400;}
 .hero .cta{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:30px;}
 .hero .note{font-size:13px;color:var(--grey);margin-top:16px;}
-.cluster{display:flex;justify-content:center;align-items:flex-end;margin-top:56px;padding-bottom:10px;}
-.cluster .front{z-index:3;position:relative;}
-.cluster .l{z-index:1;transform:rotate(-9deg) translate(46px,26px);}
-.cluster .r{z-index:1;transform:rotate(9deg) translate(-46px,26px);}
-@media(max-width:720px){.hero h1{font-size:40px;}.sec{padding:66px 0;}.cluster .l,.cluster .r{display:none;}}
+.cluster{display:flex;justify-content:center;align-items:center;margin-top:38px;}
+.hph{width:352px;height:auto;flex-shrink:0;display:block;}
+.hph.front{width:452px;z-index:3;position:relative;filter:drop-shadow(0 42px 48px rgba(60,30,130,.30));}
+.hph.l{z-index:1;transform:rotate(-8deg) translate(102px,26px);filter:drop-shadow(0 32px 42px rgba(60,30,130,.22));}
+.hph.r{z-index:1;transform:rotate(8deg) translate(-102px,26px);filter:drop-shadow(0 32px 42px rgba(60,30,130,.22));}
+@media(max-width:720px){.hero h1{font-size:40px;}.sec{padding:66px 0;}.hph.l,.hph.r{display:none;}.hph.front{width:300px;}}
 
 /* reserve */
 .reserve{display:flex;align-items:center;max-width:452px;margin:26px auto 0;background:#fff;border:1.5px solid var(--line);border-radius:32px;padding:6px 6px 6px 20px;box-shadow:var(--shadow-sm);}
@@ -239,9 +240,9 @@ footer a:hover{color:#fff;}
   <div class="rmsg" id="h1msg"></div>
   <p class="note">Founding bonuses for the first 1,000 members. No card required.</p>
   <div class="cluster">
-    <div class="ph ph-mid l"><iframe src="app.html?embed=1#wallet" title="Wallet" scrolling="no"></iframe></div>
-    <div class="ph ph-big front"><iframe src="app.html?embed=1#home" title="Home" scrolling="no"></iframe></div>
-    <div class="ph ph-mid r"><iframe src="app.html?embed=1#giving" title="Giving" scrolling="no"></iframe></div>
+    <img class="hph l" src="assets/hero-kai.png" alt="Indiggi KAI screen" loading="eager">
+    <img class="hph front" src="assets/hero-home.png" alt="Indiggi Home screen" loading="eager">
+    <img class="hph r" src="assets/hero-wallet.png" alt="Indiggi Wallet screen" loading="eager">
   </div>
 </div></section>
 
