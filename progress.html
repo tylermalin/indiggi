@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indiggi — Build Progress</title>
+<link rel="icon" href="logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800;9..40,900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pp:#7B3FE4; --pk:#E0457B; --grad:linear-gradient(135deg,#7B3FE4,#E0457B);
+  --ink:#150f26; --grey:#6b6683; --line:#eae7f3; --soft:#f7f5fc; --lav:#efeafb; --jade:#0E9B86; --amber:#E08A2B;
+  --shadow:0 30px 70px -34px rgba(70,40,150,.34); --shadow-sm:0 14px 34px -18px rgba(70,40,150,.2);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,.dm{font-family:'DM Sans',sans-serif;letter-spacing:-.8px;font-weight:800;line-height:1.08;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+.grad-t{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--pk);}
+.muted{color:var(--grey);}
+
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+nav{display:flex;align-items:center;justify-content:space-between;height:66px;}
+.logo{height:24px;}
+.nlinks{display:flex;gap:10px;align-items:center;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;padding:11px 18px;border-radius:26px;border:none;cursor:pointer;transition:.15s;}
+.btn.grad{background:var(--grad);color:#fff;box-shadow:0 14px 28px -14px rgba(123,63,228,.6);}
+.btn.grad:hover{transform:translateY(-2px);}
+.btn.ghost{background:#fff;color:var(--pp);border:1.5px solid var(--line);}
+
+.hero{background:radial-gradient(120% 90% at 50% -20%,#efe9fb,#faf8fe 60%,#fff);padding:64px 0 40px;border-bottom:1px solid var(--line);}
+.hero h1{font-size:46px;margin:14px 0 0;}
+.hero p{font-size:17px;color:var(--grey);max-width:620px;margin:18px 0 0;}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.chip{font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:20px;background:#fff;border:1px solid var(--line);color:var(--ink);display:inline-flex;gap:7px;align-items:center;}
+.chip .d{width:8px;height:8px;border-radius:50%;background:var(--jade);}
+
+.links{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:34px 0 0;}
+.lcard{border:1px solid var(--line);border-radius:20px;padding:22px 24px;background:#fff;box-shadow:var(--shadow-sm);display:flex;justify-content:space-between;align-items:center;gap:14px;transition:.15s;}
+.lcard:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.lcard .t{font-weight:800;font-size:17px;}.lcard .u{font-size:13px;color:var(--pp);margin-top:3px;word-break:break-all;}
+.lcard .go{font-size:22px;color:var(--pp);}
+@media(max-width:720px){.links{grid-template-columns:1fr;}.hero h1{font-size:34px;}}
+
+.sec{padding:56px 0;}
+.sec.alt{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.shead{display:flex;align-items:baseline;gap:14px;margin-bottom:26px;flex-wrap:wrap;}
+.shead h2{font-size:30px;}
+.count{font-size:13px;font-weight:700;color:var(--grey);}
+
+.item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+.item:last-child{border-bottom:none;}
+.tick{width:26px;height:26px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#fff;}
+.tick.done{background:var(--jade);}
+.tick.next{background:var(--grad);}
+.tick.plan{background:#c9c3dd;}
+.item .b{flex:1;}
+.item .h{font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.item .h .tag{font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:11px;}
+.tag.live{background:#dcf3ee;color:var(--jade);}
+.tag.next{background:#f2e8fc;color:var(--pp);}
+.tag.plan{background:#eeecf4;color:var(--grey);}
+.tag.pri{background:#fdeef4;color:var(--pk);}
+.item .d{font-size:14px;color:var(--grey);margin-top:5px;}
+
+.grp{margin-top:34px;}
+.grp:first-child{margin-top:0;}
+.grp .gt{font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pp);margin-bottom:6px;}
+
+footer{background:#100d1a;color:#b7b1c9;padding:40px 0;margin-top:10px;}
+.frow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:13px;}
+.logo-w{filter:brightness(0) invert(1);height:22px;}
+.note{background:#fff;border:1px dashed #d9d3ea;border-radius:16px;padding:18px 20px;font-size:14px;color:var(--grey);margin-top:8px;}
+.note b{color:var(--ink);}
+</style></head><body>
+
+<header><div class="wrap"><nav>
+  <a href="#top"><img class="logo" src="logo.svg" alt="Indiggi"></a>
+  <div class="nlinks">
+    <a href="index.html" class="btn ghost">View live site</a>
+    <a href="app.html" class="btn grad">Try the app</a>
+  </div>
+</nav></div></header>
+
+<section class="hero" id="top"><div class="wrap">
+  <span class="eyebrow">Build progress · Updated July 2, 2026</span>
+  <h1>Indiggi — <span class="grad-t">where we are</span>.</h1>
+  <p>A living snapshot of the Indiggi marketing site and interactive app demo: what's live today, what we just shipped, and what's next on the list. Share this link to follow along.</p>
+  <div class="meta">
+    <span class="chip"><span class="d"></span>Landing page — Live</span>
+    <span class="chip"><span class="d"></span>Interactive demo — Live</span>
+    <span class="chip"><span class="d" style="background:var(--pp)"></span>7 fixes queued</span>
+  </div>
+  <div class="links">
+    <a class="lcard" href="index.html"><div><div class="t">Marketing landing page</div><div class="u">indiggi-orcin.vercel.app</div></div><span class="go">→</span></a>
+    <a class="lcard" href="app.html"><div><div class="t">Interactive app demo</div><div class="u">indiggi-orcin.vercel.app/app.html</div></div><span class="go">→</span></a>
+  </div>
+</div></section>
+
+<!-- SHIPPED -->
+<section class="sec"><div class="wrap">
+  <div class="shead"><h2>What's shipped</h2><span class="count">Live now</span></div>
+
+  <div class="grp"><div class="gt">Interactive app demo</div>
+    <div class="item"><div class="tick done">✓</div><div class="b"><div class="h">30+ clickable screens <span class="tag live">Live</span></div><div class="d">Full neumorphic app: onboarding/verify flow, KAI home, Wallet, Karma, Giving, Creator OS, My Day, The Map, Rewards, and every quick-action screen — all navigable.</div></div></div>
+    <div class="item"><div class="tick done">✓</div><div class="b"><div class="h">Onboarding-first experience</div><div class="d">Opens on "Set up your Life Intel," clicks through, and lands on Home. KAI chat populates on tap; balances hidden behind an eye toggle.</div></div></div>
+  </div>
+
+  <div class="grp"><div class="gt">Marketing landing page</div>
+    <div class="item"><div class="tick done">✓</div><div class="b"><div class="h">Hero with real iPhone mockups <span class="tag live">Live</span></div><div class="d">Three device mockups (KAI, Home, Wallet), angled per the reference. Interactive demo moved out of the hero to the bottom.</div></div></div>
+    <div class="item"><div class="tick done">✓</div><div class="b"><div class="h">Feature zoom-in grid</div><div class="d">"One app, your whole life" now shows four clean UI zoom-ins (KAI, Wallet, The Circle, Tonight) instead of the old phone fan.</div></div></div>
+    <div class="item"><div class="tick done">✓</div><div class="b"><div class="h">Pricing, FAQ, reviews, stories, CTA</div><div class="d">Three tiers (Member / Insider / Founding) with matching buttons, two-column FAQ, review wall, story teasers, and a final register section.</div></div></div>
+    <div class="item"><div class="tick done">✓</div><div class="b"><div class="h">"Coming Soon" + Register everywhere</div><div class="d">All app-store pushes replaced with Coming Soon, Register Now / Claim Early Member Bonus, and Reserve-your-handle (indiggi.app/yourname).</div></div></div>
+  </div>
+
+  <div class="grp"><div class="gt">Brand &amp; system</div>
+    <div class="item"><div class="tick done">✓</div><div class="b"><div class="h">Logo in brand gradient</div><div class="d">Indiggi mark + wordmark recolored to the purple→pink gradient, placed cleanly across site and app (white on dark).</div></div></div>
+    <div class="item"><div class="tick done">✓</div><div class="b"><div class="h">Type system + repo</div><div class="d">DM Sans headings + Inter body. Code on GitHub (tylermalin/indiggi), auto-deploying to Vercel.</div></div></div>
+  </div>
+</div></section>
+
+<!-- UP NEXT -->
+<section class="sec alt"><div class="wrap">
+  <div class="shead"><h2>What's next</h2><span class="count">Queued fixes &amp; builds</span></div>
+
+  <div class="grp"><div class="gt">Design polish — make it look like the real app</div>
+    <div class="item"><div class="tick next">1</div><div class="b"><div class="h">Restyle "A Life run by KAI" feature cards <span class="tag next">Next</span></div><div class="d">Rebuild the four cards to match real in-app UI: <b>KAI voice concierge</b> (currently a rough comp), <b>Proactive nudges</b> (3 callouts, currently unstyled — make them real notification cards), <b>Money that works</b>, and <b>Give without thinking</b> — all styled like the app's own components.</div></div></div>
+    <div class="item"><div class="tick next">2</div><div class="b"><div class="h">Chart for the "94% of members" stat <span class="tag next">Next</span></div><div class="d">Replace the flat stat block with a real graph/visualization so the number reads as data, not decoration.</div></div></div>
+    <div class="item"><div class="tick next">3</div><div class="b"><div class="h">Recrop the bottom interactive demo <span class="tag next">Next</span></div><div class="d">The live app in the Register section needs a tighter crop so it sits perfectly inside the phone frame.</div></div></div>
+  </div>
+
+  <div class="grp"><div class="gt">Content</div>
+    <div class="item"><div class="tick next">4</div><div class="b"><div class="h">Blog page with real articles <span class="tag next">Next</span></div><div class="d">Build a blog index + article pages, each one actually written (Culture is the new technology · One balance for spend/invest/give · How The Circle works).</div></div></div>
+  </div>
+
+  <div class="grp"><div class="gt">Data, email &amp; admin</div>
+    <div class="item"><div class="tick plan">5</div><div class="b"><div class="h">Wire all forms to a database + email <span class="tag pri">Needs backend</span></div><div class="d">Reserve-handle and email capture currently confirm on-screen only. Next: store every registration in a database and send the user a confirmation email with their Early Member Bonus.</div></div></div>
+    <div class="item"><div class="tick plan">6</div><div class="b"><div class="h">Admin dashboard <span class="tag pri">Needs backend</span></div><div class="d">A private page showing registrations (handle, email, tier, referral) plus analytics — signups over time, reserved handles, funnel.</div></div></div>
+  </div>
+
+  <div class="grp"><div class="gt">Navigation</div>
+    <div class="item"><div class="tick next">7</div><div class="b"><div class="h">Fix nav &amp; add missing pages <span class="tag next">Next</span></div><div class="d">Audit every link; build out any that currently go nowhere (Careers, Press, Privacy, Terms, Contact) so nothing dead-ends.</div></div></div>
+  </div>
+
+  <div class="note"><b>Note on #5 &amp; #6:</b> the site is currently static, so database + email + admin need a small backend service. Quick to stand up on Vercel — flagged here so it's on the roadmap, not a surprise.</div>
+</div></section>
+
+<footer><div class="wrap"><div class="frow">
+  <img class="logo-w" src="logo.svg" alt="Indiggi">
+  <span>© 2026 Indiggi International Holdings · Culture is the new technology</span>
+</div></div></footer>
+</body></html>
