@@ -97,6 +97,18 @@ nav .right{display:flex;align-items:center;gap:12px;}
 .fan .g2{z-index:1;transform:translateX(-150px) translateY(20px) rotate(7deg);}
 @media(max-width:860px){.fan .g1,.fan .g2,.fan .m1,.fan .m2{display:none;}}
 
+/* feature zoom-ins */
+.zooms{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:8px;}
+.zoom{background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.2s;}
+.zoom:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+.zoom .imgwrap{aspect-ratio:1/1;overflow:hidden;background:#e9e6f3;border-bottom:1px solid var(--line);}
+.zoom .imgwrap img{width:100%;height:100%;object-fit:cover;display:block;}
+.zoom .cap{padding:24px 28px 28px;}
+.zoom .cap .eb{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pk);}
+.zoom .cap h3{font-size:23px;margin-top:10px;}
+.zoom .cap p{color:var(--grey);font-size:15px;margin-top:9px;font-weight:400;}
+@media(max-width:860px){.zooms{grid-template-columns:1fr;}}
+
 /* features bento */
 .fbento{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 .fcard{border-radius:var(--r);padding:28px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--line);background:#fff;}
@@ -257,12 +269,11 @@ footer a:hover{color:#fff;}
 <!-- ONE APP + SHOWCASE -->
 <section class="sec" id="showcase"><div class="wrap">
   <div class="shead"><span class="eyebrow">One app, your whole life</span><h2>Design a smarter lifestyle with one app that keeps your money, your scene, and your people simple to run.</h2><p>Money Life, Karma, Giving, and your nights — all in one place, all handled by KAI. Verified, portable, and yours.</p></div>
-  <div class="fan">
-    <div class="ghost g1"></div>
-    <div class="ph ph-mid m1"><iframe src="app.html?embed=1#rewards" title="Karma" loading="lazy" scrolling="no"></iframe></div>
-    <div class="ph ph-big front"><iframe src="app.html?embed=1#wallet" title="Wallet" loading="lazy" scrolling="no"></iframe></div>
-    <div class="ph ph-mid m2"><iframe src="app.html?embed=1#creator" title="Creator OS" loading="lazy" scrolling="no"></iframe></div>
-    <div class="ghost g2"></div>
+  <div class="zooms">
+    <div class="zoom"><div class="imgwrap"><img src="assets/feature-kai.jpg" alt="KAI voice concierge" loading="lazy"></div><div class="cap"><span class="eb">KAI · Voice concierge</span><h3>Ask for anything.</h3><p>Your day, your money, your night — just say it, and KAI moves for you.</p></div></div>
+    <div class="zoom"><div class="imgwrap"><img src="assets/feature-wallet.jpg" alt="Wallet and INCard" loading="lazy"></div><div class="cap"><span class="eb">Wallet · INCard</span><h3>One balance, everything.</h3><p>Spend, invest, and own fractional real assets from a single card.</p></div></div>
+    <div class="zoom"><div class="imgwrap"><img src="assets/feature-giving.jpg" alt="Karma and The Circle" loading="lazy"></div><div class="cap"><span class="eb">Karma · The Circle</span><h3>You spend, we give.</h3><p>Everyday spending feeds your community giving pool — automatically.</p></div></div>
+    <div class="zoom"><div class="imgwrap"><img src="assets/feature-tonight.jpg" alt="The Map and InLife" loading="lazy"></div><div class="cap"><span class="eb">The Map · InLife</span><h3>Your scene, tonight.</h3><p>Concierge to the rooms, sets, and nights that are actually yours.</p></div></div>
   </div>
 </div></section>
 
