@@ -1,0 +1,1362 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Indiggi — App Demo</title><style>
+:root{
+  --indigo:#4733C7; --inkindigo:#2B2150;
+  --cobalt:#1E5BD6; --clay:#B5512E; --amber:#C98217; --jade:#0E8C7D; --slate:#5C6E8C;
+  --t-indigo:#ECEAFA; --t-cobalt:#E7EDFB; --t-clay:#F6E9E3; --t-amber:#F6EEDD; --t-jade:#E2F0EE;
+  --ink:#1D1330; --grey:#6B6577; --line:#DAD5CE; --soft:#F8F6F2; --paper:#F1EEE9; --gold:#C98217;
+  --grad:linear-gradient(135deg,#4733C7 0%,#2B2150 60%,#1E5BD6 100%);
+  --grad-cobalt:linear-gradient(135deg,#1E5BD6 0%,#16357F 70%,#2B2150 100%);
+  --grad-clay:linear-gradient(150deg,#B5512E 0%,#8A3A22 70%,#C98217 100%);
+  --grad-amber:linear-gradient(150deg,#C98217 0%,#9c6412 65%,#7a4d0e 100%);
+  --grad-jade:linear-gradient(135deg,#0E8C7D 0%,#0A5F56 100%);
+  --money:linear-gradient(135deg,#241a3f,#15101f);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:radial-gradient(1200px 600px at 50% -10%, #eceae3 0%, var(--paper) 55%);color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center;}
+.head{padding:26px 18px 6px;text-align:center;}
+.head h1{font-size:17px;font-weight:800;}
+.head p{font-size:12px;color:var(--grey);margin-top:4px;}
+.hint{font-size:11px;color:var(--grey);margin:8px 0 14px;opacity:.9;}
+.hint b{color:var(--indigo);}
+.device{position:relative;width:392px;height:830px;background:#fff;border-radius:46px;box-shadow:0 30px 80px rgba(40,30,70,.26);border:10px solid #15101f;overflow:hidden;margin-bottom:40px;}
+.island{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:118px;height:30px;background:#0a0710;border-radius:18px;z-index:60;}
+.app{position:absolute;inset:0;background:#fff;overflow:hidden;}
+.statusbar{position:absolute;top:0;left:0;right:0;height:48px;display:flex;align-items:center;justify-content:space-between;padding:15px 26px 0;z-index:45;background:#fff;font-weight:700;font-size:14px;color:var(--ink);}
+.statusbar .r{display:flex;align-items:center;gap:6px;}
+.statusbar .r svg{width:22px;height:12px;}
+.screens{position:absolute;top:48px;bottom:74px;left:0;right:0;overflow-y:auto;}
+.screen{display:none;padding:6px 20px 30px;animation:fade .28s ease;}
+.screen.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.screens::-webkit-scrollbar{width:0;}
+
+/* screen header */
+.scrhd{display:flex;align-items:center;gap:12px;padding:8px 0 12px;}
+.scrhd .back{width:34px;height:34px;border-radius:12px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+.scrhd .back svg{width:18px;height:18px;stroke:var(--ink);}
+.scrhd h2{font-size:21px;font-weight:800;flex:1;letter-spacing:-.3px;}
+.askkai{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:22px;padding:6px 12px 6px 7px;font-size:12px;font-weight:800;color:var(--indigo);cursor:pointer;background:#fff;flex-shrink:0;}
+.askkai .kk{width:20px;height:20px;border-radius:50%;background:var(--grad);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;display:block;margin:2px 0 12px;}
+.eb-clay{color:var(--clay);}.eb-amber{color:var(--amber);}.eb-jade{color:var(--jade);}.eb-cobalt{color:var(--cobalt);}.eb-indigo{color:var(--indigo);}
+
+/* hero gradient cards */
+.hero{border-radius:22px;padding:22px;color:#fff;}
+.hero.clay{background:var(--grad-clay);}
+.hero.amber{background:var(--grad-amber);}
+.hero.jade{background:var(--grad-jade);}
+.hero.cobalt{background:var(--grad-cobalt);}
+.hero .eb{font-size:11px;font-weight:800;letter-spacing:2px;opacity:.92;text-transform:uppercase;}
+.hero h3{font-size:26px;font-weight:900;margin:7px 0 10px;letter-spacing:-.4px;}
+.hero p{font-size:13.5px;line-height:1.5;opacity:.96;}
+.hero p+p{margin-top:10px;font-weight:700;}
+.hero .big{font-size:42px;font-weight:900;letter-spacing:-1px;margin:2px 0 6px;font-variant-numeric:tabular-nums;}
+.hero .lab{font-size:11px;font-weight:800;letter-spacing:1.5px;opacity:.85;text-transform:uppercase;}
+.hero .note{font-size:12.5px;opacity:.9;margin-top:4px;}
+.hero .inner{background:rgba(255,255,255,.16);border-radius:14px;padding:13px 14px;margin-top:14px;font-size:12.5px;line-height:1.45;}
+.hero .topline{display:flex;justify-content:space-between;align-items:flex-start;}
+.hero .hide{font-size:12px;font-weight:800;opacity:.8;cursor:pointer;}
+.btn{display:block;width:100%;text-align:center;background:var(--indigo);color:#fff;font-size:15px;font-weight:800;padding:15px;border-radius:26px;border:none;cursor:pointer;margin-top:16px;}
+.btn.ghost{background:#fff;color:var(--indigo);border:1.5px solid var(--line);}
+.btn.white{background:#fff;margin-top:14px;}
+.hero.clay .btn.white{color:var(--clay);}.hero.jade .btn.white{color:var(--jade);}.hero.amber .btn.white{color:#8a5a12;}
+
+/* creator grid */
+.gtiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+.gtile{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;min-height:132px;transition:.15s;}
+.gtile:active{transform:scale(.98);}
+.gtile .gi{width:40px;height:40px;border-radius:12px;background:var(--t-clay);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.gtile .gi svg{width:20px;height:20px;stroke:var(--clay);}
+.gtile .gt{font-size:15px;font-weight:800;}
+.gtile .gs{font-size:12px;color:var(--grey);margin-top:5px;line-height:1.4;}
+
+/* cause rows */
+.rowhdr{display:flex;justify-content:space-between;align-items:baseline;margin:22px 0 6px;}
+.rowhdr h3{font-size:16px;font-weight:800;}.rowhdr a{font-size:12px;font-weight:700;color:var(--indigo);cursor:pointer;}
+.cause{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin-top:10px;}
+.cause .ci{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cause .ci svg{width:20px;height:20px;}
+.cause .cinfo{flex:1;min-width:0;}
+.cause .cn{font-size:14px;font-weight:800;}
+.cause .cs{font-size:11.5px;color:var(--grey);margin-top:2px;}
+.give{background:var(--jade);color:#fff;border:none;font-size:13px;font-weight:800;padding:9px 15px;border-radius:20px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.give:active{opacity:.85;}
+.hist{display:flex;justify-content:space-between;align-items:center;padding:12px 2px;border-bottom:1px solid var(--line);}
+.hist .l{display:flex;align-items:center;gap:11px;}
+.hist .hi2{width:32px;height:32px;border-radius:10px;background:var(--t-jade);display:flex;align-items:center;justify-content:center;}
+.hist .hi2 svg{width:16px;height:16px;stroke:var(--jade);}
+.hist .nm{font-size:13.5px;font-weight:700;}.hist .dt{font-size:11px;color:var(--grey);}
+.hist .amt{font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;}
+
+/* money card visual */
+.incard{background:var(--grad-clay);border-radius:20px;padding:20px;color:#fff;position:relative;min-height:180px;margin-top:14px;box-shadow:0 16px 34px rgba(120,50,25,.30);display:flex;flex-direction:column;justify-content:space-between;}
+.incard .chip{width:34px;height:26px;border-radius:6px;background:linear-gradient(135deg,#f2d9a8,#c99a54);}
+.incard .founders{position:absolute;top:20px;right:20px;font-size:12px;font-weight:700;opacity:.9;}
+.incard .inlogo{font-size:52px;font-weight:900;font-style:italic;letter-spacing:-2px;line-height:1;}
+.incard .row{display:flex;justify-content:space-between;align-items:flex-end;}
+.incard .no{font-size:15px;letter-spacing:2px;font-weight:700;}
+.incard .visa{font-size:20px;font-weight:900;font-style:italic;}
+.acts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;}
+.act{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:14px 6px;text-align:center;cursor:pointer;}
+.act:active{transform:scale(.97);}
+.act .ai{width:36px;height:36px;border-radius:11px;background:var(--t-clay);display:flex;align-items:center;justify-content:center;margin:0 auto 7px;}
+.act .ai svg{width:18px;height:18px;stroke:var(--clay);}
+.act .al{font-size:12px;font-weight:800;}
+.kaimsg{display:flex;gap:11px;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:16px;}
+.kaimsg .kk{width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.kaimsg p{font-size:13px;line-height:1.45;}
+.frac{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.fcard{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:14px;cursor:pointer;}
+.fcard .fn{font-size:13.5px;font-weight:800;}
+.fcard .fp{font-size:11px;color:var(--grey);margin-top:2px;}
+.fcard .fv{font-size:16px;font-weight:900;margin-top:8px;font-variant-numeric:tabular-nums;}
+.fcard .fv small{font-size:11px;font-weight:800;color:var(--jade);margin-left:5px;}
+
+/* KAI home */
+.receipt{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 10px 26px rgba(40,30,70,.07);}
+.receipt .done{display:flex;align-items:center;gap:8px;font-weight:800;font-size:12px;letter-spacing:1px;color:var(--jade);text-transform:uppercase;margin-bottom:12px;}
+.receipt .check{width:22px;height:22px;border-radius:50%;background:var(--jade);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;}
+.receipt .rr{display:flex;justify-content:space-between;font-size:14px;padding:9px 0;border-bottom:1px solid var(--line);}
+.receipt .rr:first-of-type{border-top:1px solid var(--line);}
+.receipt .rr .k{color:var(--grey);}.receipt .rr .v{font-weight:800;}
+.receipt .fine{font-size:11.5px;color:var(--grey);margin-top:12px;}
+.lbl2{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--grey);text-transform:uppercase;margin:22px 0 4px;}
+.trychips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.trychip{background:var(--soft);border:1px solid var(--line);border-radius:22px;padding:9px 14px;font-size:12.5px;font-weight:700;color:var(--indigo);cursor:pointer;}
+.trychip:active{background:var(--t-indigo);}
+.qmoves{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px;}
+.qmove{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px 6px;text-align:center;cursor:pointer;}
+.qmove:active{transform:scale(.97);}
+.qmove .qi{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 7px;}
+.qmove .qi svg{width:19px;height:19px;}
+.qmove .ql{font-size:11.5px;font-weight:700;color:var(--ink);}
+
+/* placeholder */
+.ph{text-align:center;padding:44px 12px 20px;}
+.ph .pi{width:76px;height:76px;border-radius:24px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;margin:16px auto 18px;}
+.ph .pi svg{width:34px;height:34px;stroke:#fff;}
+.ph h3{font-size:23px;font-weight:900;letter-spacing:-.3px;}
+.ph .tag{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--indigo);text-transform:uppercase;margin-top:8px;}
+.ph p{font-size:14px;color:var(--grey);margin:12px auto 0;line-height:1.55;max-width:280px;}
+.phlist{margin-top:22px;text-align:left;}
+.phrow{display:flex;align-items:center;gap:12px;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:10px;}
+.phrow .pri{width:38px;height:38px;border-radius:12px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.phrow .pri svg{width:18px;height:18px;stroke:var(--indigo);}
+.phrow .pt{font-size:14px;font-weight:800;}
+.phrow .ps{font-size:12px;color:var(--grey);margin-top:2px;}
+
+/* level */
+.levels{display:flex;flex-direction:column;gap:12px;margin-top:16px;}
+.lvl{border:1.5px solid var(--line);border-radius:18px;padding:18px;cursor:pointer;background:#fff;}
+.lvl.on{border-color:var(--indigo);background:var(--t-indigo);}
+.lvl .lt{font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:space-between;}
+.lvl .badge{font-size:10px;font-weight:800;letter-spacing:1px;background:var(--indigo);color:#fff;padding:3px 9px;border-radius:12px;}
+.lvl .ls{font-size:12.5px;color:var(--grey);margin-top:6px;line-height:1.45;}
+
+/* tabbar */
+.tabbar{position:absolute;bottom:0;left:0;right:0;height:74px;background:rgba(255,255,255,.97);border-top:1px solid var(--line);display:flex;z-index:50;backdrop-filter:blur(8px);padding-bottom:8px;}
+.tabbar .t{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;color:var(--grey);font-size:10px;font-weight:700;}
+.tabbar .t svg{width:22px;height:22px;stroke:currentColor;}
+.tabbar .t.on{color:var(--indigo);}
+
+/* scrim + drawer */
+.scrim{position:absolute;inset:0;background:rgba(20,15,35,.4);opacity:0;pointer-events:none;transition:.25s;z-index:70;}.scrim.show{opacity:1;pointer-events:auto;}
+.drawer{position:absolute;top:0;bottom:0;left:0;width:308px;background:#fff;transform:translateX(-106%);transition:.3s cubic-bezier(.4,0,.2,1);z-index:80;box-shadow:6px 0 34px rgba(40,30,70,.24);display:flex;flex-direction:column;}
+.drawer.open{transform:none;}
+.dhead{background:var(--grad);color:#fff;padding:34px 22px 22px;}
+.dhead .av2{width:56px;height:56px;border-radius:50%;background:#fff;color:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;}
+.dhead .nm{font-size:19px;font-weight:900;margin-top:14px;display:flex;align-items:center;gap:8px;}
+.dhead .vf{font-size:9.5px;font-weight:800;letter-spacing:.5px;background:rgba(255,255,255,.22);padding:3px 8px;border-radius:12px;display:inline-flex;align-items:center;gap:4px;}
+.dhead .vf b{color:#7CF5C6;}
+.dhead .meta{font-size:12px;opacity:.92;margin-top:6px;}
+.dlist{flex:1;overflow-y:auto;padding:10px 10px 4px;}
+.dlist::-webkit-scrollbar{width:0;}
+.ditem{display:flex;align-items:center;gap:13px;padding:10px 11px;border-radius:14px;cursor:pointer;}
+.ditem:active{background:var(--soft);}
+.mi{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mi svg{width:19px;height:19px;}
+.dtxt .dt{font-size:14.5px;font-weight:800;color:var(--ink);}
+.dtxt .ds{font-size:11.5px;color:var(--grey);margin-top:1px;}
+.dfoot{padding:12px 18px 20px;border-top:1px solid var(--line);}
+.dclose{display:block;width:100%;text-align:center;background:#fff;border:1.5px solid var(--line);border-radius:26px;padding:14px;font-size:15px;font-weight:800;color:var(--ink);cursor:pointer;}
+
+.toast{position:absolute;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-size:12.5px;font-weight:700;padding:11px 17px;border-radius:22px;opacity:0;transition:.25s;z-index:90;white-space:nowrap;text-align:center;max-width:88%;}.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.foot{text-align:center;font-size:11px;color:var(--grey);margin:2px 0 30px;}.foot b{color:var(--ink);}
+.btn.cob{background:var(--cobalt);}
+.btn.jade{background:var(--jade);}
+
+/* orb / equalizer */
+.orb{width:110px;height:110px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px rgba(71,51,199,.10);flex-shrink:0;}
+.orb.big{width:150px;height:150px;box-shadow:0 0 0 14px rgba(71,51,199,.10),0 0 0 28px rgba(71,51,199,.05);}
+.eq{display:flex;align-items:center;gap:4px;height:40px;}
+.orb.big .eq{height:54px;gap:5px;}
+.eq i{width:5px;border-radius:3px;background:#fff;display:block;animation:eq 1s ease-in-out infinite;}
+.eq i:nth-child(1){height:40%;animation-delay:0s;}
+.eq i:nth-child(2){height:78%;animation-delay:.15s;}
+.eq i:nth-child(3){height:100%;animation-delay:.3s;}
+.eq i:nth-child(4){height:60%;animation-delay:.45s;}
+.eq i:nth-child(5){height:85%;animation-delay:.6s;}
+@keyframes eq{0%,100%{transform:scaleY(.5);}50%{transform:scaleY(1);}}
+
+/* KAI home */
+.khd{display:flex;align-items:center;gap:12px;padding:8px 0 14px;}
+.khd .menu{width:34px;height:34px;border-radius:12px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.khd .menu svg{width:18px;height:18px;stroke:var(--ink);}
+.khd .lab{flex:1;font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--indigo);text-transform:uppercase;}
+.khd .me2{width:34px;height:34px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;position:relative;flex-shrink:0;}
+.khd .me2 .on2{position:absolute;bottom:0;right:0;width:9px;height:9px;border-radius:50%;background:var(--jade);border:2px solid #fff;}
+.greet{display:flex;gap:14px;align-items:flex-start;margin:2px 0 14px;}
+.greet h3{font-size:24px;font-weight:900;}
+.greet p{font-size:13px;color:var(--grey);margin-top:3px;line-height:1.4;}
+.bubble{max-width:88%;padding:13px 15px;border-radius:18px;font-size:13.5px;line-height:1.45;margin:8px 0;}
+.bubble.ka{background:var(--grad);color:#fff;border-bottom-left-radius:5px;}
+.bubble.me{background:#fff;border:1px solid var(--line);margin-left:auto;border-bottom-right-radius:5px;font-weight:700;}
+
+/* My Day timeline */
+.daymsg{display:flex;gap:11px;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:6px;}
+.daymsg .kk{width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.daymsg p{font-size:13px;line-height:1.45;}
+.tl{margin-top:12px;}
+.tlrow{display:grid;grid-template-columns:42px 20px 1fr;gap:8px;align-items:stretch;}
+.tltime{font-size:12px;font-weight:800;color:var(--grey);padding-top:14px;text-align:right;}
+.tlline{display:flex;flex-direction:column;align-items:center;padding-top:15px;}
+.tldot{width:14px;height:14px;border-radius:50%;border:3px solid var(--cobalt);background:#fff;flex-shrink:0;}
+.tldot.done{background:var(--jade);border-color:var(--jade);}
+.tldot.hold{border-color:var(--amber);}
+.tlbar{width:2px;flex:1;background:var(--line);margin-top:2px;min-height:20px;}
+.tlcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:8px;}
+.tlcard .tt{font-size:15px;font-weight:800;}
+.tlcard .ts{font-size:12px;color:var(--grey);margin-top:2px;}
+.tlbadge{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.5px;padding:4px 9px;border-radius:10px;margin-top:9px;text-transform:uppercase;}
+.tlbadge.done{background:var(--t-jade);color:var(--jade);}
+.tlbadge.booked{background:var(--t-cobalt);color:var(--cobalt);}
+.tlbadge.hold{background:var(--t-amber);color:var(--amber);}
+
+/* level tiers */
+.tier{border:1.5px solid var(--line);border-radius:20px;padding:18px;margin-top:14px;background:#fff;position:relative;cursor:pointer;}
+.tier.on{border-color:var(--indigo);box-shadow:0 8px 24px rgba(71,51,199,.12);}
+.tier .radio{position:absolute;top:18px;right:18px;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);}
+.tier.on .radio{border-color:var(--indigo);background:radial-gradient(circle,var(--indigo) 0 5px,#fff 6px);}
+.tier .tn{font-size:16px;font-weight:900;letter-spacing:.5px;display:flex;align-items:center;gap:9px;}
+.tier .tn .dot{width:10px;height:10px;border-radius:50%;}
+.tier .td{font-size:13px;color:var(--ink);margin-top:8px;line-height:1.45;padding-right:20px;}
+.tier .ul{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--grey);text-transform:uppercase;margin:13px 0 6px;}
+.tier .uk{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;font-weight:600;margin-top:8px;line-height:1.35;}
+.tier .ck{width:18px;height:18px;border-radius:5px;background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;margin-top:1px;}
+
+/* onboarding */
+.ob{padding-top:2px;}
+.prog5{display:flex;align-items:center;gap:10px;padding:6px 0 22px;}
+.prog5 .segs{display:flex;gap:6px;flex:1;}
+.prog5 .segs i{height:5px;border-radius:3px;background:var(--line);flex:1;}
+.prog5 .segs i.on{background:var(--indigo);}
+.prog5 .stp{font-size:12px;font-weight:700;color:var(--grey);white-space:nowrap;}
+.obcenter{text-align:center;padding-top:14px;}
+.obcenter .orb{margin:6px auto 18px;}
+.listening{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--indigo);text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:14px;}
+.listening .d{width:8px;height:8px;border-radius:50%;background:var(--indigo);}
+.obq{font-size:24px;font-weight:900;line-height:1.22;letter-spacing:-.3px;text-align:center;}
+.quote{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;margin-top:18px;text-align:left;box-shadow:0 8px 22px rgba(40,30,70,.06);}
+.quote .qk{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--grey);text-transform:uppercase;}
+.quote .qv{font-size:15px;font-weight:800;margin-top:6px;line-height:1.4;}
+.learn{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--grey);text-transform:uppercase;margin:22px 0 10px;}
+.tags{display:flex;flex-wrap:wrap;gap:9px;}
+.tg{background:var(--soft);border:1px solid var(--line);border-radius:20px;padding:8px 14px;font-size:12.5px;font-weight:700;color:var(--indigo);}
+.obtitle{font-size:28px;font-weight:900;line-height:1.15;letter-spacing:-.5px;margin:4px 0 12px;}
+.obeye{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--jade);text-transform:uppercase;}
+.obsub{font-size:14px;color:var(--grey);line-height:1.55;}
+.oboption{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:14px;cursor:pointer;background:#fff;}
+.oboption.hi{background:var(--t-indigo);border-color:transparent;}
+.oboption .oi{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.oboption .ot{font-size:15px;font-weight:900;display:flex;align-items:center;gap:8px;}
+.oboption .os{font-size:12.5px;color:var(--grey);margin-top:3px;line-height:1.4;}
+.easy{font-size:9px;font-weight:800;letter-spacing:.5px;background:var(--jade);color:#fff;padding:3px 8px;border-radius:10px;}
+.chev{margin-left:auto;color:var(--grey);font-size:22px;font-weight:700;}
+.scan{border:2px dashed #c4bcd6;border-radius:18px;padding:34px 16px;text-align:center;margin-top:18px;}
+.scan .st{font-size:14px;font-weight:800;}
+.scan .ss{font-size:12px;color:var(--grey);margin-top:4px;}
+.ordiv{display:flex;align-items:center;gap:12px;margin:22px 0 4px;color:var(--grey);font-size:10.5px;font-weight:800;letter-spacing:1px;}
+.ordiv::before,.ordiv::after{content:"";flex:1;height:1px;background:var(--line);}
+.field{border:1px solid var(--line);border-radius:14px;padding:11px 14px;margin-top:12px;}
+.field .fk{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--grey);text-transform:uppercase;}
+.field input{border:none;outline:none;font-size:15px;font-weight:700;margin-top:4px;width:100%;color:var(--ink);background:transparent;}
+.field input::placeholder{color:#b9b3c4;}
+.fine2{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--grey);margin-top:16px;}
+.fine2 .bx{width:14px;height:14px;border:1.5px solid var(--jade);border-radius:4px;flex-shrink:0;}
+.bigcheck{width:96px;height:96px;border-radius:50%;background:var(--jade);color:#fff;display:flex;align-items:center;justify-content:center;font-size:44px;margin:24px auto 18px;box-shadow:0 0 0 12px rgba(14,140,125,.12);}
+.verified-t{font-size:30px;font-weight:900;text-align:center;line-height:1.15;letter-spacing:-.5px;}
+.intel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:24px;box-shadow:0 10px 26px rgba(40,30,70,.06);}
+.intel .who{display:flex;align-items:center;gap:11px;}
+.intel .who .a{width:42px;height:42px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;}
+.intel .who .n{font-size:14px;font-weight:900;display:flex;align-items:center;gap:6px;}
+.intel .who .c{font-size:11.5px;color:var(--grey);margin-top:1px;}
+.vbadge{font-size:9px;font-weight:800;letter-spacing:.3px;background:var(--t-jade);color:var(--jade);padding:2px 7px;border-radius:10px;}
+.intel .lk{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--grey);text-transform:uppercase;margin:16px 0 9px;}
+.revrow{display:flex;justify-content:space-between;font-size:14px;padding:11px 0;border-bottom:1px solid var(--line);}
+.revrow .k{color:var(--grey);}.revrow .v{font-weight:800;}
+
+/* chromeless (onboarding hides tab bar) */
+.device.chromeless .tabbar{display:none;}
+.device.chromeless .screens{bottom:0;}
+
+/* detail screens */
+.xbtn{background:#fff;color:#C0392B;border:1.5px solid #eab5ad;font-size:13px;font-weight:800;padding:9px 14px;border-radius:20px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.up{color:var(--jade);font-weight:800;}
+.dn{color:#C0392B;font-weight:800;}
+.stat2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+.stat{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:14px;}
+.stat .k{font-size:11px;color:var(--grey);font-weight:700;}
+.stat .v{font-size:20px;font-weight:900;margin-top:3px;font-variant-numeric:tabular-nums;}
+.stat .t{font-size:11px;font-weight:800;margin-top:2px;}
+.amts{display:flex;gap:8px;margin-top:14px;}
+.amt-chip{flex:1;text-align:center;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:13px 4px;font-weight:800;font-size:15px;cursor:pointer;color:var(--ink);}
+.amt-chip.on{background:var(--indigo);color:#fff;border-color:transparent;}
+.rowval{display:flex;justify-content:space-between;align-items:center;padding:13px 2px;border-bottom:1px solid var(--line);}
+.rowval .l{display:flex;align-items:center;gap:11px;min-width:0;}
+.rowval .ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0;}
+.rowval .nm{font-size:14px;font-weight:800;}
+.rowval .sb{font-size:11.5px;color:var(--grey);margin-top:1px;}
+.rowval .rt{text-align:right;flex-shrink:0;}
+.rowval .vv{font-size:14px;font-weight:900;font-variant-numeric:tabular-nums;}
+.selrow{cursor:pointer;border:1px solid var(--line);border-radius:14px;padding:13px;margin-top:10px;display:flex;align-items:center;gap:11px;}
+.selrow.on{border-color:var(--indigo);background:var(--t-indigo);}
+.selrow .rad{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);margin-left:auto;flex-shrink:0;}
+.selrow.on .rad{border-color:var(--indigo);background:radial-gradient(circle,var(--indigo) 0 5px,#fff 6px);}
+.paybox{border:2px dashed #c4bcd6;border-radius:20px;padding:26px;text-align:center;margin-top:14px;}
+.qrbox{width:150px;height:150px;margin:0 auto 14px;border-radius:12px;background:repeating-conic-gradient(#1D1330 0 90deg,#fff 0 180deg) 0 0/22px 22px;border:7px solid #1D1330;}
+.persons{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;}
+.person{display:flex;flex-direction:column;align-items:center;width:58px;cursor:pointer;}
+.person .pc{width:48px;height:48px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;}
+.person .pn{font-size:10.5px;font-weight:700;margin-top:5px;text-align:center;}
+.eventcard{border-radius:18px;padding:16px;color:#fff;margin-top:12px;position:relative;overflow:hidden;cursor:pointer;}
+.eventcard .etag{position:absolute;top:13px;right:13px;background:rgba(255,255,255,.25);font-size:9px;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:.5px;}
+.eventcard .et{font-size:17px;font-weight:900;padding-right:104px;line-height:1.2;}
+.eventcard .ed{font-size:12px;opacity:.92;margin-top:3px;}
+.frozen{filter:grayscale(.55) brightness(.92);}
+</style>
+<style>
+/* ===================== NEUMORPHIC REDESIGN (Superfan) ===================== */
+:root{
+  --surface:#e9e6f3; --card:rgba(255,255,255,.55);
+  --purple:#7B3FE4; --pink:#E0457B;
+  --indigo:#7B3FE4; --cobalt:#3B82F6; --clay:#E0457B; --amber:#E08A2B; --jade:#0E9B86; --gold:#C98217; --slate:#5C6E8C; --inkindigo:#2B2150;
+  --ink:#241a3f; --grey:#817c99; --line:#dbd6ec; --soft:rgba(255,255,255,.5); --paper:#e9e6f3;
+  --t-indigo:#e7e1fb; --t-cobalt:#e3ebfd; --t-clay:#fbe2ee; --t-amber:#f7edda; --t-jade:#dcf2ee;
+  --grad:linear-gradient(135deg,#7B3FE4,#E0457B);
+  --grad-cobalt:linear-gradient(135deg,#3B82F6,#7B3FE4);
+  --grad-clay:linear-gradient(135deg,#F59E0B,#E0457B);
+  --grad-amber:linear-gradient(135deg,#F59E0B,#E0457B);
+  --grad-jade:linear-gradient(135deg,#06B6D4,#7B3FE4);
+  --money:linear-gradient(135deg,#7B3FE4,#E0457B);
+  --raise:7px 7px 16px rgba(150,142,182,.5),-7px -7px 16px #ffffff;
+  --raise-sm:4px 4px 10px rgba(150,142,182,.42),-5px -5px 10px #ffffff;
+  --press:inset 3px 3px 6px #c4bedb,inset -3px -3px 6px #ffffff;
+  --glow:0 16px 34px -14px rgba(123,63,228,.6);
+}
+body{background:#e9e6f3 !important;}
+.head h1{color:var(--ink);} .hint b{color:var(--purple);}
+.device{background:#e9e6f3;border-color:#141019;box-shadow:0 44px 90px -34px rgba(60,30,120,.55);}
+.app,.screens{background:#e9e6f3;}
+.statusbar{background:transparent;color:var(--ink);}
+.island{background:#0b0712;}
+
+/* controls & headers */
+.scrhd .back,.khd .menu,.askkai{background:#e9e6f3;border:none !important;box-shadow:var(--raise-sm);}
+.scrhd .back:active,.khd .menu:active{box-shadow:var(--press);}
+.scrhd h2{color:var(--ink);}
+.askkai{color:var(--purple);}
+.khd .me2,.orb,.bubble.ka{background:var(--grad);}
+.greet h3,.hero .big{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+/* frosted raised cards */
+.hero,.tile,.gtile,.cause,.fcard,.receipt,.stat,.quote,.intel,.oboption,.field,.tlcard,.phrow,.tier,.selrow,.daymsg,.kaimsg,.act,.qmove,.bubble.me{
+  background:var(--card) !important;border:1px solid rgba(255,255,255,.55) !important;box-shadow:var(--raise-sm);
+}
+.gtile:active,.qmove:active,.act:active,.cause:active,.fcard:active{box-shadow:var(--press) !important;}
+.hero{border-radius:22px;color:var(--ink);}
+.hero .lab,.hero .note,.hero p{color:var(--grey);opacity:1;}
+.hero .eb,.hero .hide{color:var(--purple);opacity:1;}
+.hero h3{color:var(--ink);}
+.hero .inner{background:rgba(123,63,228,.08);color:var(--ink);}
+
+/* list rows stay flat with a hairline */
+.rowval,.hist,.revrow{background:transparent !important;border:none !important;box-shadow:none !important;border-bottom:1px solid var(--line) !important;}
+.gt,.cn,.nm,.tt,.pt,.fn,.tn,.dt{color:var(--ink);}
+
+/* gradient accent objects */
+.incard{background:var(--grad) !important;color:#fff;box-shadow:var(--glow);}
+
+/* buttons */
+.btn{background:var(--grad);box-shadow:var(--glow);}
+.btn:active{box-shadow:var(--press);}
+.btn.ghost,.btn.white,.btn.cob{background:#e9e6f3 !important;color:var(--purple) !important;border:none !important;box-shadow:var(--raise-sm);}
+.btn.jade{background:linear-gradient(135deg,#06B6D4,#0E9B86) !important;color:#fff !important;}
+.hero .btn.white{color:var(--purple) !important;}
+
+/* chips */
+.trychip,.tg,.kchip,.amt-chip{background:#e9e6f3 !important;border:none !important;box-shadow:var(--raise-sm);}
+.trychip,.tg,.kchip{color:var(--purple);}
+.amt-chip{color:var(--ink);}
+.trychip:active,.tg:active,.amt-chip:active{box-shadow:var(--press);}
+.amt-chip.on{background:var(--grad) !important;color:#fff;box-shadow:var(--glow);}
+.selrow.on,.tier.on{box-shadow:var(--press) !important;border-color:transparent !important;background:rgba(123,63,228,.08) !important;}
+
+/* tab bar */
+.tabbar{background:#e9e6f3;border-top:none;box-shadow:0 -8px 20px -12px rgba(90,60,150,.4);padding:8px 8px 12px;}
+.tabbar .t{color:var(--grey);border-radius:16px;margin:2px;}
+.tabbar .t.on{color:var(--purple);background:#e9e6f3;box-shadow:var(--raise-sm);}
+
+/* give / cancel */
+.give{background:linear-gradient(135deg,#06B6D4,#0E9B86);box-shadow:0 10px 22px -12px rgba(14,155,134,.7);}
+.xbtn{background:#e9e6f3;border:none;box-shadow:var(--raise-sm);color:var(--pink);}
+.rowhdr a{color:var(--pink);}
+
+/* drawer */
+.drawer{background:#e9e6f3;}
+.dhead{background:var(--grad);}
+.dclose{background:#e9e6f3;border:none;box-shadow:var(--raise-sm);color:var(--ink);}
+.ditem:active{background:transparent;box-shadow:var(--press);}
+
+/* onboarding */
+.obtitle,.verified-t,.obq{color:var(--ink);}
+.obeye{color:var(--pink);}
+.oboption.hi{background:rgba(123,63,228,.08) !important;box-shadow:var(--press) !important;}
+.prog5 .segs i.on{background:var(--purple);}
+.listening,.learn{color:var(--purple);}
+.listening .d{background:var(--purple);}
+.scan,.paybox{border-color:#c9c2e0 !important;}
+.bigcheck{background:linear-gradient(135deg,#06B6D4,#0E9B86);box-shadow:0 0 0 12px rgba(14,155,134,.12);}
+.vbadge{background:var(--t-jade);color:var(--jade);}
+.toast{background:var(--ink);}
+.foot b{color:var(--ink);}
+
+/* ===== logo ===== */
+.logo-row{display:flex;align-items:center;gap:11px;justify-content:center;}
+.logomark{flex-shrink:0;display:block;}
+.wordmark{font-weight:800;letter-spacing:-1.5px;font-size:27px;line-height:1;}
+.wordmark.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+/* ===== Home ===== */
+.rowhdr .lnk{font-size:12.5px;font-weight:800;color:var(--pink);cursor:pointer;}
+.worlds{display:flex;gap:15px;overflow-x:auto;padding:6px 0 4px;}
+.worlds::-webkit-scrollbar{height:0;}
+.world{flex-shrink:0;width:62px;text-align:center;cursor:pointer;}
+.world .ring{width:60px;height:60px;border-radius:50%;padding:3px;background:var(--grad);}
+.world .face{width:100%;height:100%;border-radius:50%;background:#e9e6f3;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:var(--purple);box-shadow:var(--raise-sm);}
+.world .wl{font-size:11px;font-weight:700;margin-top:6px;color:var(--ink);white-space:nowrap;}
+.world .wl.live{color:var(--pink);}
+.world.add .ring{background:none;padding:0;}
+.world.add .face{border:2px dashed #b9b1d6;color:var(--purple);box-shadow:none;background:transparent;font-size:26px;font-weight:400;}
+.evt{border-radius:22px;overflow:hidden;position:relative;color:#fff;min-height:206px;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;cursor:pointer;box-shadow:var(--raise);margin-top:6px;}
+.evt .bg{position:absolute;inset:0;background:linear-gradient(160deg,#5B2AAE,#3a1f6e 55%,#152344);}
+.evt .ov{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,0) 30%,rgba(18,10,45,.88));}
+.evt>.z{position:relative;z-index:2;}
+.evt .vip{position:absolute;top:16px;left:16px;z-index:2;background:var(--grad);font-size:10px;font-weight:800;letter-spacing:1px;padding:5px 11px;border-radius:20px;}
+.evt .heart{position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--pink);font-size:16px;}
+.evt .host{font-size:12px;opacity:.95;display:flex;align-items:center;gap:8px;}
+.evt .host .hd{width:20px;height:20px;border-radius:50%;background:var(--grad);}
+.evt .ttl{font-size:23px;font-weight:900;margin-top:6px;letter-spacing:-.5px;}
+.evt .dt2{font-size:12.5px;opacity:.9;margin-top:2px;}
+.evt .claim{position:absolute;right:18px;bottom:18px;z-index:2;background:#fff;color:var(--purple);font-weight:800;font-size:14px;padding:11px 20px;border-radius:24px;}
+.evt .dots{display:flex;gap:5px;margin-top:12px;}
+.evt .dots i{width:16px;height:5px;border-radius:3px;background:rgba(255,255,255,.4);}
+.evt .dots i.on{background:var(--pink);width:22px;}
+.askcard{background:var(--grad);border-radius:22px;padding:20px;color:#fff;position:relative;box-shadow:var(--glow);overflow:hidden;margin-top:14px;}
+.askcard h3{font-size:22px;font-weight:900;}
+.askcard .asp{font-size:13px;opacity:.95;margin-top:3px;max-width:62%;}
+.askcard .miniorb{position:absolute;top:20px;right:20px;width:72px;height:72px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.22);}
+.askcard .miniorb .eq{height:30px;gap:3px;}.askcard .miniorb .eq i{width:4px;background:var(--purple);}
+.askcard .speak{position:absolute;top:98px;right:20px;width:72px;text-align:center;font-size:8.5px;font-weight:800;letter-spacing:1px;opacity:.9;}
+.askcard .kchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;max-width:64%;}
+.askcard .kc{background:rgba(255,255,255,.2);color:#fff;font-size:12px;font-weight:700;padding:8px 13px;border-radius:18px;cursor:pointer;}
+.mods{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.mod{background:var(--card);border:1px solid rgba(255,255,255,.55);box-shadow:var(--raise-sm);border-radius:18px;padding:16px;cursor:pointer;}
+.mod .mh{display:flex;align-items:center;justify-content:space-between;}
+.mod .mt{font-size:13px;font-weight:800;color:var(--ink);}
+.mod .mi2{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.mod .mi2 svg{width:17px;height:17px;}
+.mod .mv{font-size:19px;font-weight:900;margin-top:14px;color:var(--ink);font-variant-numeric:tabular-nums;}
+.mod .ms{font-size:11.5px;color:var(--grey);margin-top:3px;}
+.mod.wide{grid-column:1/3;}
+.eyebtn{cursor:pointer;color:var(--purple);font-size:11px;font-weight:800;}
+
+/* ===== Wallet detail ===== */
+.wcard{background:var(--grad);border-radius:20px;padding:20px;color:#fff;position:relative;min-height:168px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--glow);margin-top:6px;}
+.wcard .chip{width:34px;height:26px;border-radius:6px;background:linear-gradient(135deg,#f2d9a8,#c99a54);}
+.wcard .brand{position:absolute;top:20px;right:20px;font-size:13px;font-weight:800;}
+.wcard .inlogo{font-size:44px;font-weight:900;font-style:italic;letter-spacing:-2px;line-height:1;}
+.wcard .row{display:flex;justify-content:space-between;align-items:flex-end;}
+.wcard .no{font-size:15px;letter-spacing:2px;font-weight:700;}
+.wcard .visa{font-size:19px;font-weight:900;font-style:italic;}
+.wactions{display:flex;gap:6px;margin-top:16px;}
+.waction{text-align:center;cursor:pointer;flex:1;}
+.waction .wc{width:46px;height:46px;border-radius:15px;background:#e9e6f3;box-shadow:var(--raise-sm);display:flex;align-items:center;justify-content:center;margin:0 auto 6px;}
+.waction:active .wc{box-shadow:var(--press);}
+.waction .wc svg{width:20px;height:20px;stroke:var(--purple);fill:none;}
+.waction .wcl{font-size:10.5px;font-weight:700;color:var(--ink);}
+.totalbal{background:var(--card);border:1px solid rgba(255,255,255,.55);box-shadow:var(--raise-sm);border-radius:20px;padding:18px;margin-top:16px;}
+.totalbal .tl{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--grey);text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;}
+.totalbal .tb{font-size:36px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums;margin-top:6px;}
+.totalbal .tp{font-size:12.5px;font-weight:800;color:var(--jade);margin-top:2px;}
+.allocbar{display:flex;height:16px;border-radius:9px;overflow:hidden;box-shadow:var(--press);margin-top:16px;}
+.allocbar i{height:100%;}
+.alloclegend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:12px;}
+.alloclegend span{font-size:11.5px;color:var(--grey);font-weight:700;display:flex;align-items:center;gap:6px;}
+.alloclegend b{width:10px;height:10px;border-radius:3px;}
+.vault2{background:var(--card);border:1px solid rgba(255,255,255,.55);box-shadow:var(--raise-sm);border-radius:16px;padding:15px;margin-top:10px;}
+.vault2 .vtop{display:flex;justify-content:space-between;align-items:center;}
+.vault2 .vn{font-size:14px;font-weight:800;color:var(--ink);}
+.vault2 .vpct{font-size:13px;font-weight:900;color:var(--purple);}
+.vault2 .vbar{height:8px;border-radius:6px;background:#dcd8ec;overflow:hidden;margin:10px 0 8px;box-shadow:var(--press);}
+.vault2 .vbar i{display:block;height:100%;background:var(--grad);}
+.vault2 .vsub{font-size:11.5px;color:var(--grey);font-weight:600;}
+.vault2 .vtag{font-size:9px;font-weight:800;letter-spacing:.5px;color:var(--jade);background:var(--t-jade);padding:3px 8px;border-radius:10px;margin-left:8px;}
+.wadd{font-size:12px;font-weight:800;color:var(--purple);margin-top:10px;cursor:pointer;}
+/* embed mode: show only the device (for landing-page iframes) */
+body.embed{display:block;padding:0;background:transparent;min-height:0;}
+body.embed .head,body.embed .hint,body.embed .foot{display:none;}
+body.embed .device{margin:0;}
+</style></head><body>
+
+<div class="head">
+  <img src="logo.svg" alt="Indiggi" style="height:42px;display:block;margin:0 auto;">
+  <p style="margin-top:12px;">Culture is the new technology</p>
+</div>
+<div class="hint">A click-through demo — tap the <b>bottom nav</b> and the <b>Menu</b> to move through the app.</div>
+
+<div class="device chromeless">
+  <div class="island"></div>
+  <div class="app">
+    <div class="statusbar">
+      <span>9:41</span>
+      <span class="r">
+        <span style="font-weight:800;">5G</span>
+        <svg viewBox="0 0 26 13" fill="none"><rect x="1" y="1.5" width="21" height="10" rx="2.5" stroke="var(--ink)" stroke-width="1.4"/><rect x="3" y="3.5" width="16" height="6" rx="1.2" fill="var(--ink)"/><rect x="23.2" y="4.5" width="1.8" height="4" rx="1" fill="var(--ink)"/></svg>
+      </span>
+    </div>
+
+    <div class="screens">
+
+      <!-- ===== Home ===== -->
+      <section class="screen" id="home">
+        <div class="khd">
+          <div class="menu" onclick="openD()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
+          <img src="logo-mark.svg" alt="Indiggi" style="height:24px;flex:1;max-width:24px;object-fit:contain;">
+          <span class="lab" style="flex:1;">Superfan</span>
+          <div class="me2">T<span class="on2"></span></div>
+        </div>
+        <h2 style="font-size:30px;font-weight:900;letter-spacing:-.5px;"><span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;">Hi Ty.</span></h2>
+        <p style="font-size:14px;color:var(--grey);margin-top:2px;">Your world, today.</p>
+
+        <div class="rowhdr"><h3>Your Worlds</h3><span class="lnk" onclick="go('inlife')">Discover</span></div>
+        <div class="worlds">
+          <div class="world" onclick="go('inlife')"><div class="ring"><div class="face">◉</div></div><div class="wl live">Live now</div></div>
+          <div class="world" onclick="go('creator')"><div class="ring"><div class="face">✦</div></div><div class="wl">New drop</div></div>
+          <div class="world" onclick="go('map-tonight')"><div class="ring"><div class="face">♫</div></div><div class="wl">Event</div></div>
+          <div class="world" onclick="go('map-tonight')"><div class="ring"><div class="face">▤</div></div><div class="wl">Tickets</div></div>
+          <div class="world add" onclick="go('inlife')"><div class="ring"><div class="face">+</div></div><div class="wl">Discover</div></div>
+        </div>
+
+        <div class="rowhdr"><h3>Happening Tonight</h3></div>
+        <div class="evt" onclick="go('map-tonight')">
+          <div class="bg" style="background:url('assets/rooftop.jpg') center/cover no-repeat, linear-gradient(160deg,#5B2AAE,#3a1f6e 55%,#152344);"></div><div class="ov"></div>
+          <span class="vip">VIP</span>
+          <span class="heart">♥</span>
+          <div class="z">
+            <div class="host"><span class="hd"></span> Hosted by KAI</div>
+            <div class="ttl">Rooftop set · Arts District</div>
+            <div class="dt2">Fri, 26 June · Los Angeles</div>
+            <div class="dots"><i class="on"></i><i></i><i></i></div>
+          </div>
+          <span class="claim" onclick="event.stopPropagation();toast('✓ Spot claimed for tonight')">Claim</span>
+        </div>
+
+        <div class="askcard" onclick="go('kai')">
+          <div class="miniorb"><div class="eq"><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="speak">TAP TO SPEAK</div>
+          <h3>Ask KAI</h3>
+          <p class="asp">Your voice concierge — just speak.</p>
+          <div class="kchips">
+            <span class="kc" onclick="event.stopPropagation();go('schedule')">What's my day?</span>
+            <span class="kc" onclick="event.stopPropagation();go('r-savings')">Move money</span>
+            <span class="kc" onclick="event.stopPropagation();go('map-tonight')">Tonight</span>
+          </div>
+        </div>
+
+        <div class="rowhdr"><h3>Your world</h3></div>
+        <div class="mods">
+          <div class="mod wide" onclick="go('wallet')">
+            <div class="mh"><span class="mt">Your Wallet</span><span class="eyebtn" onclick="event.stopPropagation();tog('homeBal')">Show</span></div>
+            <div class="mv balv" id="homeBal" data-v="$42,310.00">$ ••••••</div>
+            <div class="ms">foundersin · •••• 4921 · tap to open</div>
+          </div>
+          <div class="mod" onclick="go('inlife')">
+            <div class="mh"><span class="mt">InLife</span><span class="mi2" style="background:var(--t-indigo)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></span></div>
+            <div class="mv" style="font-size:15px;">Tonight's scene</div>
+            <div class="ms">3 spots in your circle</div>
+          </div>
+          <div class="mod" onclick="go('rewards')">
+            <div class="mh"><span class="mt">Rewards</span><span class="mi2" style="background:var(--t-amber)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16l-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/></svg></span></div>
+            <div class="mv">18,240</div>
+            <div class="ms">Karma · +1,200 this week</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== KAI (home) ===== -->
+      <section class="screen" id="kai">
+        <div class="khd">
+          <div class="menu" onclick="openD()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
+          <span class="lab">KAI · Life Intelligence</span>
+          <div class="me2">T<span class="on2"></span></div>
+        </div>
+        <div class="greet">
+          <div class="orb"><div class="eq"><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div><h3>Hi Ty.</h3><p>I circle your whole life. Ask me anything, or tap a move.</p></div>
+        </div>
+        <div id="kai-convo" style="display:none;">
+          <div class="bubble ka">Good morning, Ty. Your day is light until 2, savings auto move runs today, and your church gift is queued for Sunday. Want me to handle any of it now?</div>
+          <div class="bubble me">What's my day?</div>
+          <div class="bubble ka">Light until 2, Ty. Cut at 9:30 is done, ride is timed to your 2pm studio session, and I am holding dinner at 8 for four.</div>
+          <button class="btn" onclick="go('schedule')">Open My Day</button>
+        </div>
+
+        <div class="lbl2">Try these</div>
+        <div class="trychips">
+          <span class="trychip" onclick="askDay()">What's my day?</span>
+          <span class="trychip" onclick="go('r-savings')">Move $50 to savings</span>
+          <span class="trychip" onclick="go('r-gift')">Give $25 to my church</span>
+          <span class="trychip" onclick="go('rewards')">How many Karma points?</span>
+          <span class="trychip" onclick="go('schedule')">Book my 2pm, hold dinner at 8</span>
+        </div>
+
+        <div class="lbl2">Quick moves KAI can do</div>
+        <div class="qmoves">
+          <div class="qmove" onclick="go('qm-cancel')"><div class="qi" style="background:var(--t-clay)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg></div><div class="ql">Cancel a sub</div></div>
+          <div class="qmove" onclick="go('qm-split')"><div class="qi" style="background:var(--t-cobalt)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cobalt)" stroke-width="2"><path d="M12 3v18M4 8h16M4 16h16"/></svg></div><div class="ql">Split a bill</div></div>
+          <div class="qmove" onclick="go('qm-remind')"><div class="qi" style="background:var(--t-indigo)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="ql">Set reminder</div></div>
+          <div class="qmove" onclick="go('qm-crypto')"><div class="qi" style="background:var(--t-amber)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M4 18l5-6 4 3 6-8"/><path d="M4 20h16"/></svg></div><div class="ql">Check crypto</div></div>
+          <div class="qmove" onclick="go('qm-tip')"><div class="qi" style="background:var(--t-jade)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="2"><path d="M12 2v20M8 6h6a3 3 0 010 6H9a3 3 0 000 6h7"/></svg></div><div class="ql">Tip someone</div></div>
+          <div class="qmove" onclick="go('qm-all')"><div class="qi" style="background:var(--soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--grey)" stroke-width="2"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></div><div class="ql">All of life</div></div>
+        </div>
+      </section>
+
+      <!-- ===== KAI result: moved to savings ===== -->
+      <section class="screen" id="r-savings">
+        <div class="khd">
+          <div class="menu" onclick="openD()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
+          <span class="lab">KAI · Life Intelligence</span>
+          <div class="me2">T<span class="on2"></span></div>
+        </div>
+        <div class="bubble me" style="margin-bottom:14px;">Move $50 to savings</div>
+        <div class="receipt">
+          <div class="done"><span class="check">✓</span> Moved to savings</div>
+          <div class="rr"><span class="k">From</span><span class="v">INCard</span></div>
+          <div class="rr"><span class="k">To</span><span class="v">Savings vault</span></div>
+          <div class="rr"><span class="k">Amount</span><span class="v">$50.00</span></div>
+          <div class="fine">You are $180 from your Essence Fest goal.</div>
+        </div>
+        <button class="btn" onclick="go('wallet')">Open Money Life</button>
+        <div class="lbl2">Try these</div>
+        <div class="trychips">
+          <span class="trychip" onclick="go('schedule')">What's my day?</span>
+          <span class="trychip" onclick="go('r-savings')">Move $50 to savings</span>
+          <span class="trychip" onclick="go('r-gift')">Give $25 to my church</span>
+          <span class="trychip" onclick="go('rewards')">How many Karma points?</span>
+          <span class="trychip" onclick="go('schedule')">Book my 2pm, hold dinner at 8</span>
+        </div>
+        <div style="text-align:center;margin-top:18px;"><span class="trychip" onclick="go('kai')">← Back to KAI</span></div>
+      </section>
+
+      <!-- ===== KAI result: gift sent ===== -->
+      <section class="screen" id="r-gift">
+        <div class="khd">
+          <div class="menu" onclick="openD()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></div>
+          <span class="lab">KAI · Life Intelligence</span>
+          <div class="me2">T<span class="on2"></span></div>
+        </div>
+        <div class="bubble me" style="margin-bottom:14px;">Give $25 to my church</div>
+        <div class="receipt">
+          <div class="done"><span class="check">✓</span> Gift sent</div>
+          <div class="rr"><span class="k">To</span><span class="v">First AME Church</span></div>
+          <div class="rr"><span class="k">Amount</span><span class="v">$25.00</span></div>
+          <div class="rr"><span class="k">Karma earned</span><span class="v" style="color:var(--amber)">+50</span></div>
+          <div class="fine">Receipted for you at tax time.</div>
+        </div>
+        <button class="btn" onclick="go('giving')">Open Giving</button>
+        <div style="text-align:center;margin-top:18px;"><span class="trychip" onclick="go('kai')">← Back to KAI</span></div>
+      </section>
+
+      <!-- ===== Wallet ===== -->
+      <section class="screen" id="wallet">
+        <div class="scrhd">
+          <div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div>
+          <h2>Wallet</h2>
+          <div class="askkai" onclick="toast('KAI is listening…')"><span class="kk">K</span> Ask KAI</div>
+        </div>
+        <span class="eyebrow eb-clay">Daily spending &amp; investments</span>
+
+        <div class="wcard">
+          <div><div class="chip"></div><span class="brand">founders<i style="font-style:italic;">in</i>.</span></div>
+          <div class="inlogo">in</div>
+          <div class="row"><span class="no">•••• 4921</span><span class="visa">VISA</span></div>
+        </div>
+
+        <div class="wactions">
+          <div class="waction" onclick="go('mv-move')"><div class="wc"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="wcl">Send</div></div>
+          <div class="waction" onclick="toast('Add funds to Wallet')"><div class="wc"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div><div class="wcl">Add</div></div>
+          <div class="waction" onclick="go('frac')"><div class="wc"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 18l5-6 4 3 6-8"/><path d="M4 20h16"/></svg></div><div class="wcl">Invest</div></div>
+          <div class="waction" onclick="go('qm-crypto')"><div class="wc"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg></div><div class="wcl">Convert</div></div>
+          <div class="waction" onclick="go('mv-freeze')"><div class="wc"><svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></div><div class="wcl">Details</div></div>
+        </div>
+
+        <div class="totalbal">
+          <div class="tl"><span>Total balance</span><span class="eyebtn" onclick="tog('walletBal')">Show</span></div>
+          <div class="tb balv" id="walletBal" data-v="$42,310.00">$ ••••••</div>
+          <div class="tp">▲ 1.8% this month</div>
+          <div class="allocbar"><i style="width:66%;background:var(--purple)"></i><i style="width:22%;background:var(--pink)"></i><i style="width:7%;background:#E08A2B"></i><i style="width:5%;background:#0E9B86"></i></div>
+          <div class="alloclegend">
+            <span><b style="background:var(--purple)"></b>Cash 66%</span>
+            <span><b style="background:var(--pink)"></b>Crypto 22%</span>
+            <span><b style="background:#E08A2B"></b>Gold 7%</span>
+            <span><b style="background:#0E9B86"></b>Real Estate 5%</span>
+          </div>
+        </div>
+
+        <div class="rowhdr"><h3>Accounts &amp; Holdings</h3><span class="lnk" onclick="toast('Account details')">More Info</span></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-indigo);color:var(--purple)">$</div><div><div class="nm">Cash</div><div class="sb">Global USD</div></div></div><div class="vv">$27,989.00</div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-clay);color:var(--pink)">₿</div><div><div class="nm">Crypto</div><div class="sb">BTC, ETC, SOL</div></div></div><div class="vv">$9,420.00</div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-amber);color:#E08A2B">◍</div><div><div class="nm">Gold</div><div class="sb">Fractional oz</div></div></div><div class="vv">$2,901.00</div></div>
+        <div class="rowval" style="border:none;"><div class="l"><div class="ic" style="background:var(--t-jade);color:#0E9B86">⌂</div><div><div class="nm">Real Estate</div><div class="sb">Fractional</div></div></div><div class="vv">$2,000.00</div></div>
+
+        <div class="rowhdr"><h3>Recent Spending</h3><span class="lnk" onclick="toast('All transactions')">See All</span></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:#ffe1e1;color:#C0392B">N</div><div><div class="nm">Netflix</div><div class="sb">7:45pm</div></div></div><div class="vv">$15.99</div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-clay);color:var(--pink)">C</div><div><div class="nm">Carbone</div><div class="sb">Yesterday</div></div></div><div class="vv">$344.89</div></div>
+        <div class="rowval" style="border:none;"><div class="l"><div class="ic" style="background:var(--t-cobalt);color:var(--cobalt)">◆</div><div><div class="nm">FIFA</div><div class="sb">22 June</div></div></div><div class="vv">$2,799.99</div></div>
+
+        <div class="rowhdr"><h3>Vaults</h3><span class="lnk" onclick="toast('Edit vaults')">Edit</span></div>
+        <div class="vault2">
+          <div class="vtop"><span class="vn">European Trip <span class="vtag">ALMOST THERE</span></span><span class="vpct">80%</span></div>
+          <div class="vbar"><i style="width:80%"></i></div>
+          <div class="vsub">$4,000 of $5,000 · funded</div>
+          <div class="wadd" onclick="toast('Added to European Trip vault')">+ Add to this vault</div>
+        </div>
+        <div class="vault2">
+          <div class="vtop"><span class="vn">World Cup Final</span><span class="vpct">20%</span></div>
+          <div class="vbar"><i style="width:20%"></i></div>
+          <div class="vsub">$400 of $2,000</div>
+        </div>
+        <div class="vault2">
+          <div class="vtop"><span class="vn">New Shoes</span><span class="vpct">70%</span></div>
+          <div class="vbar"><i style="width:70%"></i></div>
+          <div class="vsub">$210 of $300</div>
+        </div>
+      </section>
+
+      <!-- ===== Karma ===== -->
+      <section class="screen" id="rewards">
+        <div class="scrhd">
+          <div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div>
+          <h2>Karma</h2>
+          <div class="askkai" onclick="toast('KAI is listening…')"><span class="kk">K</span> Ask KAI</div>
+        </div>
+        <span class="eyebrow eb-amber">You spend, we give. You give, we grow.</span>
+
+        <div class="hero amber">
+          <span class="lab">Your Karma</span>
+          <div class="big">18,240</div>
+          <div class="note">+1,200 this week from moves you made</div>
+        </div>
+
+        <div class="hero clay" style="margin-top:14px;">
+          <h3 style="font-size:22px;">You spend, we give</h3>
+          <span class="eb">The Circle</span>
+          <p style="margin-top:8px;">Every purchase adds to The Circle, our community giving pool. You are never giving alone. We move together.</p>
+          <div class="inner">The Circle has given <b>248,000 Karma</b> to community causes this month. You are part of it.</div>
+          <button class="btn white" onclick="go('circle')">See The Circle</button>
+        </div>
+
+        <div class="hero jade" style="margin-top:14px;">
+          <h3 style="font-size:22px;">Give on your own</h3>
+          <p style="margin-top:8px;">Send Karma straight to your church, your school, the causes you carry. Every gift you make earns Karma back.</p>
+          <button class="btn white" onclick="go('giving')">Give to your causes</button>
+        </div>
+      </section>
+
+      <!-- ===== Giving ===== -->
+      <section class="screen" id="giving">
+        <div class="scrhd">
+          <div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div>
+          <h2>Giving</h2>
+          <div class="askkai" onclick="toast('KAI is listening…')"><span class="kk">K</span> Ask KAI</div>
+        </div>
+        <span class="eyebrow eb-jade">Give through KAI · Earn Karma</span>
+
+        <div class="hero jade">
+          <span class="lab">Given this year</span>
+          <div class="big">$1,340</div>
+          <div class="note">Across your church and two causes. +2,680 Karma earned.</div>
+        </div>
+
+        <div class="rowhdr"><h3>Your causes</h3></div>
+        <div class="cause">
+          <div class="ci" style="background:var(--t-jade)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="2"><path d="M12 3l7 5v11H5V8z"/><path d="M12 3v6M9 9h6"/></svg></div>
+          <div class="cinfo"><div class="cn">First AME Church</div><div class="cs">Weekly gift · queued for Sunday</div></div>
+          <button class="give" onclick="toast('✓ $25 sent to First AME Church')">Give $25</button>
+        </div>
+        <div class="cause">
+          <div class="ci" style="background:var(--t-amber)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11v5c0 1 2.5 2.5 5 2.5s5-1.5 5-2.5v-5"/></svg></div>
+          <div class="cinfo"><div class="cn">Youth Scholarship Fund</div><div class="cs">Monthly · last gift 3 weeks ago</div></div>
+          <button class="give" onclick="toast('✓ $25 sent to Youth Scholarship Fund')">Give $25</button>
+        </div>
+        <div class="cause">
+          <div class="ci" style="background:var(--t-clay)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2"><path d="M6 8V6a2 2 0 012-2h8a2 2 0 012 2v2"/><rect x="4" y="8" width="16" height="12" rx="2"/></svg></div>
+          <div class="cinfo"><div class="cn">Neighborhood Food Drive</div><div class="cs">One time · matched by Indiggi</div></div>
+          <button class="give" onclick="toast('✓ $25 sent · matched to $50')">Give $25</button>
+        </div>
+
+        <div class="rowhdr"><h3>Giving history</h3></div>
+        <div class="hist"><div class="l"><div class="hi2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 20s-7-4.5-9.5-9C1 8 2.5 4.5 6 4.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 15.5 12 20 12 20z"/></svg></div><div><div class="nm">First AME Church</div><div class="dt">Last Sunday</div></div></div><div class="amt">$25.00</div></div>
+        <div class="hist"><div class="l"><div class="hi2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 20s-7-4.5-9.5-9C1 8 2.5 4.5 6 4.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 15.5 12 20 12 20z"/></svg></div><div><div class="nm">Youth Scholarship Fund</div><div class="dt">3 weeks ago</div></div></div><div class="amt">$50.00</div></div>
+      </section>
+
+      <!-- ===== Creator OS ===== -->
+      <section class="screen" id="creator">
+        <div class="scrhd">
+          <div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div>
+          <h2>Creator OS</h2>
+        </div>
+
+        <div class="hero clay">
+          <span class="eb">Creator · Indiggi</span>
+          <h3>Creator OS</h3>
+          <p>Own your audience, your rooms, your revenue. This is where you build.</p>
+          <p>Your people, your spaces, your money, all in one place inside Indiggi.</p>
+        </div>
+
+        <div class="gtiles">
+          <div class="gtile" onclick="go('cr-audience')"><div class="gi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M16 8.5a3 3 0 010 5M18 20c0-2.4-1-3.8-2.5-4.6"/></svg></div><div class="gt">Audience</div><div class="gs">Who follows you, and how to reach them.</div></div>
+          <div class="gtile" onclick="go('cr-rooms')"><div class="gi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16"/></svg></div><div class="gt">Rooms</div><div class="gs">Your spaces to gather, host, and go live.</div></div>
+          <div class="gtile" onclick="go('cr-revenue')"><div class="gi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2v20M8 6h6a3 3 0 010 6H9a3 3 0 000 6h7"/></svg></div><div class="gt">Revenue</div><div class="gs">What you earn, in one clear place.</div></div>
+          <div class="gtile" onclick="go('cr-drops')"><div class="gi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3l2 5 5 .5-4 3.5 1.2 5L12 19l-4.2 2 1.2-5-4-3.5 5-.5z"/></svg></div><div class="gt">Drops</div><div class="gs">Launch products, tickets, and content.</div></div>
+          <div class="gtile" onclick="go('cr-insights')"><div class="gi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6"/></svg></div><div class="gt">Insights</div><div class="gs">What is working, and what to do next.</div></div>
+          <div class="gtile" onclick="go('cr-askkai')"><div class="gi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></div><div class="gt">Ask KAI</div><div class="gs">Your co-pilot for the business side.</div></div>
+        </div>
+      </section>
+
+      <!-- ===== Schedule / My Day ===== -->
+      <section class="screen" id="schedule">
+        <div class="scrhd">
+          <div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div>
+          <h2>My Day</h2>
+          <div class="askkai" onclick="toast('KAI is planning your day…')"><span class="kk">K</span> Ask KAI</div>
+        </div>
+        <span class="eyebrow eb-cobalt">Thursday · Managed by KAI</span>
+        <div class="daymsg"><span class="kk">K</span><p>Here is your day, Ty. Your 2pm is booked, dinner is held at 8, and I lined up a ride so you are never waiting.</p></div>
+        <div class="tl">
+          <div class="tlrow"><div class="tltime">9:30</div><div class="tlline"><div class="tldot done"></div><div class="tlbar"></div></div><div class="tlcard"><div class="tt">The cut</div><div class="ts">Fade at Level Up · confirmed</div><span class="tlbadge done">Done by KAI</span></div></div>
+          <div class="tlrow"><div class="tltime">1:40</div><div class="tlline"><div class="tldot"></div><div class="tlbar"></div></div><div class="tlcard"><div class="tt">Ride downtown</div><div class="ts">KAI timed it to your 2pm</div><span class="tlbadge booked">Booked by KAI</span></div></div>
+          <div class="tlrow"><div class="tltime">2:00</div><div class="tlline"><div class="tldot"></div><div class="tlbar"></div></div><div class="tlcard"><div class="tt">Studio session</div><div class="ts">Booked this morning</div><span class="tlbadge booked">Booked by KAI</span></div></div>
+          <div class="tlrow"><div class="tltime">8:00</div><div class="tlline"><div class="tldot hold"></div></div><div class="tlcard"><div class="tt">Dinner, chef's counter</div><div class="ts">Held for 4 · your circle invited</div><span class="tlbadge hold">Held by KAI</span></div></div>
+        </div>
+        <button class="btn cob" onclick="toast('What should KAI add or hold?')">Add or hold something</button>
+        <div style="text-align:center;margin-top:14px;"><span class="trychip" onclick="toast('KAI is managing your day')">Ask KAI to manage my day</span></div>
+      </section>
+
+      <!-- ===== The Map ===== -->
+      <section class="screen" id="map">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>The Map</h2></div>
+        <div class="ph">
+          <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg></div>
+          <h3>The Map</h3><div class="tag">Concierge · The inside track</div>
+          <p>Where the culture is right now. Rooms, drops, and nights KAI thinks are your scene.</p>
+          <button class="btn" onclick="go('map-tonight')">Show me tonight</button>
+        </div>
+      </section>
+
+      <!-- ===== IN Life ===== -->
+      <section class="screen" id="inlife">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>IN Life</h2></div>
+        <div class="ph">
+          <div class="pi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+          <h3>IN Life</h3><div class="tag">Tonight · Your scene</div>
+          <p>The nights, the rooms, the people. Curated by KAI, claimed by you.</p>
+          <button class="btn" onclick="toast('Loading tonight…')">See what's on</button>
+        </div>
+      </section>
+
+      <!-- ===== Profile ===== -->
+      <section class="screen" id="profile">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Profile</h2></div>
+        <div class="ph">
+          <div class="pi" style="background:var(--grad);font-size:30px;font-weight:900;">T</div>
+          <h3>Ty</h3><div class="tag">Verified · Tastemaker</div>
+          <p>Los Angeles · 18,240 Karma. Your verified identity and taste, portable across Indiggi.</p>
+        </div>
+        <div class="phlist">
+          <div class="phrow"><div class="pri"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4 10-11"/></svg></div><div><div class="pt">Identity verified</div><div class="ps">On-chain, since 2024</div></div></div>
+          <div class="phrow"><div class="pri"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16l-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/></svg></div><div><div class="pt">Taste graph</div><div class="ps">Music, food, culture</div></div></div>
+        </div>
+      </section>
+
+      <!-- ===== Choose your level ===== -->
+      <section class="screen" id="level">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Choose your level</h2></div>
+        <p class="obsub" style="margin-bottom:2px;">Start where you are. Move up anytime.</p>
+        <div class="tier" onclick="pickTier(this,'Member')"><div class="radio"></div>
+          <div class="tn"><span class="dot" style="background:var(--indigo)"></span>MEMBER</div>
+          <div class="td">You are in. The whole world of Indiggi, and Karma from day one.</div>
+          <div class="ul">Unlocks</div>
+          <div class="uk"><span class="ck">✓</span> KAI across money, giving, rewards, schedule</div>
+          <div class="uk"><span class="ck">✓</span> Karma on everyday spend, and a seat in The Circle</div>
+          <div class="uk"><span class="ck">✓</span> INCard, your money in one place</div>
+        </div>
+        <div class="tier on" onclick="pickTier(this,'Insider')"><div class="radio"></div>
+          <div class="tn"><span class="dot" style="background:var(--indigo)"></span>INSIDER</div>
+          <div class="td">Closer to the culture. Early access, more Karma, more room.</div>
+          <div class="ul">Unlocks</div>
+          <div class="uk"><span class="ck">✓</span> Early drops, member events, priority access</div>
+          <div class="uk"><span class="ck">✓</span> Boosted Karma earn rate</div>
+          <div class="uk"><span class="ck">✓</span> Insider rooms and community spaces</div>
+        </div>
+        <div class="tier" onclick="pickTier(this,'Founding Member')"><div class="radio"></div>
+          <div class="tn"><span class="dot" style="background:var(--amber)"></span>FOUNDING MEMBER</div>
+          <div class="td">Built it with us. A permanent place in the story, and the perks that come with being early.</div>
+          <div class="ul">Unlocks</div>
+          <div class="uk"><span class="ck">✓</span> Everything in Insider, locked in for life</div>
+          <div class="uk"><span class="ck">✓</span> Founders INCard and revenue share</div>
+        </div>
+        <button class="btn" onclick="toast('Level confirmed')">Set my level</button>
+      </section>
+
+      <!-- ===== Onboarding: intro (Life Intel) ===== -->
+      <section class="screen active" id="ob-intro">
+        <div class="ob">
+          <div class="khd"><img src="logo.svg" alt="Indiggi" style="height:30px;"></div>
+          <span class="obeye">A verified culture</span>
+          <div class="obtitle">Let's set up your Life Intel.</div>
+          <p class="obsub">KAI learns how you actually move, so it can move for you. Two minutes, mostly just talking. And you get verified, so everything here is real.</p>
+          <div class="oboption hi" onclick="go('ob-name')"><div class="oi" style="background:var(--grad)"><div class="eq" style="height:22px;gap:3px;"><i style="width:3px;"></i><i style="width:3px;"></i><i style="width:3px;"></i><i style="width:3px;"></i><i style="width:3px;"></i></div></div><div><div class="ot">Set it up with KAI <span class="easy">EASIEST</span></div><div class="os">Just talk. KAI asks, you answer, it is done.</div></div></div>
+          <div class="oboption" onclick="go('ob-name')"><div class="oi" style="background:var(--soft)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--grey)" stroke-width="2"><path d="M4 20l4-1 10-10-3-3L5 16z"/><path d="M14 6l3 3"/></svg></div><div><div class="ot">Do it myself</div><div class="os">Type it in, at your own pace.</div></div><span class="chev">›</span></div>
+          <div class="fine2"><span class="bx"></span> Yours, and yours to change anytime.</div>
+        </div>
+      </section>
+
+      <!-- ===== Onboarding: name (1/5) ===== -->
+      <section class="screen" id="ob-name">
+        <div class="ob">
+          <div class="prog5"><div class="segs"><i class="on"></i><i></i><i></i><i></i><i></i></div><span class="stp">Step 1 of 5</span></div>
+          <div class="obcenter">
+            <div class="orb big"><div class="eq"><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="listening"><span class="d"></span> Listening</div>
+            <div class="obq">Let's start easy. What should I call you?</div>
+            <div class="quote"><div class="qk">I heard</div><div class="qv">"Ty. Everybody calls me Ty."</div></div>
+          </div>
+          <button class="btn" onclick="go('ob-scene')">Next</button>
+          <div style="text-align:center;margin-top:12px;"><span onclick="toast('Type mode')" style="color:var(--indigo);font-weight:800;font-size:12.5px;cursor:pointer;">Prefer to type? Tap here</span></div>
+        </div>
+      </section>
+
+      <!-- ===== Onboarding: scene (2/5) ===== -->
+      <section class="screen" id="ob-scene">
+        <div class="ob">
+          <div class="prog5"><div class="segs"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><span class="stp">Step 2 of 5</span></div>
+          <div class="obcenter">
+            <div class="orb big"><div class="eq"><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="obq">Where do you move, Ty?</div>
+            <div class="quote"><div class="qk">You said</div><div class="qv">"LA is home base, but I'm everywhere."</div></div>
+          </div>
+          <div class="learn">KAI is learning</div>
+          <div class="tags"><span class="tg">Los Angeles</span><span class="tg">New York</span><span class="tg">Atlanta</span><span class="tg">Moves global</span></div>
+          <button class="btn" onclick="go('ob-taste')">Next</button>
+        </div>
+      </section>
+
+      <!-- ===== Onboarding: taste (3/5) ===== -->
+      <section class="screen" id="ob-taste">
+        <div class="ob">
+          <div class="prog5"><div class="segs"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="stp">Step 3 of 5</span></div>
+          <div class="obcenter">
+            <div class="orb big"><div class="eq"><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="obq">Now the fun part. What does your perfect Saturday sound like?</div>
+            <div class="quote"><div class="qk">You said</div><div class="qv">"Rooftops, live music, a good dinner, my people around."</div></div>
+          </div>
+          <div class="learn">KAI is learning</div>
+          <div class="tags"><span class="tg">Rooftop energy</span><span class="tg">Live sets</span><span class="tg">Chef's counters</span><span class="tg">Your circle close</span></div>
+          <button class="btn" onclick="go('ob-verify')">Next</button>
+        </div>
+      </section>
+
+      <!-- ===== Onboarding: verify (4/5) ===== -->
+      <section class="screen" id="ob-verify">
+        <div class="ob">
+          <div class="prog5"><div class="segs"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><span class="stp">Step 4 of 5</span></div>
+          <span class="obeye">Verify you</span>
+          <div class="obtitle">This is a verified culture.</div>
+          <p class="obsub">One quick check, so your access, your card, and your rooms are really yours. KAI can scan it, or add it yourself.</p>
+          <div class="scan"><div class="st">Scan with KAI</div><div class="ss">Point at your ID, KAI does the rest</div></div>
+          <div class="ordiv">Or add it myself</div>
+          <div class="field"><div class="fk">Legal name</div><input placeholder="Enter your name"></div>
+          <div class="field"><div class="fk">Date of birth</div><input placeholder="MM / DD / YYYY"></div>
+          <button class="btn jade" onclick="go('ob-review')">Verify me</button>
+          <div class="fine2"><span class="bx"></span> Encrypted. Yours. Never sold.</div>
+        </div>
+      </section>
+
+      <!-- ===== Onboarding: review (5/5) ===== -->
+      <section class="screen" id="ob-review">
+        <div class="ob">
+          <div class="prog5"><div class="segs"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="stp">Step 5 of 5</span></div>
+          <span class="obeye">Almost in</span>
+          <div class="obtitle">Here's what KAI has, Ty.</div>
+          <p class="obsub">Confirm and your Life Intel goes live. You can change any of it, anytime.</p>
+          <div class="intel" style="margin-top:18px;">
+            <div class="revrow"><span class="k">Name</span><span class="v">Ty</span></div>
+            <div class="revrow"><span class="k">Home base</span><span class="v">Los Angeles</span></div>
+            <div class="revrow"><span class="k">Your scene</span><span class="v">Rooftops · live sets</span></div>
+            <div class="revrow" style="border:none;"><span class="k">Identity</span><span class="v" style="color:var(--jade)">Verified ✓</span></div>
+          </div>
+          <button class="btn" onclick="go('ob-done')">Confirm and enter</button>
+        </div>
+      </section>
+
+      <!-- ===== Onboarding: verified / done ===== -->
+      <section class="screen" id="ob-done">
+        <div class="ob">
+          <div class="obcenter" style="padding-top:28px;">
+            <div class="bigcheck">✓</div>
+            <div class="verified-t">You're verified.<br>You're in.</div>
+          </div>
+          <div class="intel">
+            <div class="who"><div class="a">T</div><div><div class="n">Ty <span class="vbadge">● VERIFIED</span></div><div class="c">Los Angeles · moves global</div></div></div>
+            <div class="lk">Your life intel knows</div>
+            <div class="tags"><span class="tg">Rooftop energy</span><span class="tg">Live sets</span><span class="tg">Chef's counters</span><span class="tg">Creative crowd</span><span class="tg">Your circle close</span></div>
+          </div>
+          <p class="obsub" style="text-align:center;margin-top:18px;">This is yours. See it, change it, take it with you, anytime.</p>
+          <button class="btn" onclick="go('home')">Enter Indiggi</button>
+        </div>
+      </section>
+
+      <!-- ===== Quick move: Cancel a sub ===== -->
+      <section class="screen" id="qm-cancel">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Cancel a sub</h2></div>
+        <span class="eyebrow eb-clay">Quick move · KAI</span>
+        <div class="daymsg"><span class="kk">K</span><p>I found <b>6 subscriptions</b>, $128/mo total. Three you have barely touched lately.</p></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-clay);color:var(--clay)">▶</div><div><div class="nm">StreamMax</div><div class="sb">$17.99/mo · last used 2 months ago</div></div></div><button class="xbtn" onclick="toast('StreamMax cancelled · saving $17.99/mo')">Cancel</button></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-cobalt);color:var(--cobalt)">☁</div><div><div class="nm">Cloud 2TB</div><div class="sb">$9.99/mo · 4% full</div></div></div><button class="xbtn" onclick="toast('Cloud 2TB cancelled · saving $9.99/mo')">Cancel</button></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-amber);color:var(--amber)">◎</div><div><div class="nm">Gym+</div><div class="sb">$45.00/mo · last visit 6 weeks ago</div></div></div><button class="xbtn" onclick="toast('Gym+ cancelled · saving $45/mo')">Cancel</button></div>
+        <div class="rowval" style="border:none;"><div class="l"><div class="ic" style="background:var(--t-jade);color:var(--jade)">♪</div><div><div class="nm">Music Pro</div><div class="sb">$10.99/mo · used daily</div></div></div><span class="up" style="font-size:12px;">Keep</span></div>
+      </section>
+
+      <!-- ===== Quick move: Split a bill ===== -->
+      <section class="screen" id="qm-split">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Split a bill</h2></div>
+        <span class="eyebrow eb-cobalt">Quick move · KAI</span>
+        <div class="hero cobalt"><span class="lab">Latest charge</span><div class="big" style="font-size:34px;">$340.00</div><div class="note">Nobu Malibu · tonight</div></div>
+        <div class="rowhdr"><h3>Split with</h3><a onclick="toast('Add someone')">Add</a></div>
+        <div class="persons">
+          <div class="person"><div class="pc" style="background:var(--grad)">T</div><div class="pn">You</div></div>
+          <div class="person"><div class="pc" style="background:var(--grad-clay)">M</div><div class="pn">Maya</div></div>
+          <div class="person"><div class="pc" style="background:var(--grad-jade)">J</div><div class="pn">Jré</div></div>
+          <div class="person"><div class="pc" style="background:var(--grad-cobalt)">D</div><div class="pn">Dom</div></div>
+        </div>
+        <div class="kaimsg" style="margin-top:16px;"><span class="kk">K</span><p>Split four ways, that is <b>$85.00</b> each. I can text a request with your Indiggi pay link.</p></div>
+        <button class="btn cob" onclick="toast('✓ 3 requests sent · $255 incoming')">Send 3 requests</button>
+      </section>
+
+      <!-- ===== Quick move: Set reminder ===== -->
+      <section class="screen" id="qm-remind">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Set reminder</h2></div>
+        <span class="eyebrow eb-indigo">Quick move · KAI</span>
+        <div class="field" style="margin-top:2px;"><div class="fk">Remind me to</div><input placeholder="Type it, or tap a suggestion"></div>
+        <div class="lbl2">KAI suggests</div>
+        <div class="trychips">
+          <span class="trychip" onclick="toast('Reminder set · Call mom Sunday')">Call mom Sunday</span>
+          <span class="trychip" onclick="toast('Reminder set · Pay rent on the 1st')">Pay rent on the 1st</span>
+          <span class="trychip" onclick="toast('Reminder set · Studio at 2')">Studio at 2</span>
+          <span class="trychip" onclick="toast('Reminder set · Renew passport')">Renew passport</span>
+        </div>
+        <div class="kaimsg" style="margin-top:18px;"><span class="kk">K</span><p>I will nudge you at the right moment, and hold it on your day so nothing slips.</p></div>
+        <button class="btn" onclick="toast('✓ Reminder set')">Set with KAI</button>
+      </section>
+
+      <!-- ===== Quick move: Check crypto ===== -->
+      <section class="screen" id="qm-crypto">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Check crypto</h2></div>
+        <span class="eyebrow eb-amber">Quick move · KAI</span>
+        <div class="hero amber"><span class="lab">Portfolio</span><div class="big">$3,410.22</div><div class="note">+$138.40 today · +4.2%</div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-amber);color:var(--amber)">₿</div><div><div class="nm">Bitcoin</div><div class="sb">0.031 BTC</div></div></div><div class="rt"><div class="vv">$2,100.00</div><div class="up" style="font-size:11.5px;">+2.1%</div></div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-indigo);color:var(--indigo)">Ξ</div><div><div class="nm">Ethereum</div><div class="sb">0.26 ETH</div></div></div><div class="rt"><div class="vv">$890.22</div><div class="up" style="font-size:11.5px;">+6.8%</div></div></div>
+        <div class="rowval" style="border:none;"><div class="l"><div class="ic" style="background:var(--t-jade);color:var(--jade)">◎</div><div><div class="nm">Solana</div><div class="sb">2.9 SOL</div></div></div><div class="rt"><div class="vv">$420.00</div><div class="dn" style="font-size:11.5px;">-1.3%</div></div></div>
+        <button class="btn" onclick="toast('Move crypto to INCard')">Move to INCard</button>
+      </section>
+
+      <!-- ===== Quick move: Tip someone ===== -->
+      <section class="screen" id="qm-tip">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Tip someone</h2></div>
+        <span class="eyebrow eb-jade">Quick move · KAI</span>
+        <div class="lbl2">Recent</div>
+        <div class="persons">
+          <div class="person"><div class="pc" style="background:var(--grad-clay)">B</div><div class="pn">Barber</div></div>
+          <div class="person"><div class="pc" style="background:var(--grad-jade)">V</div><div class="pn">Valet</div></div>
+          <div class="person"><div class="pc" style="background:var(--grad-cobalt)">DJ</div><div class="pn">DJ Ru</div></div>
+          <div class="person"><div class="pc" style="background:var(--grad)">S</div><div class="pn">Server</div></div>
+        </div>
+        <div class="lbl2">Amount</div>
+        <div class="amts"><span class="amt-chip" onclick="pickAmt(this)">$5</span><span class="amt-chip on" onclick="pickAmt(this)">$10</span><span class="amt-chip" onclick="pickAmt(this)">$20</span><span class="amt-chip" onclick="pickAmt(this)">$50</span></div>
+        <div class="kaimsg" style="margin-top:16px;"><span class="kk">K</span><p>Tips send instantly and earn you Karma back. This one is <b>+10 Karma</b>.</p></div>
+        <button class="btn jade" onclick="toast('✓ Tip sent · +10 Karma')">Send tip</button>
+      </section>
+
+      <!-- ===== Quick move: All of life ===== -->
+      <section class="screen" id="qm-all">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>All of life</h2></div>
+        <span class="eyebrow eb-indigo">Everything KAI can move</span>
+        <div class="gtiles">
+          <div class="gtile" onclick="go('wallet')"><div class="gi" style="background:var(--t-clay)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg></div><div class="gt">Money Life</div><div class="gs">INCard, balance, assets.</div></div>
+          <div class="gtile" onclick="go('schedule')"><div class="gi" style="background:var(--t-cobalt)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cobalt)" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div><div class="gt">My Day</div><div class="gs">Your schedule, run by KAI.</div></div>
+          <div class="gtile" onclick="go('giving')"><div class="gi" style="background:var(--t-jade)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="2"><path d="M12 20s-7-4.5-9.5-9C1 8 2.5 4.5 6 4.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 15.5 12 20 12 20z"/></svg></div><div class="gt">Giving</div><div class="gs">Your church and causes.</div></div>
+          <div class="gtile" onclick="go('rewards')"><div class="gi" style="background:var(--t-amber)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16l-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/></svg></div><div class="gt">Karma</div><div class="gs">Giving, perks, The Circle.</div></div>
+          <div class="gtile" onclick="go('map')"><div class="gi" style="background:var(--t-cobalt)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cobalt)" stroke-width="2"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg></div><div class="gt">The Map</div><div class="gs">Concierge, the inside track.</div></div>
+          <div class="gtile" onclick="go('creator')"><div class="gi" style="background:var(--t-clay)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div><div class="gt">Creator OS</div><div class="gs">Audience, rooms, revenue.</div></div>
+        </div>
+      </section>
+
+      <!-- ===== Money: Move money ===== -->
+      <section class="screen" id="mv-move">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Move money</h2></div>
+        <span class="eyebrow eb-clay">From INCard · $4,820.60 available</span>
+        <div class="lbl2">Move to</div>
+        <div class="selrow on" onclick="pickSel(this)"><div class="ic" style="background:var(--t-clay);color:var(--clay);width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:900;">S</div><div><div class="nm" style="font-size:14px;font-weight:800;">Savings vault</div><div class="sb" style="font-size:11.5px;color:var(--grey);">$1,240 · goal $2,000</div></div><div class="rad"></div></div>
+        <div class="selrow" onclick="pickSel(this)"><div class="ic" style="background:var(--t-amber);color:var(--amber);width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:900;">✈</div><div><div class="nm" style="font-size:14px;font-weight:800;">Essence Fest trip</div><div class="sb" style="font-size:11.5px;color:var(--grey);">$820 · $180 to go</div></div><div class="rad"></div></div>
+        <div class="selrow" onclick="pickSel(this)"><div class="ic" style="background:var(--t-jade);color:var(--jade);width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:900;">+</div><div><div class="nm" style="font-size:14px;font-weight:800;">Someone new</div><div class="sb" style="font-size:11.5px;color:var(--grey);">Send to a person or cause</div></div><div class="rad"></div></div>
+        <div class="lbl2">Amount</div>
+        <div class="amts"><span class="amt-chip" onclick="pickAmt(this)">$50</span><span class="amt-chip on" onclick="pickAmt(this)">$100</span><span class="amt-chip" onclick="pickAmt(this)">$250</span><span class="amt-chip" onclick="pickAmt(this)">$500</span></div>
+        <button class="btn" onclick="go('r-savings')">Move money</button>
+      </section>
+
+      <!-- ===== Money: Freeze ===== -->
+      <section class="screen" id="mv-freeze">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Freeze card</h2></div>
+        <div class="incard frozen">
+          <div><div class="chip"></div><span class="founders">Founders</span></div>
+          <div class="inlogo">in</div>
+          <div class="row"><span class="no">•••• 4820</span><span class="visa">VISA</span></div>
+        </div>
+        <div class="kaimsg" style="margin-top:16px;"><span class="kk">K</span><p>Your INCard is <b>frozen</b>. No new charges will go through, and Apple Pay is paused. Your subscriptions still run.</p></div>
+        <button class="btn" onclick="toast('✓ Card unfrozen')">Unfreeze card</button>
+        <button class="btn ghost" onclick="toast('Reported · new card on the way')">Report lost or stolen</button>
+      </section>
+
+      <!-- ===== Money: Pay ===== -->
+      <section class="screen" id="mv-pay">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Pay</h2></div>
+        <div class="paybox">
+          <div class="qrbox"></div>
+          <div style="font-size:15px;font-weight:800;">Hold near the reader</div>
+          <div style="font-size:12px;color:var(--grey);margin-top:4px;">or let someone scan your code</div>
+        </div>
+        <div class="lbl2">Recent</div>
+        <div class="persons">
+          <div class="person"><div class="pc" style="background:var(--grad-clay)">N</div><div class="pn">Nobu</div></div>
+          <div class="person"><div class="pc" style="background:var(--grad-jade)">C</div><div class="pn">Cafe</div></div>
+          <div class="person"><div class="pc" style="background:var(--grad-cobalt)">L</div><div class="pn">Level Up</div></div>
+        </div>
+        <button class="btn cob" onclick="toast('Ready · hold near the reader')">Pay with INCard</button>
+      </section>
+
+      <!-- ===== Money: Fractionalization Suite ===== -->
+      <section class="screen" id="frac">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Fractionalization Suite</h2></div>
+        <span class="eyebrow eb-cobalt">Own a slice of real assets, from a dollar</span>
+        <div class="hero cobalt"><span class="lab">Your portfolio</span><div class="big">$3,240.00</div><div class="note">+$186 this month · +6.1%</div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-indigo);color:var(--indigo)">◈</div><div><div class="nm">Culture Fund</div><div class="sb">Creator equity index</div></div></div><div class="rt"><div class="vv">$1,240</div><div class="up" style="font-size:11.5px;">+8.2%</div></div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-clay);color:var(--clay)">⌂</div><div><div class="nm">Bricks LA</div><div class="sb">Fractional real estate</div></div></div><div class="rt"><div class="vv">$860</div><div class="up" style="font-size:11.5px;">+3.4%</div></div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-amber);color:var(--amber)">♪</div><div><div class="nm">Vinyl Vault</div><div class="sb">Rare pressings</div></div></div><div class="rt"><div class="vv">$420</div><div class="up" style="font-size:11.5px;">+12%</div></div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-jade);color:var(--jade)">◎</div><div><div class="nm">Sneaker Index</div><div class="sb">Grails, tokenized</div></div></div><div class="rt"><div class="vv">$360</div><div class="dn" style="font-size:11.5px;">-2.0%</div></div></div>
+        <div class="rowval" style="border:none;"><div class="l"><div class="ic" style="background:var(--t-cobalt);color:var(--cobalt)">▤</div><div><div class="nm">Film Slate</div><div class="sb">Indie production shares</div></div></div><div class="rt"><div class="vv">$360</div><div class="up" style="font-size:11.5px;">+5.0%</div></div></div>
+        <button class="btn cob" onclick="toast('Browse the full asset catalog')">Browse assets</button>
+      </section>
+
+      <!-- ===== Karma: The Circle ===== -->
+      <section class="screen" id="circle">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>The Circle</h2></div>
+        <span class="eyebrow eb-clay">You spend, we give · together</span>
+        <div class="hero clay"><span class="lab">Given this month</span><div class="big">248,000</div><div class="note">Karma to community causes · from 12,400 members</div></div>
+        <div class="stat2">
+          <div class="stat"><div class="k">Your share</div><div class="v">1,240</div><div class="t up">Karma added</div></div>
+          <div class="stat"><div class="k">Causes funded</div><div class="v">38</div><div class="t">this month</div></div>
+        </div>
+        <div class="rowhdr"><h3>Funded by The Circle</h3></div>
+        <div class="cause"><div class="ci" style="background:var(--t-jade)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="2"><path d="M12 3l7 5v11H5V8z"/></svg></div><div class="cinfo"><div class="cn">First AME Church</div><div class="cs">Roof repair · fully funded</div></div><span class="up" style="font-size:12px;">100%</span></div>
+        <div class="cause"><div class="ci" style="background:var(--t-amber)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M3 9l9-5 9 5-9 5z"/></svg></div><div class="cinfo"><div class="cn">Youth Scholarships</div><div class="cs">12 students · this term</div></div><span class="up" style="font-size:12px;">82%</span></div>
+        <div class="cause"><div class="ci" style="background:var(--t-clay)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2"><rect x="4" y="8" width="16" height="12" rx="2"/></svg></div><div class="cinfo"><div class="cn">Neighborhood Food Drive</div><div class="cs">1,800 meals · matched</div></div><span class="up" style="font-size:12px;">64%</span></div>
+        <button class="btn" onclick="toast('How The Circle works')">See how it works</button>
+      </section>
+
+      <!-- ===== The Map: Tonight ===== -->
+      <section class="screen" id="map-tonight">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Tonight</h2></div>
+        <span class="eyebrow eb-cobalt">Concierge · In your scene</span>
+        <div class="eventcard" style="background:linear-gradient(rgba(18,10,40,.3),rgba(18,10,40,.75)), url('assets/rooftop.jpg') center/cover no-repeat, var(--grad);"><span class="etag">IN YOUR SCENE</span><div class="et">Rooftop set · Arts District</div><div class="ed">9:00 PM · live sets, your crowd</div></div>
+        <div class="eventcard" style="background:linear-gradient(rgba(30,15,8,.34),rgba(30,15,8,.72)), url('assets/chefs-counter.jpg') center/cover no-repeat, var(--grad-clay);"><span class="etag">8 SEATS LEFT</span><div class="et">Chef's counter · Mírame</div><div class="ed">8:00 PM · held if you want it</div></div>
+        <div class="eventcard" style="background:var(--grad-jade);"><span class="etag">INVITE ONLY</span><div class="et">After-hours · The Loft</div><div class="ed">11:00 PM · your circle is going</div></div>
+        <div class="kaimsg" style="margin-top:16px;"><span class="kk">K</span><p>I can hold the chef's counter and time a ride from your 8pm dinner. Want me to line it up?</p></div>
+        <button class="btn cob" onclick="go('schedule')">Ask KAI to plan it</button>
+      </section>
+
+      <!-- ===== Creator: Audience ===== -->
+      <section class="screen" id="cr-audience">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Audience</h2></div>
+        <span class="eyebrow eb-clay">Who follows you, and how to reach them</span>
+        <div class="hero clay"><span class="lab">Total audience</span><div class="big">12,480</div><div class="note">+320 this week</div></div>
+        <div class="stat2">
+          <div class="stat"><div class="k">Superfans</div><div class="v">840</div><div class="t up">+6%</div></div>
+          <div class="stat"><div class="k">Open rate</div><div class="v">61%</div><div class="t up">above avg</div></div>
+          <div class="stat"><div class="k">Top city</div><div class="v" style="font-size:16px;">Los Angeles</div><div class="t">2,900 fans</div></div>
+          <div class="stat"><div class="k">New this month</div><div class="v">1,240</div><div class="t up">+11%</div></div>
+        </div>
+        <button class="btn" onclick="toast('Compose a broadcast to 12,480')">Reach your audience</button>
+      </section>
+
+      <!-- ===== Creator: Rooms ===== -->
+      <section class="screen" id="cr-rooms">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Rooms</h2></div>
+        <span class="eyebrow eb-clay">Your spaces to gather, host, and go live</span>
+        <div class="rowval"><div class="l"><div class="ic" style="background:#ffe1e1;color:#C0392B">●</div><div><div class="nm">The Studio</div><div class="sb">340 in room now</div></div></div><span class="dn" style="font-size:11px;font-weight:800;">LIVE</span></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-cobalt);color:var(--cobalt)">◷</div><div><div class="nm">Sunday Service</div><div class="sb">Scheduled · Sun 11:00 AM</div></div></div><span style="font-size:11px;font-weight:800;color:var(--grey)">Soon</span></div>
+        <div class="rowval" style="border:none;"><div class="l"><div class="ic" style="background:var(--t-jade);color:var(--jade)">♥</div><div><div class="nm">Close Friends</div><div class="sb">12 online</div></div></div><span class="up" style="font-size:11px;">Open</span></div>
+        <button class="btn" onclick="toast('Start a new room')">Open a room</button>
+      </section>
+
+      <!-- ===== Creator: Revenue ===== -->
+      <section class="screen" id="cr-revenue">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Revenue</h2></div>
+        <span class="eyebrow eb-clay">What you earn, in one clear place</span>
+        <div class="hero clay"><span class="lab">This month</span><div class="big">$18,240</div><div class="note">+14% vs last month</div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-clay);color:var(--clay)">◆</div><div><div class="nm">Drops</div><div class="sb">Vinyl reissue, tees</div></div></div><div class="vv">$9,200</div></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-jade);color:var(--jade)">♥</div><div><div class="nm">Tips</div><div class="sb">From rooms and posts</div></div></div><div class="vv">$3,100</div></div>
+        <div class="rowval" style="border:none;"><div class="l"><div class="ic" style="background:var(--t-cobalt);color:var(--cobalt)">↻</div><div><div class="nm">Subscriptions</div><div class="sb">418 members</div></div></div><div class="vv">$5,940</div></div>
+        <button class="btn" onclick="go('wallet')">Cash out to INCard</button>
+      </section>
+
+      <!-- ===== Creator: Drops ===== -->
+      <section class="screen" id="cr-drops">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Drops</h2></div>
+        <span class="eyebrow eb-clay">Launch products, tickets, and content</span>
+        <div class="rowval"><div class="l"><div class="ic" style="background:url('assets/vinyl.jpg') center/cover no-repeat, var(--t-clay);"></div><div><div class="nm">Vinyl reissue</div><div class="sb">Live · 240 of 500 sold</div></div></div><span class="dn" style="font-size:11px;font-weight:800;">LIVE</span></div>
+        <div class="rowval"><div class="l"><div class="ic" style="background:var(--t-cobalt);color:var(--cobalt)">◷</div><div><div class="nm">Tee capsule</div><div class="sb">Scheduled · Friday 12pm</div></div></div><span style="font-size:11px;font-weight:800;color:var(--grey)">Queued</span></div>
+        <div class="rowval" style="border:none;"><div class="l"><div class="ic" style="background:var(--soft);color:var(--grey)">✎</div><div><div class="nm">New track</div><div class="sb">Draft · not scheduled</div></div></div><span style="font-size:11px;font-weight:800;color:var(--grey)">Draft</span></div>
+        <button class="btn" onclick="toast('Set up a new drop')">New drop</button>
+      </section>
+
+      <!-- ===== Creator: Insights ===== -->
+      <section class="screen" id="cr-insights">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Insights</h2></div>
+        <span class="eyebrow eb-clay">What is working, and what to do next</span>
+        <div class="stat2">
+          <div class="stat"><div class="k">Reach</div><div class="v">84.2k</div><div class="t up">+14%</div></div>
+          <div class="stat"><div class="k">Saves</div><div class="v">3,410</div><div class="t up">+22%</div></div>
+          <div class="stat"><div class="k">Best time</div><div class="v" style="font-size:16px;">7–9 PM</div><div class="t">your crowd is on</div></div>
+          <div class="stat"><div class="k">Top format</div><div class="v" style="font-size:16px;">Live sets</div><div class="t">2.3x engagement</div></div>
+        </div>
+        <div class="kaimsg" style="margin-top:16px;"><span class="kk">K</span><p>Post the studio clip tonight at 7:40, and open a room after. That mirrors your best week.</p></div>
+        <button class="btn" onclick="go('cr-askkai')">Ask KAI what to do next</button>
+      </section>
+
+      <!-- ===== Creator: Ask KAI (co-pilot) ===== -->
+      <section class="screen" id="cr-askkai">
+        <div class="scrhd"><div class="back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></div><h2>Ask KAI</h2></div>
+        <div class="greet">
+          <div class="orb"><div class="eq"><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div><h3>Business mode.</h3><p>Your co-pilot for the creator side. Pricing, launches, reach.</p></div>
+        </div>
+        <div class="bubble ka">Your audience is up 320 this week and live sets are your best format. Want me to plan a drop around them?</div>
+        <div class="lbl2">Try these</div>
+        <div class="trychips">
+          <span class="trychip" onclick="go('cr-drops')">Plan a launch</span>
+          <span class="trychip" onclick="go('cr-revenue')">Price my drop</span>
+          <span class="trychip" onclick="go('cr-audience')">Who should I reach?</span>
+          <span class="trychip" onclick="go('cr-insights')">Best time to post</span>
+        </div>
+      </section>
+
+    </div><!-- /screens -->
+
+    <!-- ===== bottom nav ===== -->
+    <div class="tabbar">
+      <div class="t" data-tab="home" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 11l8-6 8 6v8a1 1 0 01-1 1h-4v-6h-6v6H5a1 1 0 01-1-1z"/></svg>Home</div>
+      <div class="t" data-tab="money" onclick="go('wallet')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>Wallet</div>
+      <div class="t on" data-tab="kai" onclick="go('kai')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>KAI</div>
+      <div class="t" data-tab="karma" onclick="go('rewards')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16l-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/></svg>Karma</div>
+      <div class="t" onclick="openD()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</div>
+    </div>
+
+    <!-- ===== scrim + drawer ===== -->
+    <div class="scrim" id="scrim" onclick="closeD()"></div>
+    <div class="drawer" id="drawer">
+      <div class="dhead">
+        <img src="logo.svg" alt="Indiggi" style="height:26px;margin-bottom:18px;filter:brightness(0) invert(1);opacity:.96;">
+
+        <div class="av2">T</div>
+        <div class="nm">Ty <span class="vf">● <b>VERIFIED</b></span></div>
+        <div class="meta">Los Angeles · Tastemaker · 18,240 Karma</div>
+      </div>
+      <div class="dlist">
+        <div class="ditem" onclick="nav('home')"><div class="mi" style="background:var(--t-indigo)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><path d="M4 11l8-6 8 6v8a1 1 0 01-1 1h-4v-6h-6v6H5a1 1 0 01-1-1z"/></svg></div><div class="dtxt"><div class="dt">Home</div><div class="ds">Your world, today</div></div></div>
+        <div class="ditem" onclick="nav('kai')"><div class="mi" style="background:var(--t-indigo)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></div><div class="dtxt"><div class="dt">KAI</div><div class="ds">Your home, your life intelligence</div></div></div>
+        <div class="ditem" onclick="nav('wallet')"><div class="mi" style="background:var(--t-clay)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg></div><div class="dtxt"><div class="dt">Wallet</div><div class="ds">Daily spending &amp; investments</div></div></div>
+        <div class="ditem" onclick="nav('rewards')"><div class="mi" style="background:var(--t-amber)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16l-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/></svg></div><div class="dtxt"><div class="dt">Karma</div><div class="ds">Two kinds of giving, plus perks</div></div></div>
+        <div class="ditem" onclick="nav('giving')"><div class="mi" style="background:var(--t-jade)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="2"><path d="M12 20s-7-4.5-9.5-9C1 8 2.5 4.5 6 4.5c2 0 3.2 1.2 4 2.3.8-1.1 2-2.3 4-2.3 3.5 0 5 3.5 3.5 6.5C19 15.5 12 20 12 20z"/></svg></div><div class="dtxt"><div class="dt">Giving</div><div class="ds">Your church and causes</div></div></div>
+        <div class="ditem" onclick="nav('schedule')"><div class="mi" style="background:var(--t-cobalt)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cobalt)" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div><div class="dtxt"><div class="dt">Schedule / My Day</div><div class="ds">Today, managed by KAI</div></div></div>
+        <div class="ditem" onclick="nav('map')"><div class="mi" style="background:var(--t-cobalt)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cobalt)" stroke-width="2"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg></div><div class="dtxt"><div class="dt">The Map</div><div class="ds">Concierge, the inside track</div></div></div>
+        <div class="ditem" onclick="nav('inlife')"><div class="mi" style="background:var(--t-indigo)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div><div class="dtxt"><div class="dt">IN Life</div><div class="ds">Tonight, your scene</div></div></div>
+        <div class="ditem" onclick="nav('profile')"><div class="mi" style="background:var(--t-indigo)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/></svg></div><div class="dtxt"><div class="dt">Profile</div><div class="ds">Your verified identity and taste</div></div></div>
+        <div class="ditem" onclick="nav('level')"><div class="mi" style="background:var(--t-cobalt)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cobalt)" stroke-width="2"><path d="M5 20V10M12 20V4M19 20v-7"/></svg></div><div class="dtxt"><div class="dt">Choose your level</div><div class="ds">Member to Creator, step up anytime</div></div></div>
+        <div class="ditem" onclick="nav('creator')"><div class="mi" style="background:var(--t-clay)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><div class="dtxt"><div class="dt">Creator OS</div><div class="ds">Your audience, rooms, revenue</div></div></div>
+        <div class="ditem" style="border-top:1px solid var(--line);margin-top:6px;padding-top:14px;" onclick="nav('ob-intro')"><div class="mi" style="background:var(--grad)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2"/><circle cx="12" cy="12" r="3"/></svg></div><div class="dtxt"><div class="dt">Set up Life Intel</div><div class="ds">Replay the onboarding flow</div></div></div>
+      </div>
+      <div class="dfoot"><button class="dclose" onclick="closeD()">Close</button></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </div><!-- /app -->
+</div><!-- /device -->
+
+<div class="foot" style="display:flex;align-items:center;justify-content:center;gap:9px;">
+  <img src="logo-mark.svg" alt="" style="height:16px;opacity:.85;">
+  <span>Indiggi International Holdings · <b>Culture is the new technology</b></span>
+</div>
+
+<script>
+var tabFor={home:'home',kai:'kai','r-savings':'kai','r-gift':'kai',creator:'kai',wallet:'money',rewards:'karma',giving:'karma',schedule:'schedule',
+  'qm-cancel':'kai','qm-split':'kai','qm-remind':'kai','qm-crypto':'kai','qm-tip':'kai','qm-all':'kai',
+  'mv-move':'money','mv-freeze':'money','mv-pay':'money','frac':'money','circle':'karma'};
+var chromeless={'ob-intro':1,'ob-name':1,'ob-scene':1,'ob-taste':1,'ob-verify':1,'ob-review':1,'ob-done':1};
+var cur='ob-intro', stack=[];
+function go(id,noPush){
+  var el=document.getElementById(id); if(!el){id='kai';el=document.getElementById('kai');}
+  if(!noPush && cur && cur!==id) stack.push(cur);
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  el.classList.add('active');
+  document.querySelector('.device').classList.toggle('chromeless',!!chromeless[id]);
+  document.querySelector('.screens').scrollTop=0;
+  var tab=tabFor[id]||'';
+  document.querySelectorAll('.tabbar .t').forEach(function(t){t.classList.toggle('on',!!tab && t.dataset.tab===tab);});
+  cur=id;
+  if(history&&history.replaceState){history.replaceState(null,'','#'+id);}
+}
+function back(){var p=stack.pop()||'kai';go(p,true);}
+function nav(id){closeD();go(id);}
+function openD(){document.getElementById('drawer').classList.add('open');document.getElementById('scrim').classList.add('show');}
+function closeD(){document.getElementById('drawer').classList.remove('open');document.getElementById('scrim').classList.remove('show');}
+var tT;function toast(m){var t=document.getElementById('toast');t.innerHTML=m;t.classList.add('show');clearTimeout(tT);tT=setTimeout(function(){t.classList.remove('show');},2100);}
+function pickTier(el,name){document.querySelectorAll('.tier').forEach(function(l){l.classList.remove('on');});el.classList.add('on');}
+function askDay(){var c=document.getElementById('kai-convo');c.style.display='block';c.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function pickAmt(el){var p=el.parentNode;p.querySelectorAll('.amt-chip').forEach(function(a){a.classList.remove('on');});el.classList.add('on');}
+function pickSel(el){var p=el.parentNode;p.querySelectorAll('.selrow').forEach(function(a){a.classList.remove('on');});el.classList.add('on');}
+function tog(id){var b=document.getElementById(id),e=event.currentTarget;if(b.dataset.shown){b.textContent='$ ••••••';delete b.dataset.shown;if(e)e.textContent='Show';}else{b.textContent=b.dataset.v;b.dataset.shown='1';if(e)e.textContent='Hide';}}
+if(location.search.indexOf('embed')>=0)document.body.classList.add('embed');
+(function(){var h=(location.hash||'').replace('#','');if(h&&document.getElementById(h)){go(h,true);}else{go('ob-intro',true);}})();
+</script>
+</body></html>

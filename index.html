@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indiggi — Culture is the new technology</title>
+<style>
+:root{
+  --pp:#7B3FE4; --pk:#E0457B; --grad:linear-gradient(135deg,#7B3FE4,#E0457B);
+  --ink:#1b1430; --grey:#6f6a85; --line:#ece9f5; --soft:#f6f4fc; --lav:#efeafb; --jade:#0E9B86;
+  --shadow:0 24px 60px -28px rgba(90,50,180,.35);
+  --shadow-sm:0 10px 30px -14px rgba(90,50,180,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.5;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+.grad-t{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pk);}
+h1,h2,h3{letter-spacing:-.5px;line-height:1.08;}
+.sec{padding:88px 0;}
+.center{text-align:center;}
+.muted{color:var(--grey);}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;padding:14px 24px;border-radius:30px;border:none;cursor:pointer;transition:.15s;}
+.btn.grad{background:var(--grad);color:#fff;box-shadow:0 14px 30px -12px rgba(123,63,228,.6);}
+.btn.grad:hover{transform:translateY(-2px);}
+.btn.ghost{background:#fff;color:var(--pp);border:1.5px solid var(--line);}
+.btn.ghost:hover{border-color:var(--pp);}
+.soon{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:13px;padding:9px 16px;border-radius:24px;background:var(--soft);color:var(--pp);border:1px solid var(--line);}
+.soon .dot{width:8px;height:8px;border-radius:50%;background:var(--jade);box-shadow:0 0 0 4px rgba(14,155,134,.18);}
+
+/* nav */
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+nav{display:flex;align-items:center;justify-content:space-between;height:70px;}
+nav .links{display:flex;gap:30px;font-size:14.5px;font-weight:600;color:var(--grey);}
+nav .links a:hover{color:var(--ink);}
+nav .right{display:flex;align-items:center;gap:12px;}
+.logo{height:26px;}
+@media(max-width:820px){nav .links{display:none;}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#efeafb 0%,#f7f5fd 46%,#ffffff 100%);}
+.hero::before{content:"";position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:900px;height:520px;background:radial-gradient(closest-side,rgba(224,69,123,.18),transparent 70%);filter:blur(20px);}
+.hero .wrap{position:relative;padding-top:70px;padding-bottom:0;text-align:center;}
+.hero h1{font-size:60px;font-weight:900;max-width:900px;margin:22px auto 0;}
+.hero .sub{font-size:18px;color:var(--grey);max-width:620px;margin:22px auto 0;}
+.hero .cta{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:30px;}
+.hero .note{font-size:13px;color:var(--grey);margin-top:16px;}
+.phonewrap{width:282px;height:598px;border-radius:40px;overflow:hidden;box-shadow:0 50px 90px -30px rgba(90,45,180,.55),0 10px 30px rgba(30,20,60,.12);margin:44px auto 0;transform:translateY(30px);}
+.phonewrap iframe{width:392px;height:830px;border:0;transform:scale(.7194);transform-origin:top left;background:transparent;}
+.hero h1{font-size:60px;}
+@media(max-width:640px){.hero h1{font-size:38px;}.sec{padding:60px 0;}}
+
+/* reserve bar */
+.reserve{display:flex;align-items:center;gap:0;max-width:440px;margin:26px auto 0;background:#fff;border:1.5px solid var(--line);border-radius:30px;padding:6px 6px 6px 18px;box-shadow:var(--shadow-sm);}
+.reserve .pfx{font-weight:700;color:var(--grey);font-size:15px;white-space:nowrap;}
+.reserve input{flex:1;border:none;outline:none;font-size:15px;font-weight:700;color:var(--ink);padding:10px 6px;min-width:0;background:transparent;}
+.reserve input::placeholder{color:#bdb7cf;}
+.reserve button{white-space:nowrap;}
+.rmsg{font-size:14px;font-weight:700;margin-top:12px;min-height:20px;color:var(--jade);}
+
+/* trust logos */
+.trust{padding:34px 0;border-bottom:1px solid var(--line);}
+.trust .row{display:flex;flex-wrap:wrap;gap:14px 34px;justify-content:center;align-items:center;color:var(--grey);font-weight:700;font-size:14px;opacity:.8;}
+.trust .row .pill{display:flex;align-items:center;gap:8px;}
+
+/* section head */
+.shead{max-width:640px;margin:0 auto 48px;text-align:center;}
+.shead h2{font-size:40px;font-weight:900;margin-top:14px;}
+.shead p{color:var(--grey);font-size:17px;margin-top:14px;}
+
+/* bento features */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:var(--shadow-sm);}
+.card .ic{width:48px;height:48px;border-radius:14px;background:var(--soft);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.card .ic svg{width:24px;height:24px;stroke:var(--pp);fill:none;stroke-width:2;}
+.card h3{font-size:19px;font-weight:800;}
+.card p{color:var(--grey);font-size:14.5px;margin-top:8px;}
+.card.big{grid-column:span 2;background:var(--grad);color:#fff;border:none;display:flex;flex-direction:column;justify-content:space-between;min-height:230px;}
+.card.big .ic{background:rgba(255,255,255,.2);}.card.big .ic svg{stroke:#fff;}
+.card.big h3{font-size:26px;}.card.big p{color:rgba(255,255,255,.9);font-size:15.5px;}
+.card.dark{background:#1b1430;color:#fff;border:none;}
+.card.dark .ic{background:rgba(255,255,255,.1);}.card.dark .ic svg{stroke:#fff;}.card.dark p{color:#b7b1c9;}
+@media(max-width:820px){.bento{grid-template-columns:1fr 1fr;}.card.big{grid-column:span 2;}}
+@media(max-width:560px){.bento{grid-template-columns:1fr;}.card.big{grid-column:span 1;}}
+
+/* split media */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.split.alt{background:var(--soft);}
+.media{border-radius:24px;overflow:hidden;position:relative;min-height:340px;background:linear-gradient(150deg,#3a1f6e,#7B3FE4 60%,#E0457B);box-shadow:var(--shadow);}
+.media .ov{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,0) 40%,rgba(15,8,35,.7));}
+.media .stat{position:absolute;left:24px;bottom:22px;color:#fff;}
+.media .stat b{font-size:44px;font-weight:900;display:block;line-height:1;}
+.media .stat span{font-size:14px;opacity:.9;}
+.split h2{font-size:38px;font-weight:900;}
+.split p{color:var(--grey);font-size:16px;margin-top:16px;}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.tag{font-size:13px;font-weight:700;padding:8px 14px;border-radius:20px;background:#fff;border:1px solid var(--line);color:var(--pp);}
+@media(max-width:820px){.split{grid-template-columns:1fr;gap:28px;}}
+
+/* reviews */
+.reviews{columns:3;column-gap:18px;}
+.review{break-inside:avoid;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:var(--shadow-sm);}
+.review .stars{color:#F5A623;font-size:14px;letter-spacing:2px;}
+.review p{font-size:14.5px;margin-top:10px;color:#33294d;}
+.review .who{display:flex;align-items:center;gap:10px;margin-top:14px;}
+.review .av{width:34px;height:34px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;}
+.review .nm{font-size:13px;font-weight:800;}.review .hd{font-size:11.5px;color:var(--grey);}
+@media(max-width:820px){.reviews{columns:2;}}
+@media(max-width:560px){.reviews{columns:1;}}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;}
+.plan{background:#fff;border:1.5px solid var(--line);border-radius:24px;padding:30px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);}
+.plan.pop{border-color:transparent;background:var(--grad);color:#fff;box-shadow:0 30px 60px -24px rgba(123,63,228,.6);transform:scale(1.03);}
+.plan .pn{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.plan .pr{font-size:40px;font-weight:900;margin-top:10px;}
+.plan .pr small{font-size:15px;font-weight:700;color:var(--grey);}
+.plan.pop .pr small{color:rgba(255,255,255,.8);}
+.plan .pd{font-size:14px;color:var(--grey);margin-top:6px;}
+.plan.pop .pd{color:rgba(255,255,255,.9);}
+.plan ul{list-style:none;margin:20px 0;flex:1;}
+.plan li{font-size:14px;padding:8px 0;display:flex;gap:10px;align-items:flex-start;}
+.plan li .ck{color:var(--jade);font-weight:900;}
+.plan.pop li .ck{color:#8ff5da;}
+.badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#1b1430;color:#fff;font-size:11px;font-weight:800;letter-spacing:.5px;padding:5px 13px;border-radius:14px;}
+.plan{position:relative;}
+@media(max-width:820px){.plans{grid-template-columns:1fr;}.plan.pop{transform:none;}}
+
+/* faq */
+.faqwrap{max-width:760px;margin:0 auto;}
+.faq{border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden;background:#fff;}
+.faq q{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 22px;cursor:pointer;font-weight:700;font-size:16px;quotes:none;}
+.faq q::before,.faq q::after{content:"";}
+.faq .a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--grey);font-size:14.5px;}
+.faq .a div{padding:0 22px 20px;}
+.faq.open .a{max-height:220px;}
+.faq .pm{font-size:22px;color:var(--pp);transition:.2s;flex-shrink:0;}
+.faq.open .pm{transform:rotate(45deg);}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.step{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--shadow-sm);}
+.step .no{width:38px;height:38px;border-radius:12px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;margin-bottom:14px;}
+.step h3{font-size:18px;font-weight:800;}.step p{color:var(--grey);font-size:14.5px;margin-top:8px;}
+@media(max-width:820px){.steps{grid-template-columns:1fr;}}
+
+/* stories */
+.stories{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.story{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);cursor:pointer;}
+.story .thumb{height:170px;background-size:cover;background-position:center;}
+.story .b{padding:20px;}
+.story .k{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--pk);}
+.story h3{font-size:17px;font-weight:800;margin-top:8px;}
+.story .m{font-size:12.5px;color:var(--grey);margin-top:10px;}
+@media(max-width:820px){.stories{grid-template-columns:1fr;}}
+
+/* final cta */
+.final{background:linear-gradient(160deg,#1b1430,#3a1f6e 55%,#7B3FE4);border-radius:32px;color:#fff;padding:56px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;overflow:hidden;position:relative;}
+.final h2{font-size:40px;font-weight:900;}
+.final p{color:rgba(255,255,255,.85);font-size:16px;margin-top:14px;max-width:440px;}
+.final .reserve{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);margin-left:0;}
+.final .reserve .pfx{color:rgba(255,255,255,.7);}
+.final .reserve input{color:#fff;}
+.final .phonewrap{margin:0 auto;transform:none;}
+@media(max-width:820px){.final{grid-template-columns:1fr;padding:36px 26px;}}
+
+/* footer */
+footer{background:#12101c;color:#b7b1c9;padding:60px 0 30px;margin-top:0;}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:36px;}
+footer h4{color:#fff;font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
+footer a{display:block;font-size:14px;padding:5px 0;color:#b7b1c9;}
+footer a:hover{color:#fff;}
+.nl{display:flex;gap:8px;margin-top:12px;}
+.nl input{flex:1;background:#1e1b2c;border:1px solid #2c2740;border-radius:12px;padding:12px;color:#fff;outline:none;font-size:14px;}
+.fbot{border-top:1px solid #251f36;margin-top:40px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;}
+.logo-w{filter:brightness(0) invert(1);height:24px;}
+@media(max-width:820px){.fgrid{grid-template-columns:1fr 1fr;}}
+</style></head><body>
+
+<header>
+  <div class="wrap"><nav>
+    <a href="#top"><img class="logo" src="logo.svg" alt="Indiggi"></a>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#intelligence">Intelligence</a>
+      <a href="#plans">Levels</a>
+      <a href="#stories">Stories</a>
+    </div>
+    <div class="right">
+      <span class="soon"><span class="dot"></span>Coming Soon</span>
+      <a href="#reserve" class="btn grad">Register Now</a>
+    </div>
+  </nav></div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">Culture is the new technology</span>
+    <h1>The future of culture,<br>intelligence &amp; living <span class="grad-t">well</span>.</h1>
+    <p class="sub">Indiggi is your verified life — your money, your giving, your scene, and a voice concierge named KAI that actually moves for you. One app for the way you really live.</p>
+    <div class="cta">
+      <span class="soon"><span class="dot"></span>Coming Soon · iOS &amp; Android</span>
+      <a href="#reserve" class="btn grad">Register Now — Claim Early Member Bonus</a>
+    </div>
+    <div class="reserve">
+      <span class="pfx">indiggi.app/</span>
+      <input id="h1in" placeholder="yourname" oninput="prev('h1in')" onkeydown="if(event.key==='Enter')reserve('h1in')">
+      <button class="btn grad" onclick="reserve('h1in')">Reserve</button>
+    </div>
+    <div class="rmsg" id="h1msg"></div>
+    <p class="note">Founding bonuses for the first 1,000 members. No card required.</p>
+    <div class="phonewrap"><iframe src="indiggi.html?embed=1#home" title="Indiggi app" loading="lazy" scrolling="no"></iframe></div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust"><div class="wrap"><div class="row">
+  <span>Built for the way you actually live —</span>
+  <span class="pill">🎧 Your scene</span>
+  <span class="pill">💳 Your money</span>
+  <span class="pill">💜 Your giving</span>
+  <span class="pill">🎤 Your audience</span>
+  <span class="pill">🤖 Run by KAI</span>
+</div></div></div>
+
+<!-- INTRO -->
+<section class="sec">
+  <div class="wrap shead">
+    <span class="eyebrow">One app, your whole life</span>
+    <h2>Design a smarter lifestyle with one app that keeps your money, your scene, and your people simple to run.</h2>
+    <p>Money Life, Karma, Giving, and your nights — all in one place, all handled by KAI. Verified, portable, and yours.</p>
+  </div>
+</section>
+
+<!-- FEATURES BENTO -->
+<section class="sec" id="features" style="background:var(--soft);">
+  <div class="wrap">
+    <div class="shead"><span class="eyebrow">Everything you need</span><h2>A life run by KAI.</h2><p>Your co-pilot for money, culture, and everything in between.</p></div>
+    <div class="bento">
+      <div class="card big">
+        <div><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+        <h3>KAI, your voice concierge</h3>
+        <p>Ask for anything — move money, hold a table, plan your day. KAI knows your life and moves for you.</p></div>
+      </div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg></div><h3>Wallet &amp; INCard</h3><p>Daily spending, investing, and fractional real assets in one balance.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16l-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/></svg></div><h3>Karma &amp; Giving</h3><p>You spend, we give. Every purchase feeds The Circle, your community giving pool.</p></div>
+      <div class="card dark"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/></svg></div><h3>The Map &amp; InLife</h3><p>Concierge to the inside track — rooftops, chef's counters, and the nights that are your scene.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6"/></svg></div><h3>Creator OS</h3><p>Own your audience, rooms, drops, and revenue — the business side, simplified.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/></svg></div><h3>Verified identity</h3><p>One verified you — your access, your card, your taste — portable everywhere.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTELLIGENCE SPLIT -->
+<section class="sec" id="intelligence">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow">Personalized intelligence</span>
+      <h2>Intelligence for the way you live.</h2>
+      <p>KAI learns how you actually move — your money, your calendar, your people — then handles the busywork so you show up for the moments that matter.</p>
+      <div class="tags"><span class="tag">Your day</span><span class="tag">Your money</span><span class="tag">Your scene</span><span class="tag">Your giving</span></div>
+    </div>
+    <div class="media"><div class="ov"></div><div class="stat"><b>94%</b><span>of members say KAI runs their week</span></div></div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF SPLIT -->
+<section class="sec" style="background:var(--soft);">
+  <div class="wrap split">
+    <div class="media" style="background:linear-gradient(150deg,#5B2AAE,#3a1f6e 55%,#152344);"><div class="ov"></div><div class="stat"><b>Real members.</b><span>Culture, powered by the people living it.</span></div></div>
+    <div>
+      <span class="eyebrow">Powered by real members</span>
+      <h2>Your world, in good company.</h2>
+      <p>Indiggi is built with the tastemakers, creators, and doers who set the tone. Verified people, real rooms, and a community that moves together.</p>
+      <a href="#reserve" class="btn ghost" style="margin-top:22px;">Join the early list</a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead"><span class="eyebrow">Early members</span><h2>What people are saying.</h2></div>
+    <div class="reviews">
+      <div class="review"><div class="stars">★★★★★</div><p>"KAI moved $50 to savings and booked my night before I finished my coffee. This is the first app that feels like it's actually mine."</p><div class="who"><div class="av">M</div><div><div class="nm">Maya R.</div><div class="hd">Creator · LA</div></div></div></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"The INCard plus fractional investing in one balance is wild. I finally get where my money is."</p><div class="who"><div class="av">J</div><div><div class="nm">Jré T.</div><div class="hd">Founding member</div></div></div></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"The Circle is genius. My everyday spending funds my church and my causes without me lifting a finger."</p><div class="who"><div class="av">D</div><div><div class="nm">Dominique</div><div class="hd">Insider</div></div></div></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"The Map put me at a rooftop set with my exact crowd. It knows my taste better than my group chat."</p><div class="who"><div class="av">A</div><div><div class="nm">Andre P.</div><div class="hd">Member · NYC</div></div></div></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Creator OS gave me my audience, rooms, and revenue in one screen. I run my whole thing from Indiggi now."</p><div class="who"><div class="av">S</div><div><div class="nm">Simone</div><div class="hd">Creator · ATL</div></div></div></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"Verified once, and my access travels with me. It just feels like the future."</p><div class="who"><div class="av">K</div><div><div class="nm">Kwame</div><div class="hd">Founding member</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec" id="plans" style="background:var(--soft);">
+  <div class="wrap">
+    <div class="shead"><span class="eyebrow">Choose your level</span><h2>One app, every part of your life.</h2><p>Start where you are. Move up anytime. Reserve now to lock founding perks.</p></div>
+    <div class="plans">
+      <div class="plan">
+        <div class="pn">Member</div><div class="pr">Free</div><div class="pd">You're in — the whole world of Indiggi from day one.</div>
+        <ul>
+          <li><span class="ck">✓</span> KAI across money, giving &amp; schedule</li>
+          <li><span class="ck">✓</span> Karma on everyday spend + The Circle</li>
+          <li><span class="ck">✓</span> INCard, your money in one place</li>
+        </ul>
+        <button class="btn ghost" onclick="scrollReserve()">Claim Early Access</button>
+      </div>
+      <div class="plan pop">
+        <span class="badge">MOST POPULAR</span>
+        <div class="pn">Insider</div><div class="pr">$9<small>/mo</small></div><div class="pd">Closer to the culture — early access, more Karma, more room.</div>
+        <ul>
+          <li><span class="ck">✓</span> Everything in Member</li>
+          <li><span class="ck">✓</span> Early drops, member events, priority access</li>
+          <li><span class="ck">✓</span> Boosted Karma earn rate</li>
+          <li><span class="ck">✓</span> Insider rooms &amp; community spaces</li>
+        </ul>
+        <button class="btn" style="background:#fff;color:var(--pp)" onclick="scrollReserve()">Reserve Insider</button>
+      </div>
+      <div class="plan">
+        <div class="pn">Founding Member</div><div class="pr">Invite</div><div class="pd">Built it with us — a permanent place in the story.</div>
+        <ul>
+          <li><span class="ck">✓</span> Everything in Insider, for life</li>
+          <li><span class="ck">✓</span> Founders INCard + revenue share</li>
+          <li><span class="ck">✓</span> Your handle, reserved first</li>
+        </ul>
+        <button class="btn ghost" onclick="scrollReserve()">Claim Founding Bonus</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead"><span class="eyebrow">FAQ</span><h2>Common questions, quick answers.</h2></div>
+    <div class="faqwrap">
+      <div class="faq"><q onclick="tf(this)">When is Indiggi launching?<span class="pm">+</span></q><div class="a"><div>We're rolling out to early members soon on iOS and Android. Register now to claim your Early Member Bonus and get first access.</div></div></div>
+      <div class="faq"><q onclick="tf(this)">What is the Early Member Bonus?<span class="pm">+</span></q><div class="a"><div>The first 1,000 members lock founding perks: boosted Karma, priority access to drops and rooms, and your handle reserved before anyone else.</div></div></div>
+      <div class="faq"><q onclick="tf(this)">What does "reserve your handle" mean?<span class="pm">+</span></q><div class="a"><div>Your Indiggi is your verified identity — indiggi.app/yourname. Reserve it now so it's yours when we launch. First come, first served.</div></div></div>
+      <div class="faq"><q onclick="tf(this)">Is KAI really moving my money?<span class="pm">+</span></q><div class="a"><div>KAI acts only on what you approve. It suggests and executes the busywork — moving to savings, splitting a bill, holding a table — with you in control.</div></div></div>
+      <div class="faq"><q onclick="tf(this)">Do I have to pay to join?<span class="pm">+</span></q><div class="a"><div>No. Member is free forever. Insider and Founding levels add early access and deeper perks when we launch.</div></div></div>
+      <div class="faq"><q onclick="tf(this)">Is my identity and money safe?<span class="pm">+</span></q><div class="a"><div>Verification is encrypted and yours — never sold. Your money lives in your INCard with bank-grade protection.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="sec" style="background:var(--soft);">
+  <div class="wrap">
+    <div class="shead"><span class="eyebrow">How it works</span><h2>From signup to your first night in seconds.</h2></div>
+    <div class="steps">
+      <div class="step"><div class="no">1</div><h3>Verify with KAI</h3><p>Two minutes, mostly talking. KAI learns how you move and gets you verified.</p></div>
+      <div class="step"><div class="no">2</div><h3>Set your world</h3><p>Your money, your causes, your scene — KAI wires it all into one home.</p></div>
+      <div class="step"><div class="no">3</div><h3>Let KAI move</h3><p>Ask for anything. KAI handles the busywork so you show up for the moments.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="sec" id="stories">
+  <div class="wrap">
+    <div class="shead"><span class="eyebrow">The journal</span><h2>Culture starts with a story.</h2></div>
+    <div class="stories">
+      <div class="story"><div class="thumb" style="background:linear-gradient(150deg,#5B2AAE,#152344);"></div><div class="b"><span class="k">Culture</span><h3>Why culture is the new technology</h3><div class="m">5 min read · Founders' note</div></div></div>
+      <div class="story"><div class="thumb" style="background:linear-gradient(150deg,#E0457B,#7B3FE4);"></div><div class="b"><span class="k">Money</span><h3>One balance for spending, investing &amp; giving</h3><div class="m">4 min read · Product</div></div></div>
+      <div class="story"><div class="thumb" style="background:linear-gradient(150deg,#0E9B86,#1e5bd6);"></div><div class="b"><span class="k">The Circle</span><h3>How everyday spend funds your community</h3><div class="m">6 min read · Karma</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="sec" id="reserve">
+  <div class="wrap">
+    <div class="final">
+      <div>
+        <span class="eyebrow" style="color:#ffb3d0;">Register now</span>
+        <h2>Take Indiggi<br>with you.</h2>
+        <p>Claim your Early Member Bonus and reserve your handle before we launch. The first 1,000 lock founding perks for life.</p>
+        <div class="reserve">
+          <span class="pfx">indiggi.app/</span>
+          <input id="h2in" placeholder="yourname" oninput="prev('h2in')" onkeydown="if(event.key==='Enter')reserve('h2in')">
+          <button class="btn grad" onclick="reserve('h2in')">Reserve</button>
+        </div>
+        <div class="rmsg" id="h2msg" style="color:#8ff5da;"></div>
+        <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+          <input id="email" type="email" placeholder="you@email.com" style="flex:1;min-width:200px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:28px;padding:14px 18px;color:#fff;outline:none;font-size:15px;font-weight:600;">
+          <button class="btn grad" onclick="claim()">Claim Early Member Bonus</button>
+        </div>
+        <div class="rmsg" id="emsg" style="color:#8ff5da;"></div>
+        <p style="color:rgba(255,255,255,.6);font-size:12.5px;margin-top:14px;">Coming Soon to iOS &amp; Android · No card required</p>
+      </div>
+      <div class="phonewrap"><iframe src="indiggi.html?embed=1#kai" title="Indiggi app" loading="lazy" scrolling="no"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <img class="logo-w" src="logo.svg" alt="Indiggi" style="margin-bottom:14px;">
+        <p style="font-size:14px;max-width:260px;">Culture is the new technology. Your verified life — money, giving, and your scene, run by KAI.</p>
+        <div style="margin-top:16px;"><span class="soon" style="background:#1e1b2c;border-color:#2c2740;color:#fff;"><span class="dot"></span>Coming Soon</span></div>
+      </div>
+      <div><h4>Product</h4><a href="#features">Features</a><a href="#intelligence">Intelligence</a><a href="#plans">Levels</a><a href="indiggi.html">Live demo</a></div>
+      <div><h4>Company</h4><a href="#stories">Stories</a><a href="#reserve">Register</a><a href="#">Careers</a><a href="#">Press</a></div>
+      <div>
+        <h4>Get the Early Member Bonus</h4>
+        <p style="font-size:14px;">Reserve your handle and join the founding list.</p>
+        <div class="nl"><input id="nlmail" type="email" placeholder="you@email.com"><button class="btn grad" onclick="claim('nlmail','nlmsg')">Join</button></div>
+        <div class="rmsg" id="nlmsg" style="color:#8ff5da;"></div>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 Indiggi International Holdings. All rights reserved.</span>
+      <span>Privacy · Terms · Coming Soon</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function slug(v){return (v||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'').slice(0,20);}
+function prev(id){var s=slug(document.getElementById(id).value);document.getElementById(id).value=s;}
+function reserve(id){
+  var s=slug(document.getElementById(id).value);
+  var m=document.getElementById(id.replace('in','msg'));
+  if(!s){m.style.color='#E0457B';m.textContent='Enter a name to reserve your handle.';return;}
+  m.style.color=id==='h2in'?'#8ff5da':'#0E9B86';
+  m.innerHTML='🎉 <b>indiggi.app/'+s+'</b> is reserved — check your email for your Early Member Bonus.';
+}
+function claim(id,mid){
+  id=id||'email';mid=mid||'emsg';
+  var v=(document.getElementById(id).value||'').trim();
+  var m=document.getElementById(mid);
+  if(!/.+@.+\..+/.test(v)){m.style.color='#ffb3d0';m.textContent='Enter a valid email to claim your bonus.';return;}
+  m.style.color='#8ff5da';m.innerHTML="✓ You're on the founding list. We'll email your Early Member Bonus.";
+  document.getElementById(id).value='';
+}
+function scrollReserve(){document.getElementById('reserve').scrollIntoView({behavior:'smooth'});}
+function tf(q){var f=q.parentNode;f.classList.toggle('open');}
+</script>
+</body></html>
