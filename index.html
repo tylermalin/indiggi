@@ -232,11 +232,23 @@ footer a:hover{color:#fff;}
 .fbot{border-top:1px solid #241f36;margin-top:44px;padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;}
 .logo-w{filter:brightness(0) invert(1);height:24px;}
 @media(max-width:860px){.fgrid{grid-template-columns:1fr 1fr;}}
+/* life intel + mission/vision */
+.lifegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px;}
+.mvcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:32px;box-shadow:var(--shadow-sm);}
+.mvcard.dark{background:linear-gradient(150deg,#150f26,#2b1b4d 55%,#7B3FE4);color:#fff;border:none;}
+.mvcard.dark p{color:#c9c3dd;} .mvcard.dark b{color:#fff;}
+.mvcard .lbl{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pk);}
+.mvcard.dark .lbl{color:#ffb3d0;}
+.mvcard h3{font-size:24px;margin-top:10px;}
+.mvcard p{color:var(--grey);font-size:15.5px;margin-top:14px;line-height:1.65;}
+@media(max-width:860px){.lifegrid{grid-template-columns:1fr 1fr;}.pillars{grid-template-columns:1fr;}}
+@media(max-width:560px){.lifegrid{grid-template-columns:1fr;}}
 </style></head><body>
 
 <header><div class="wrap"><nav>
   <a href="#top"><img class="logo" src="logo.svg" alt="Indiggi"></a>
-  <div class="links"><a href="#showcase">Screens</a><a href="#features">Features</a><a href="#plans">Levels</a><a href="blog.html">Blog</a><a href="#faq">FAQ</a></div>
+  <div class="links"><a href="#showcase">Screens</a><a href="#features">Features</a><a href="#plans">Levels</a><a href="#lifeintel">Life Intel</a><a href="blog.html">Blog</a><a href="#faq">FAQ</a></div>
   <div class="right"><span class="soon"><span class="dot"></span>Coming Soon</span><a href="#reserve" class="btn grad">Register Now</a></div>
 </nav></div></header>
 
@@ -324,6 +336,17 @@ footer a:hover{color:#fff;}
   <div class="media"><div class="ov"></div><div class="stat"><b>94%</b><span>of members say KAI runs their week</span></div></div>
 </div></section>
 
+<!-- LIFE INTEL -->
+<section class="sec" id="lifeintel" data-section="lifeintel"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Life Intel</span><h2 data-edit="lifeintel.h2">Intelligence that moves before you do.</h2><p data-edit="lifeintel.sub">KAI quietly reads your world — your day, your money, your Circle — and surfaces what matters. No feeds. No follower counts. Just signal, when it counts.</p></div>
+  <div class="lifegrid">
+    <div class="fmini"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Your day, pre-solved</h3><p>KAI lines up your morning, your 2pm, and your night before you ask — and holds what matters open.</p></div>
+    <div class="fmini"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5-7-11a7 7 0 0114 0c0 6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3>Your Circle, nearby</h3><p>Someone from your Circle is two blocks away — a quiet, private nudge. No public location, no feed to scroll.</p></div>
+    <div class="fmini"><div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></div><h3>Private by design</h3><p>Verified, encrypted, and yours. No follower counts, no vanity metrics — connection without surveillance.</p></div>
+    <div class="fmini"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div><h3>Moves for you</h3><p>Life Intel doesn't just notice — it acts on what you approve, so the busywork handles itself.</p></div>
+  </div>
+</div></section>
+
 <!-- REVIEWS -->
 <section class="sec" style="background:var(--soft);"><div class="wrap">
   <div class="shead"><span class="eyebrow">Early members</span><h2>What people are saying.</h2></div>
@@ -382,6 +405,26 @@ footer a:hover{color:#fff;}
     <div class="story"><div class="thumb" style="background:linear-gradient(150deg,#5B2AAE,#152344);"></div><div class="b"><span class="k">Culture</span><h3>Why culture is the new technology</h3><div class="m">5 min read · Founders' note</div></div></div>
     <div class="story"><div class="thumb" style="background:linear-gradient(150deg,#E0457B,#7B3FE4);"></div><div class="b"><span class="k">Money</span><h3>One balance for spending, investing &amp; giving</h3><div class="m">4 min read · Product</div></div></div>
     <div class="story"><div class="thumb" style="background:linear-gradient(150deg,#0E9B86,#1e5bd6);"></div><div class="b"><span class="k">The Circle</span><h3>How everyday spend funds your community</h3><div class="m">6 min read · Karma</div></div></div>
+  </div>
+</div></section>
+
+<!-- MISSION & VISION -->
+<section class="sec" id="mission" data-section="mission" style="background:var(--soft);"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Mission &amp; Vision</span><h2 data-edit="mission.h2">Culture is the operating system. We're building the platform for it.</h2></div>
+  <div class="split">
+    <div class="mvcard dark">
+      <div class="lbl">Mission — The Pulse of the Global Digerati</div>
+      <p data-edit="mission.body">We foster a space where connection is verifiable and community is central. Moving beyond the noise of traditional social media, we're building <b>The Scene</b> — a place where the Global Digerati engage, collaborate, and define the culture of the next internet, free from the constraints of hierarchical status.</p>
+    </div>
+    <div class="mvcard">
+      <div class="lbl">Vision — The Circle</div>
+      <p data-edit="vision.body">We envision a future where trust is shared infrastructure, not a cost center. By bringing the Global Digerati into <b>The Circle</b>, we create a self-sustaining ecosystem — authentic, portable, and rewarding.</p>
+    </div>
+  </div>
+  <div class="pillars">
+    <div class="fmini"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="15" r="3"/><path d="M11.5 10.5l3 3"/></svg></div><h3>Connection is authentic</h3><p>We replace superficial metrics like followers with deep, shared mindsets.</p></div>
+    <div class="fmini"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Trust is portable</h3><p>Verifiable, private interaction that respects your data — and moves with you across apps.</p></div>
+    <div class="fmini"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16l-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/></svg></div><h3>Participation is rewarded</h3><p>Through our quest-based model, your contributions — amplifying launches, engaging with the culture — are valued and incentivized.</p></div>
   </div>
 </div></section>
 
