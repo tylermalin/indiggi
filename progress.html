@@ -135,15 +135,15 @@ footer{background:#100d1a;color:#b7b1c9;padding:40px 0;margin-top:10px;}
   </div>
 
   <div class="grp"><div class="gt">Data, email &amp; admin</div>
-    <div class="item"><div class="tick plan">5</div><div class="b"><div class="h">Wire all forms to a database + email <span class="tag pri">Needs backend</span></div><div class="d">Reserve-handle and email capture currently confirm on-screen only. Next: store every registration in a database and send the user a confirmation email with their Early Member Bonus.</div></div></div>
-    <div class="item"><div class="tick plan">6</div><div class="b"><div class="h">Admin dashboard <span class="tag pri">Needs backend</span></div><div class="d">A private page showing registrations (handle, email, tier, referral) plus analytics — signups over time, reserved handles, funnel.</div></div></div>
+    <div class="item"><div class="tick done">✓</div><div class="b"><div class="h">Forms wired to a database <span class="tag next">Built · connect DB</span></div><div class="d">All landing forms now POST to <b>/api/register</b> and store each signup (email, handle, tier, source) in Vercel Postgres. Just needs the database connected in Vercel (2 min). Confirmation email is the remaining piece.</div></div></div>
+    <div class="item"><div class="tick done">✓</div><div class="b"><div class="h">Admin dashboard <span class="tag next">Built · connect DB</span></div><div class="d">Password-gated <b>/admin</b> is live — KPIs, a signups-over-time chart, tier breakdown, recent-registrations table, and CSV export. Connect the DB and set the admin password to see data.</div></div></div>
   </div>
 
   <div class="grp"><div class="gt">Navigation</div>
     <div class="item"><div class="tick next">7</div><div class="b"><div class="h">Fix nav &amp; add missing pages <span class="tag next">Next</span></div><div class="d">Audit every link; build out any that currently go nowhere (Careers, Press, Privacy, Terms, Contact) so nothing dead-ends.</div></div></div>
   </div>
 
-  <div class="note"><b>Note on #5 &amp; #6:</b> the site is currently static, so database + email + admin need a small backend service. Quick to stand up on Vercel — flagged here so it's on the roadmap, not a surprise.</div>
+  <div class="note"><b>Backend is built (serverless + Vercel Postgres).</b> Registrations capture and the <b>/admin</b> dashboard are deployed. To switch them on: connect a Vercel Postgres database to the project and set an <b>ADMIN_PASSWORD</b> — about 5 minutes in the Vercel dashboard. Confirmation email (Resend) is the one remaining piece.</div>
 </div></section>
 
 <footer><div class="wrap"><div class="frow">
