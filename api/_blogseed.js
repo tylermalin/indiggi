@@ -183,8 +183,14 @@ And we're just getting started.`
   }
 ];
 
+const COVERS = {
+  'we-dont-look-alike-we-think-alike': '/assets/cover-think-alike.svg',
+  'culture-is-technology': '/assets/cover-culture-technology.svg',
+  'the-missing-ministry-of-culture': '/assets/cover-ministry-culture.svg'
+};
+
 export function seedPosts() {
-  return RAW.map(p => ({ slug: p.slug, title: p.title, category: p.category, excerpt: p.excerpt, body: linesToHtml(p.bodyText) }));
+  return RAW.map(p => ({ slug: p.slug, title: p.title, category: p.category, excerpt: p.excerpt, body: linesToHtml(p.bodyText), cover_url: COVERS[p.slug] || null }));
 }
 
 // Insert the seed posts (published) only if the blog is empty. Idempotent.
@@ -193,8 +199,8 @@ export async function seedBlogIfEmpty() {
     const c = (await sql`SELECT count(*)::int AS c FROM blog_posts`).rows[0].c;
     if (c > 0) return;
     for (const p of seedPosts()) {
-      await sql`INSERT INTO blog_posts (slug, title, category, excerpt, body, status, published_at, author)
-                VALUES (${p.slug}, ${p.title}, ${p.category}, ${p.excerpt}, ${p.body}, 'published', now(), 'Indiggi')
+      await sql`INSERT INTO blog_posts (slug, title, category, excerpt, body, cover_url, status, published_at, author)
+                VALUES (${p.slug}, ${p.title}, ${p.category}, ${p.excerpt}, ${p.body}, ${p.cover_url}, 'published', now(), 'Indiggi')
                 ON CONFLICT (slug) DO NOTHING`;
     }
   } catch { /* DB not ready — fallback handled by caller */ }

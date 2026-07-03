@@ -24,8 +24,8 @@ export default async function handler(req, res) {
     if (slug) {
       const p = seeds.find(x => x.slug === slug);
       if (!p) return res.status(404).json({ error: 'not_found' });
-      return res.status(200).json({ ok: true, post: { slug: p.slug, title: p.title, category: p.category, excerpt: p.excerpt, body: p.body, cover_url: null, published_at: null } });
+      return res.status(200).json({ ok: true, post: { slug: p.slug, title: p.title, category: p.category, excerpt: p.excerpt, body: p.body, cover_url: p.cover_url, published_at: null } });
     }
-    return res.status(200).json({ ok: true, posts: seeds.map(p => ({ slug: p.slug, title: p.title, category: p.category, excerpt: p.excerpt, cover_url: null, published_at: null })) });
+    return res.status(200).json({ ok: true, posts: seeds.map(p => ({ slug: p.slug, title: p.title, category: p.category, excerpt: p.excerpt, cover_url: p.cover_url, published_at: null })) });
   }
 }

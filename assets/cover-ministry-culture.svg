@@ -1,0 +1,21 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a1f6e"/><stop offset=".55" stop-color="#7B3FE4"/><stop offset="1" stop-color="#E0457B"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="45%" r="72%">
+      <stop offset="58%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".28"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g fill="#ffffff">
+    <rect x="300" y="330" width="62" height="220" rx="31" fill-opacity=".85"/>
+    <rect x="392" y="250" width="62" height="300" rx="31" fill-opacity=".68"/>
+    <rect x="484" y="175" width="62" height="375" rx="31" fill-opacity="1"/>
+    <rect x="576" y="290" width="62" height="260" rx="31" fill-opacity=".6"/>
+    <rect x="668" y="215" width="62" height="335" rx="31" fill-opacity=".82"/>
+    <rect x="760" y="330" width="62" height="220" rx="31" fill-opacity=".5"/>
+    <rect x="852" y="265" width="62" height="285" rx="31" fill-opacity=".72"/>
+  </g>
+  <rect width="1200" height="630" fill="url(#vig)"/>
+</svg>
