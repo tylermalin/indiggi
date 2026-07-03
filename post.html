@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indiggi — Journal</title>
+<link rel="icon" href="logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,800;9..40,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--pp:#7B3FE4;--pk:#E0457B;--grad:linear-gradient(135deg,#7B3FE4,#E0457B);--ink:#150f26;--grey:#6b6683;--line:#eae7f3;--soft:#f7f5fc;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',-apple-system,Arial,sans-serif;color:var(--ink);background:#fff;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,.dm{font-family:'DM Sans',sans-serif;font-weight:800;letter-spacing:-.6px;line-height:1.15;}
+a{color:var(--pp);}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px;}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);z-index:10;}
+nav{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1080px;margin:0 auto;padding:0 24px;}
+.logo{height:24px;}
+.btn{font-weight:700;font-size:14px;padding:11px 18px;border-radius:26px;background:var(--grad);color:#fff;border:none;cursor:pointer;}
+article{padding:56px 0 80px;}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--pk);}
+article h1{font-size:42px;margin:14px 0 10px;}
+.meta{color:var(--grey);font-size:14px;}
+.cover{width:100%;border-radius:20px;margin:28px 0;max-height:420px;object-fit:cover;}
+.body{font-size:17px;}
+.body p{margin:18px 0;}
+.body h2{font-size:26px;margin:34px 0 12px;}
+.body h3{font-size:20px;margin:28px 0 10px;}
+.body img{max-width:100%;border-radius:14px;margin:20px 0;}
+.body ul,.body ol{margin:18px 0 18px 22px;}
+.back{display:inline-block;margin-top:40px;font-weight:700;}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--grey);font-size:13px;text-align:center;}
+</style></head><body>
+<header><nav><a href="index.html"><img class="logo" src="logo.svg" alt="Indiggi"></a><a href="index.html#reserve" class="btn">Register Now</a></nav></header>
+<article><div class="wrap" id="art"><p class="meta">Loading…</p></div></article>
+<footer><div class="wrap">© 2026 Indiggi International Holdings · Culture is the new technology</div></footer>
+<script>
+var slug=new URLSearchParams(location.search).get('slug');
+fetch('/api/blog?slug='+encodeURIComponent(slug||'')).then(function(r){return r.json().then(function(d){return {s:r.status,d:d};});}).then(function(x){
+  var el=document.getElementById('art');
+  if(x.s!==200||!x.d.post){ el.innerHTML='<h1>Not found</h1><p class="meta">This story isn\'t published.</p><a class="back" href="blog.html">← Back to the Journal</a>'; document.title='Indiggi — Not found'; return; }
+  var p=x.d.post;
+  document.title='Indiggi — '+p.title;
+  var date=p.published_at?new Date(p.published_at).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}):'';
+  el.innerHTML='<span class="eyebrow">'+(esc(p.category)||'Story')+'</span><h1>'+esc(p.title)+'</h1><div class="meta">'+date+'</div>'+
+    (p.cover_url?'<img class="cover" src="'+p.cover_url+'">':'')+
+    '<div class="body">'+(p.body||'<p>'+esc(p.excerpt||'')+'</p>')+'</div>'+
+    '<a class="back" href="blog.html">← Back to the Journal</a>';
+});
+function esc(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+</script>
+</body></html>

@@ -1,177 +1,306 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Indiggi — Admin</title>
-<link rel="icon" href="logo-mark.svg">
-<meta name="robots" content="noindex">
+<title>Indiggi — Platform</title>
+<link rel="icon" href="logo-mark.svg"><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,800;9..40,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--pp:#7B3FE4;--pk:#E0457B;--grad:linear-gradient(135deg,#7B3FE4,#E0457B);--ink:#150f26;--grey:#6b6683;--line:#eae7f3;--soft:#f7f5fc;--jade:#0E9B86;--amber:#E08A2B;--cobalt:#3B82F6;--shadow:0 14px 34px -18px rgba(70,40,150,.2);}
+:root{--pp:#7B3FE4;--pk:#E0457B;--grad:linear-gradient(135deg,#7B3FE4,#E0457B);--ink:#150f26;--grey:#6b6683;--line:#eae7f3;--soft:#f7f5fc;--jade:#0E9B86;--shadow:0 14px 34px -18px rgba(70,40,150,.2);}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',-apple-system,Arial,sans-serif;color:var(--ink);background:#f5f3fb;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;}
 h1,h2,h3,.dm{font-family:'DM Sans',sans-serif;font-weight:800;letter-spacing:-.5px;}
-.wrap{max-width:1120px;margin:0 auto;padding:26px;}
-.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
-.top .l{display:flex;align-items:center;gap:12px;}
-.logo{height:24px;}
-.badge{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--pp);background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:20px;}
-.btn{font-family:'Inter';font-weight:700;font-size:13px;padding:9px 16px;border-radius:22px;border:none;cursor:pointer;background:var(--grad);color:#fff;}
+input,textarea,select,button{font-family:'Inter';font-size:14px;}
+a{color:var(--pp);}
+.btn{font-weight:700;font-size:13px;padding:9px 16px;border-radius:22px;border:none;cursor:pointer;background:var(--grad);color:#fff;}
+.btn:disabled{opacity:.5;cursor:default;}
 .btn.ghost{background:#fff;color:var(--pp);border:1.5px solid var(--line);}
+.btn.sm{padding:6px 12px;font-size:12px;}
+.btn.red{background:#fff;color:#C0392B;border:1.5px solid #eab5ad;}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--grey);margin:14px 0 6px;}
+.field input,.field textarea,.field select{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;outline:none;background:#fff;color:var(--ink);}
+.field input:focus,.field textarea:focus{border-color:var(--pp);}
+.field textarea{min-height:90px;resize:vertical;line-height:1.5;}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);}
+.mut{color:var(--grey);} .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
 
-/* gate */
-#gate{max-width:400px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:var(--shadow);text-align:center;}
-#gate img{height:26px;margin:0 auto 18px;}
-#gate h1{font-size:22px;}
-#gate p{color:var(--grey);margin:8px 0 20px;font-size:13.5px;}
-#gate input{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;font-size:15px;outline:none;font-family:'Inter';}
-#gate input:focus{border-color:var(--pp);}
-#gate button{width:100%;margin-top:12px;padding:13px;font-size:15px;border-radius:26px;}
-#gerr{color:var(--pk);font-weight:600;font-size:13px;min-height:18px;margin-top:10px;}
+/* login */
+#login{max-width:400px;margin:12vh auto;text-align:center;}
+#login .card{padding:34px;}
+#login img{height:26px;margin:0 auto 18px;}
+#login h1{font-size:22px;}
+#login p{color:var(--grey);margin:8px 0 18px;font-size:13.5px;}
+#login input{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;font-size:15px;outline:none;margin-top:10px;}
+#login button{width:100%;margin-top:14px;padding:13px;border-radius:26px;font-size:15px;}
+#lerr{color:var(--pk);font-weight:600;font-size:13px;min-height:18px;margin-top:12px;}
 
-/* dashboard */
-#dash{display:none;}
+/* app */
+#app{display:none;}
+.topbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;}
+.topbar .in{max-width:1140px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.logo{height:24px;}
+.who{font-size:12.5px;color:var(--grey);}
+.tabs{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;gap:6px;overflow-x:auto;}
+.tab{padding:14px 14px 12px;font-weight:700;font-size:14px;color:var(--grey);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;}
+.tab.on{color:var(--pp);border-color:var(--pp);}
+.wrap{max-width:1140px;margin:0 auto;padding:24px;}
+.welcome{background:linear-gradient(135deg,#2b1b4d,#7B3FE4 130%);color:#fff;border-radius:20px;padding:24px 26px;margin-bottom:22px;position:relative;}
+.welcome h2{font-size:22px;}.welcome p{opacity:.92;margin-top:8px;max-width:640px;font-size:14px;}
+.welcome .x{position:absolute;top:16px;right:18px;cursor:pointer;font-size:20px;opacity:.8;}
+.welcome .lk{color:#fff;text-decoration:underline;font-weight:700;}
+.panel{display:none;} .panel.on{display:block;}
+.grp{margin-bottom:8px;} .grp .gt{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pp);margin:18px 0 4px;}
+.tog{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;margin-top:10px;}
+.switch{width:44px;height:26px;border-radius:14px;background:#d9d3ea;position:relative;cursor:pointer;transition:.15s;flex-shrink:0;}
+.switch.on{background:var(--jade);}
+.switch b{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.15s;}
+.switch.on b{left:21px;}
+.saved{font-size:12px;font-weight:700;color:var(--jade);opacity:0;transition:.2s;}
+.saved.show{opacity:1;}
+
+/* kpis / reg */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px;}
-.kpi{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow);}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);}
 .kpi .k{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--grey);}
-.kpi .v{font-family:'DM Sans';font-weight:800;font-size:32px;margin-top:6px;line-height:1;}
-.kpi .s{font-size:12px;color:var(--grey);margin-top:6px;}
-.grid2{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-bottom:18px;}
-.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);}
-.card h3{font-size:15px;margin-bottom:14px;}
-.tierbar{display:flex;align-items:center;gap:10px;margin:10px 0;font-size:13px;}
-.tierbar .nm{width:130px;font-weight:600;text-transform:capitalize;}
-.tierbar .track{flex:1;height:10px;border-radius:6px;background:var(--soft);overflow:hidden;}
-.tierbar .fill{height:100%;border-radius:6px;}
-.tierbar .ct{width:40px;text-align:right;font-weight:800;font-variant-numeric:tabular-nums;}
+.kpi .v{font-family:'DM Sans';font-weight:800;font-size:30px;margin-top:6px;line-height:1;}
 table{width:100%;border-collapse:collapse;font-size:13px;}
-th{text-align:left;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);padding:10px 8px;border-bottom:1px solid var(--line);}
-td{padding:11px 8px;border-bottom:1px solid var(--line);}
-tr:last-child td{border-bottom:none;}
-.pill{display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:11px;text-transform:capitalize;}
-.pill.member{background:var(--soft);color:var(--pp);}
-.pill.insider{background:#f2e8fc;color:var(--pp);}
-.pill.founding{background:#fdeef4;color:var(--pk);}
-.handle{color:var(--pp);font-weight:700;}
-.mut{color:var(--grey);}
-.empty{text-align:center;color:var(--grey);padding:40px;}
-@media(max-width:760px){.kpis{grid-template-columns:1fr 1fr;}.grid2{grid-template-columns:1fr;}}
+th{text-align:left;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);padding:9px 8px;border-bottom:1px solid var(--line);}
+td{padding:10px 8px;border-bottom:1px solid var(--line);}
+.pill{display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:11px;background:var(--soft);color:var(--pp);text-transform:capitalize;}
+.postrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);}
+.postrow .st{font-size:11px;font-weight:800;text-transform:uppercase;padding:3px 9px;border-radius:11px;}
+.st.published{background:#dcf3ee;color:var(--jade);} .st.draft{background:#eeecf4;color:var(--grey);}
+.thumb{width:52px;height:38px;border-radius:8px;object-fit:cover;background:var(--soft);border:1px solid var(--line);}
+@media(max-width:760px){.kpis{grid-template-columns:1fr 1fr;}}
 </style></head><body>
 
-<!-- password gate -->
-<div id="gate">
+<!-- LOGIN -->
+<div id="login"><div class="card">
   <img src="logo.svg" alt="Indiggi">
-  <h1>Admin access</h1>
-  <p>Enter the admin password to view registrations &amp; analytics.</p>
-  <input id="pw" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')login()">
-  <button class="btn" onclick="login()">Enter</button>
-  <div id="gerr"></div>
-</div>
-
-<!-- dashboard -->
-<div id="dash"><div class="wrap">
-  <div class="top">
-    <div class="l"><img class="logo" src="logo.svg" alt="Indiggi"><span class="badge">Admin · Registrations</span></div>
-    <div><button class="btn ghost" onclick="load()">Refresh</button> <button class="btn ghost" onclick="exportCsv()">Export CSV</button> <button class="btn ghost" onclick="logout()">Log out</button></div>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="k">Total signups</div><div class="v" id="kTotal">—</div><div class="s" id="kToday"></div></div>
-    <div class="kpi"><div class="k">Handles reserved</div><div class="v" id="kHandles">—</div><div class="s">indiggi.app/…</div></div>
-    <div class="kpi"><div class="k">Emails captured</div><div class="v" id="kEmails">—</div><div class="s">for the founding list</div></div>
-    <div class="kpi"><div class="k">Insider + Founding</div><div class="v" id="kPaid">—</div><div class="s">interested in paid tiers</div></div>
-  </div>
-
-  <div class="grid2">
-    <div class="card"><h3>Signups over time</h3><canvas id="chart" height="120"></canvas></div>
-    <div class="card"><h3>By interest tier</h3><div id="tiers"></div></div>
-  </div>
-
-  <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><h3 style="margin:0;">Recent registrations</h3><span class="mut" id="recCount"></span></div>
-    <div style="overflow-x:auto;"><table id="tbl"><thead><tr><th>When</th><th>Handle</th><th>Email</th><th>Tier</th><th>Source</th></tr></thead><tbody id="rows"></tbody></table></div>
-    <div class="empty" id="empty" style="display:none;">No registrations yet. Once the database is connected and someone signs up, they'll show here.</div>
-  </div>
+  <h1>Sign in</h1>
+  <p>The Indiggi platform — content, blog &amp; registrations.</p>
+  <input id="email" type="email" placeholder="you@email.com" autocomplete="username">
+  <input id="pw" type="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+  <button class="btn" onclick="doLogin()">Sign in</button>
+  <div id="lerr"></div>
+  <p style="margin-top:16px;font-size:12px;">First time? Enter your invited email and choose a password — it sets your account.</p>
 </div></div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topbar">
+    <div class="in">
+      <div class="row"><img class="logo" src="logo.svg" alt="Indiggi"><span class="pill">Platform</span></div>
+      <div class="row"><span class="who" id="who"></span><button class="btn ghost sm" onclick="logout()">Log out</button></div>
+    </div>
+    <div class="tabs" id="tabs">
+      <div class="tab on" data-p="content" onclick="tab('content')">Content</div>
+      <div class="tab" data-p="sections" onclick="tab('sections')">Sections</div>
+      <div class="tab" data-p="blog" onclick="tab('blog')">Blog</div>
+      <div class="tab" data-p="media" onclick="tab('media')">Media</div>
+      <div class="tab" data-p="regs" onclick="tab('regs')">Registrations</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="welcome" id="welcome" style="display:none;">
+      <span class="x" onclick="dismissWelcome()">×</span>
+      <h2>Welcome to the Indiggi platform 👋</h2>
+      <p id="welcomeMsg">This is where you drive changes to the site — edit copy, swap images, toggle sections, and publish blog posts. After Tyler &amp; the design pass, everything on the landing page becomes editable right here. See the full <a class="lk" href="progress.html" target="_blank">progress &amp; roadmap</a>.</p>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="panel on" id="p-content">
+      <div class="row" style="justify-content:space-between;margin-bottom:6px;"><h2 style="font-size:20px;">Site copy</h2><div class="row"><span class="saved" id="cSaved">Saved ✓</span><button class="btn" id="cSave" onclick="saveContent()">Save changes</button></div></div>
+      <p class="mut" style="margin-bottom:10px;">Edit the words on the landing page. Changes go live immediately. <span id="cNote"></span></p>
+      <div class="card" id="contentForm"></div>
+    </div>
+
+    <!-- SECTIONS -->
+    <div class="panel" id="p-sections">
+      <h2 style="font-size:20px;margin-bottom:6px;">Show / hide sections</h2>
+      <p class="mut" style="margin-bottom:12px;">Toggle whole sections of the landing page on or off. Takes effect immediately.</p>
+      <div id="sectionList"></div>
+    </div>
+
+    <!-- BLOG -->
+    <div class="panel" id="p-blog">
+      <div class="row" style="justify-content:space-between;margin-bottom:14px;"><h2 style="font-size:20px;">Blog</h2><button class="btn" onclick="newPost()">+ New post</button></div>
+      <div class="card" id="postList"><p class="mut">Loading…</p></div>
+      <div class="card" id="postEditor" style="display:none;margin-top:16px;"></div>
+    </div>
+
+    <!-- MEDIA -->
+    <div class="panel" id="p-media">
+      <h2 style="font-size:20px;margin-bottom:6px;">Media</h2>
+      <p class="mut" style="margin-bottom:12px;">Upload an image and copy its link to use in copy, image fields, or blog posts.</p>
+      <div class="card">
+        <input type="file" id="mediaFile" accept="image/*" onchange="uploadMedia(this)">
+        <div id="mediaOut" style="margin-top:14px;"></div>
+      </div>
+    </div>
+
+    <!-- REGISTRATIONS -->
+    <div class="panel" id="p-regs">
+      <div class="row" style="justify-content:space-between;margin-bottom:14px;"><h2 style="font-size:20px;">Registrations</h2><div class="row"><button class="btn ghost sm" onclick="loadRegs()">Refresh</button><button class="btn ghost sm" onclick="exportCsv()">Export CSV</button></div></div>
+      <div class="kpis"><div class="kpi"><div class="k">Total</div><div class="v" id="rTotal">—</div></div><div class="kpi"><div class="k">Handles</div><div class="v" id="rHandles">—</div></div><div class="kpi"><div class="k">Emails</div><div class="v" id="rEmails">—</div></div><div class="kpi"><div class="k">Insider+Founding</div><div class="v" id="rPaid">—</div></div></div>
+      <div class="card" style="margin-bottom:16px;"><h3 style="font-size:14px;margin-bottom:12px;">Signups over time</h3><canvas id="rChart" height="90"></canvas></div>
+      <div class="card"><h3 style="font-size:14px;margin-bottom:10px;">Recent</h3><div style="overflow-x:auto;"><table><thead><tr><th>When</th><th>Handle</th><th>Email</th><th>Tier</th><th>Source</th></tr></thead><tbody id="rRows"></tbody></table></div></div>
+    </div>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script>
-var KEY = sessionStorage.getItem('ik') || '';
-var DATA = null, chart = null;
-if (KEY) { showDash(); load(); }
+var ME=null, REG=null, chart=null, POSTS=[];
 
-function login(){
-  KEY = document.getElementById('pw').value.trim();
-  document.getElementById('gerr').textContent = '';
-  load(true);
+// Editable copy fields (expands during the design pass). def = current default on the site.
+var FIELDS=[
+ {group:'Hero',key:'hero.eyebrow',label:'Eyebrow',type:'text',def:'Culture is the new technology'},
+ {group:'Hero',key:'hero.sub',label:'Subheadline',type:'text',def:"Your verified life — money, giving, your scene, and a voice concierge named KAI that actually moves for you. One app for the way you really live."},
+ {group:'Hero',key:'hero.cta',label:'Primary button text',type:'text',def:'Register Now — Claim Early Member Bonus'},
+ {group:'Hero',key:'hero.note',label:'Reassurance line',type:'text',def:'Founding bonuses for the first 1,000 members. No card required.'},
+ {group:'Showcase',key:'showcase.h2',label:'Section heading',type:'text',def:'Design a smarter lifestyle with one app that keeps your money, your scene, and your people simple to run.'},
+];
+var SECTIONS=[
+ {key:'showcase',label:'“Design a smarter lifestyle” + feature zoom-ins'},
+ {key:'features',label:'A life run by KAI'},
+ {key:'intelligence',label:'Personalized intelligence (94%)'},
+ {key:'reviews',label:'What people are saying'},
+ {key:'plans',label:'Pricing / levels'},
+ {key:'faq',label:'FAQ'},
+ {key:'stories',label:'Stories'},
+];
+
+// ---- auth ----
+fetch('/api/auth/me').then(r=>r.json()).then(d=>{ if(d && d.ok){ ME=d.user; boot(); } }).catch(()=>{});
+function doLogin(){
+  var email=document.getElementById('email').value.trim(), pw=document.getElementById('pw').value;
+  var err=document.getElementById('lerr'); err.textContent='';
+  fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,password:pw})})
+   .then(r=>r.json().then(d=>({s:r.status,d:d})))
+   .then(x=>{
+     if(x.s===200){ ME=x.d.user; boot(); return; }
+     var msg={not_invited:"That email isn't on the invite list.",wrong_password:'Wrong password.',password_too_short:'Password must be at least 8 characters.',auth_not_configured:'Auth not set up yet (SESSION_SECRET + invite emails needed in Vercel).'}[x.d.error]||'Could not sign in.';
+     err.textContent=msg;
+   }).catch(e=>err.textContent='Error: '+e.message);
 }
-function logout(){ sessionStorage.removeItem('ik'); location.reload(); }
-function showDash(){ document.getElementById('gate').style.display='none'; document.getElementById('dash').style.display='block'; }
-
-function load(fromLogin){
-  if(!KEY) return;
-  fetch('/api/stats?key=' + encodeURIComponent(KEY)).then(function(r){
-    if(r.status===401){ if(fromLogin) document.getElementById('gerr').textContent='Wrong password.'; return null; }
-    if(r.status===503){ document.getElementById('gerr').textContent='Set ADMIN_PASSWORD in Vercel first.'; return null; }
-    return r.json();
-  }).then(function(d){
-    if(!d) return;
-    sessionStorage.setItem('ik', KEY);
-    showDash();
-    DATA = d; render(d);
-  }).catch(function(e){ document.getElementById('gerr').textContent='Error: '+e.message; });
+function logout(){ fetch('/api/auth/logout',{method:'POST'}).then(()=>location.reload()); }
+function boot(){
+  document.getElementById('login').style.display='none';
+  document.getElementById('app').style.display='block';
+  document.getElementById('who').textContent=ME.email+' · '+ME.role;
+  if(!localStorage.getItem('ind_welcome')) document.getElementById('welcome').style.display='block';
+  loadContent(); loadSections();
 }
+function dismissWelcome(){ localStorage.setItem('ind_welcome','1'); document.getElementById('welcome').style.display='none'; }
+function tab(p){ document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.p===p)); document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on')); document.getElementById('p-'+p).classList.add('on'); if(p==='blog')loadPosts(); if(p==='regs')loadRegs(); }
+function api(path,opt){ return fetch(path,opt).then(r=>r.json().then(d=>({s:r.status,d:d}))); }
 
-function render(d){
-  document.getElementById('kTotal').textContent = d.total.toLocaleString();
-  document.getElementById('kHandles').textContent = d.withHandle.toLocaleString();
-  document.getElementById('kEmails').textContent = d.withEmail.toLocaleString();
-  var tierMap = {member:0,insider:0,founding:0};
-  (d.byTier||[]).forEach(function(t){ tierMap[t.tier]=t.c; });
-  document.getElementById('kPaid').textContent = (tierMap.insider + tierMap.founding).toLocaleString();
-  var today = new Date().toISOString().slice(0,10);
-  var td = (d.byDay||[]).find(function(x){return x.day===today;});
-  document.getElementById('kToday').textContent = (td? '+'+td.c : '0') + ' today';
-
-  // tiers
-  var colors = {member:'#7B3FE4',insider:'#9b5cf0',founding:'#E0457B'};
-  var maxT = Math.max(1, tierMap.member, tierMap.insider, tierMap.founding);
-  var html = '';
-  ['member','insider','founding'].forEach(function(t){
-    var pct = Math.round(tierMap[t]/maxT*100);
-    html += '<div class="tierbar"><span class="nm">'+t+'</span><span class="track"><span class="fill" style="width:'+pct+'%;background:'+colors[t]+'"></span></span><span class="ct">'+tierMap[t]+'</span></div>';
+// ---- content ----
+var STORE={};
+function loadContent(){
+  api('/api/admin/content').then(x=>{
+    STORE={}; (x.d.items||[]).forEach(i=>STORE[i.key]=i.value);
+    var groups={}; FIELDS.forEach(f=>{ (groups[f.group]=groups[f.group]||[]).push(f); });
+    var html='';
+    Object.keys(groups).forEach(g=>{
+      html+='<div class="grp"><div class="gt">'+g+'</div></div>';
+      groups[g].forEach(f=>{
+        var val=STORE[f.key]!=null?STORE[f.key]:f.def;
+        html+='<div class="field"><label>'+f.label+'</label><textarea data-key="'+f.key+'" data-type="'+f.type+'" rows="2">'+esc(val)+'</textarea></div>';
+      });
+    });
+    document.getElementById('contentForm').innerHTML=html;
+    document.getElementById('cNote').textContent='('+FIELDS.length+' fields tagged so far — more after the design pass.)';
   });
-  document.getElementById('tiers').innerHTML = html;
-
-  // chart
-  var labels = (d.byDay||[]).map(function(x){return x.day.slice(5);});
-  var counts = (d.byDay||[]).map(function(x){return x.c;});
-  if(chart) chart.destroy();
-  var ctx = document.getElementById('chart');
-  var g = ctx.getContext('2d').createLinearGradient(0,0,0,140);
-  g.addColorStop(0,'rgba(123,63,228,.75)'); g.addColorStop(1,'rgba(224,69,123,.55)');
-  chart = new Chart(ctx, {type:'bar', data:{labels:labels, datasets:[{data:counts, backgroundColor:g, borderRadius:6, maxBarThickness:34}]},
-    options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true, ticks:{precision:0}}, x:{grid:{display:false}}}}});
-
-  // table
-  var rows = d.recent||[];
-  document.getElementById('recCount').textContent = rows.length + ' shown';
-  document.getElementById('empty').style.display = rows.length? 'none':'block';
-  document.getElementById('rows').innerHTML = rows.map(function(r){
-    var when = new Date(r.created_at).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
-    return '<tr><td class="mut">'+when+'</td><td>'+(r.handle? '<span class="handle">indiggi.app/'+r.handle+'</span>':'<span class="mut">—</span>')+
-      '</td><td>'+(r.email||'<span class="mut">—</span>')+'</td><td><span class="pill '+r.tier+'">'+r.tier+'</span></td><td class="mut">'+(r.referral||'—')+'</td></tr>';
-  }).join('');
+}
+function saveContent(){
+  var items=[]; document.querySelectorAll('#contentForm textarea').forEach(t=>{ items.push({key:t.dataset.key,value:t.value,type:t.dataset.type}); });
+  var btn=document.getElementById('cSave'); btn.disabled=true;
+  api('/api/admin/content',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:items})}).then(x=>{
+    btn.disabled=false; var s=document.getElementById('cSaved'); s.classList.add('show'); setTimeout(()=>s.classList.remove('show'),1600);
+  });
 }
 
-function exportCsv(){
-  if(!DATA) return;
-  var rows = DATA.recent||[];
-  var csv = 'created_at,handle,email,tier,referral\n' + rows.map(function(r){
-    return [r.created_at, r.handle||'', r.email||'', r.tier, (r.referral||'').replace(/,/g,' ')].join(',');
-  }).join('\n');
-  var a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-  a.download = 'indiggi-registrations.csv'; a.click();
+// ---- sections ----
+function loadSections(){
+  api('/api/admin/content').then(x=>{
+    var map={}; (x.d.items||[]).forEach(i=>map[i.key]=i.value);
+    document.getElementById('sectionList').innerHTML=SECTIONS.map(function(s){
+      var on = map['section.'+s.key+'.visible'] !== 'false';
+      return '<div class="tog"><div><b>'+s.label+'</b></div><div class="switch '+(on?'on':'')+'" onclick="toggleSection(this,\''+s.key+'\')"><b></b></div></div>';
+    }).join('');
+  });
 }
+function toggleSection(el,key){
+  var on=!el.classList.contains('on'); el.classList.toggle('on',on);
+  api('/api/admin/content',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:'section.'+key+'.visible',value:on?'true':'false',type:'bool'})});
+}
+
+// ---- blog ----
+function loadPosts(){
+  api('/api/admin/blog').then(x=>{
+    POSTS=x.d.posts||[];
+    document.getElementById('postList').innerHTML = POSTS.length? POSTS.map(function(p){
+      return '<div class="postrow"><div class="row">'+(p.cover_url?'<img class="thumb" src="'+p.cover_url+'">':'<div class="thumb"></div>')+'<div><b>'+esc(p.title)+'</b><div class="mut" style="font-size:12px;">'+(p.category||'—')+' · '+p.slug+'</div></div></div><div class="row"><span class="st '+p.status+'">'+p.status+'</span><button class="btn ghost sm" onclick="editPost('+p.id+')">Edit</button><button class="btn red sm" onclick="delPost('+p.id+')">Delete</button></div></div>';
+    }).join('') : '<p class="mut">No posts yet. Click “New post” to write the first one.</p>';
+  });
+}
+function newPost(){ showEditor({status:'draft'}); }
+function editPost(id){ showEditor(POSTS.find(p=>p.id===id)||{}); }
+function showEditor(p){
+  var e=document.getElementById('postEditor'); e.style.display='block';
+  e.innerHTML='<h3 style="font-size:16px;margin-bottom:6px;">'+(p.id?'Edit post':'New post')+'</h3>'+
+   '<div class="field"><label>Title</label><input id="bTitle" value="'+esc(p.title||'')+'"></div>'+
+   '<div class="row"><div class="field" style="flex:1"><label>Category</label><input id="bCat" value="'+esc(p.category||'')+'" placeholder="Culture, Money, The Circle…"></div><div class="field" style="flex:1"><label>Slug (URL)</label><input id="bSlug" value="'+esc(p.slug||'')+'" placeholder="auto from title"></div></div>'+
+   '<div class="field"><label>Excerpt</label><textarea id="bExcerpt" rows="2">'+esc(p.excerpt||'')+'</textarea></div>'+
+   '<div class="field"><label>Cover image</label><div class="row"><input type="file" accept="image/*" onchange="uploadCover(this)"><input id="bCover" value="'+esc(p.cover_url||'')+'" placeholder="image URL" style="flex:1"></div></div>'+
+   '<div class="field"><label>Body (basic HTML — &lt;p&gt;, &lt;h2&gt;, &lt;b&gt;, &lt;img&gt;)</label><textarea id="bBody" rows="12">'+esc(p.body||'')+'</textarea></div>'+
+   '<div class="row" style="margin-top:14px;justify-content:space-between;"><label class="row" style="gap:8px;font-weight:700;"><input type="checkbox" id="bPub" '+(p.status==='published'?'checked':'')+'> Published</label>'+
+   '<div class="row"><button class="btn ghost" onclick="closeEditor()">Cancel</button><button class="btn" onclick="savePost('+(p.id||0)+')">Save post</button></div></div>';
+  e.scrollIntoView({behavior:'smooth'});
+}
+function closeEditor(){ document.getElementById('postEditor').style.display='none'; }
+function savePost(id){
+  var data={id:id||undefined,title:V('bTitle'),category:V('bCat'),slug:V('bSlug'),excerpt:V('bExcerpt'),cover_url:V('bCover'),body:V('bBody'),status:document.getElementById('bPub').checked?'published':'draft'};
+  api('/api/admin/blog',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(x=>{
+    if(x.s===200){ closeEditor(); loadPosts(); } else { alert(x.d.error==='slug_taken'?'That slug is taken — change it.':'Save failed: '+(x.d.message||x.d.error)); }
+  });
+}
+function delPost(id){ if(!confirm('Delete this post?'))return; api('/api/admin/blog?id='+id,{method:'DELETE'}).then(()=>loadPosts()); }
+function uploadCover(input){ fileToUrl(input,function(url){ document.getElementById('bCover').value=url; }); }
+
+// ---- media ----
+function uploadMedia(input){ fileToUrl(input,function(url){ document.getElementById('mediaOut').innerHTML='<img src="'+url+'" style="max-width:220px;border-radius:12px;border:1px solid var(--line);"><div class="field"><label>Link</label><input value="'+url+'" onclick="this.select()"></div>'; }); }
+function fileToUrl(input,cb){
+  var f=input.files[0]; if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){ api('/api/admin/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({filename:f.name,dataUrl:r.result})}).then(x=>{ if(x.s===200)cb(x.d.url); else alert(x.d.error==='blob_not_configured'?'Connect a Vercel Blob store first.':'Upload failed: '+(x.d.message||x.d.error)); }); };
+  r.readAsDataURL(f);
+}
+
+// ---- registrations ----
+function loadRegs(){
+  api('/api/stats').then(x=>{
+    if(x.s!==200){ document.getElementById('rRows').innerHTML='<tr><td colspan="5" class="mut">'+(x.d.error==='db_error'?'Connect the database first.':'—')+'</td></tr>'; return; }
+    var d=x.d; REG=d;
+    document.getElementById('rTotal').textContent=d.total; document.getElementById('rHandles').textContent=d.withHandle; document.getElementById('rEmails').textContent=d.withEmail;
+    var tm={member:0,insider:0,founding:0}; (d.byTier||[]).forEach(t=>tm[t.tier]=t.c);
+    document.getElementById('rPaid').textContent=tm.insider+tm.founding;
+    var labels=(d.byDay||[]).map(x=>x.day.slice(5)), counts=(d.byDay||[]).map(x=>x.c);
+    if(chart)chart.destroy();
+    var ctx=document.getElementById('rChart'), g=ctx.getContext('2d').createLinearGradient(0,0,0,110);
+    g.addColorStop(0,'rgba(123,63,228,.75)'); g.addColorStop(1,'rgba(224,69,123,.5)');
+    chart=new Chart(ctx,{type:'bar',data:{labels:labels,datasets:[{data:counts,backgroundColor:g,borderRadius:6,maxBarThickness:30}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{precision:0}},x:{grid:{display:false}}}}});
+    document.getElementById('rRows').innerHTML=(d.recent||[]).map(function(r){
+      var w=new Date(r.created_at).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+      return '<tr><td class="mut">'+w+'</td><td>'+(r.handle?'<b style="color:var(--pp)">indiggi.app/'+r.handle+'</b>':'<span class="mut">—</span>')+'</td><td>'+(r.email||'<span class="mut">—</span>')+'</td><td><span class="pill">'+r.tier+'</span></td><td class="mut">'+(r.referral||'—')+'</td></tr>';
+    }).join('') || '<tr><td colspan="5" class="mut">No registrations yet.</td></tr>';
+  });
+}
+function exportCsv(){ if(!REG)return; var rows=REG.recent||[]; var csv='created_at,handle,email,tier,referral\n'+rows.map(r=>[r.created_at,r.handle||'',r.email||'',r.tier,(r.referral||'').replace(/,/g,' ')].join(',')).join('\n'); var a=document.createElement('a'); a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv); a.download='indiggi-registrations.csv'; a.click(); }
+
+function V(id){return document.getElementById(id).value;}
+function esc(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 </script>
 </body></html>
