@@ -1,4 +1,5 @@
 import { sql, ensureSchema, requireEditor } from '../_auth.js';
+import { seedBlogIfEmpty } from '../_blogseed.js';
 
 function slugify(s) {
   return (s || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
@@ -12,6 +13,7 @@ export default async function handler(req, res) {
     await ensureSchema();
 
     if (req.method === 'GET') {
+      await seedBlogIfEmpty();
       const rows = (await sql`SELECT id, slug, title, category, excerpt, cover_url, status, published_at, updated_at, author
                               FROM blog_posts ORDER BY updated_at DESC`).rows;
       return res.status(200).json({ ok: true, posts: rows });
