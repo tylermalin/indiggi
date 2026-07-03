@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indiggi — Admin</title>
+<link rel="icon" href="logo-mark.svg">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,800;9..40,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--pp:#7B3FE4;--pk:#E0457B;--grad:linear-gradient(135deg,#7B3FE4,#E0457B);--ink:#150f26;--grey:#6b6683;--line:#eae7f3;--soft:#f7f5fc;--jade:#0E9B86;--amber:#E08A2B;--cobalt:#3B82F6;--shadow:0 14px 34px -18px rgba(70,40,150,.2);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',-apple-system,Arial,sans-serif;color:var(--ink);background:#f5f3fb;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,.dm{font-family:'DM Sans',sans-serif;font-weight:800;letter-spacing:-.5px;}
+.wrap{max-width:1120px;margin:0 auto;padding:26px;}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
+.top .l{display:flex;align-items:center;gap:12px;}
+.logo{height:24px;}
+.badge{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--pp);background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:20px;}
+.btn{font-family:'Inter';font-weight:700;font-size:13px;padding:9px 16px;border-radius:22px;border:none;cursor:pointer;background:var(--grad);color:#fff;}
+.btn.ghost{background:#fff;color:var(--pp);border:1.5px solid var(--line);}
+
+/* gate */
+#gate{max-width:400px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:var(--shadow);text-align:center;}
+#gate img{height:26px;margin:0 auto 18px;}
+#gate h1{font-size:22px;}
+#gate p{color:var(--grey);margin:8px 0 20px;font-size:13.5px;}
+#gate input{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;font-size:15px;outline:none;font-family:'Inter';}
+#gate input:focus{border-color:var(--pp);}
+#gate button{width:100%;margin-top:12px;padding:13px;font-size:15px;border-radius:26px;}
+#gerr{color:var(--pk);font-weight:600;font-size:13px;min-height:18px;margin-top:10px;}
+
+/* dashboard */
+#dash{display:none;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px;}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow);}
+.kpi .k{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--grey);}
+.kpi .v{font-family:'DM Sans';font-weight:800;font-size:32px;margin-top:6px;line-height:1;}
+.kpi .s{font-size:12px;color:var(--grey);margin-top:6px;}
+.grid2{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-bottom:18px;}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);}
+.card h3{font-size:15px;margin-bottom:14px;}
+.tierbar{display:flex;align-items:center;gap:10px;margin:10px 0;font-size:13px;}
+.tierbar .nm{width:130px;font-weight:600;text-transform:capitalize;}
+.tierbar .track{flex:1;height:10px;border-radius:6px;background:var(--soft);overflow:hidden;}
+.tierbar .fill{height:100%;border-radius:6px;}
+.tierbar .ct{width:40px;text-align:right;font-weight:800;font-variant-numeric:tabular-nums;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{text-align:left;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);padding:10px 8px;border-bottom:1px solid var(--line);}
+td{padding:11px 8px;border-bottom:1px solid var(--line);}
+tr:last-child td{border-bottom:none;}
+.pill{display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:11px;text-transform:capitalize;}
+.pill.member{background:var(--soft);color:var(--pp);}
+.pill.insider{background:#f2e8fc;color:var(--pp);}
+.pill.founding{background:#fdeef4;color:var(--pk);}
+.handle{color:var(--pp);font-weight:700;}
+.mut{color:var(--grey);}
+.empty{text-align:center;color:var(--grey);padding:40px;}
+@media(max-width:760px){.kpis{grid-template-columns:1fr 1fr;}.grid2{grid-template-columns:1fr;}}
+</style></head><body>
+
+<!-- password gate -->
+<div id="gate">
+  <img src="logo.svg" alt="Indiggi">
+  <h1>Admin access</h1>
+  <p>Enter the admin password to view registrations &amp; analytics.</p>
+  <input id="pw" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')login()">
+  <button class="btn" onclick="login()">Enter</button>
+  <div id="gerr"></div>
+</div>
+
+<!-- dashboard -->
+<div id="dash"><div class="wrap">
+  <div class="top">
+    <div class="l"><img class="logo" src="logo.svg" alt="Indiggi"><span class="badge">Admin · Registrations</span></div>
+    <div><button class="btn ghost" onclick="load()">Refresh</button> <button class="btn ghost" onclick="exportCsv()">Export CSV</button> <button class="btn ghost" onclick="logout()">Log out</button></div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="k">Total signups</div><div class="v" id="kTotal">—</div><div class="s" id="kToday"></div></div>
+    <div class="kpi"><div class="k">Handles reserved</div><div class="v" id="kHandles">—</div><div class="s">indiggi.app/…</div></div>
+    <div class="kpi"><div class="k">Emails captured</div><div class="v" id="kEmails">—</div><div class="s">for the founding list</div></div>
+    <div class="kpi"><div class="k">Insider + Founding</div><div class="v" id="kPaid">—</div><div class="s">interested in paid tiers</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><h3>Signups over time</h3><canvas id="chart" height="120"></canvas></div>
+    <div class="card"><h3>By interest tier</h3><div id="tiers"></div></div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><h3 style="margin:0;">Recent registrations</h3><span class="mut" id="recCount"></span></div>
+    <div style="overflow-x:auto;"><table id="tbl"><thead><tr><th>When</th><th>Handle</th><th>Email</th><th>Tier</th><th>Source</th></tr></thead><tbody id="rows"></tbody></table></div>
+    <div class="empty" id="empty" style="display:none;">No registrations yet. Once the database is connected and someone signs up, they'll show here.</div>
+  </div>
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>
+var KEY = sessionStorage.getItem('ik') || '';
+var DATA = null, chart = null;
+if (KEY) { showDash(); load(); }
+
+function login(){
+  KEY = document.getElementById('pw').value.trim();
+  document.getElementById('gerr').textContent = '';
+  load(true);
+}
+function logout(){ sessionStorage.removeItem('ik'); location.reload(); }
+function showDash(){ document.getElementById('gate').style.display='none'; document.getElementById('dash').style.display='block'; }
+
+function load(fromLogin){
+  if(!KEY) return;
+  fetch('/api/stats?key=' + encodeURIComponent(KEY)).then(function(r){
+    if(r.status===401){ if(fromLogin) document.getElementById('gerr').textContent='Wrong password.'; return null; }
+    if(r.status===503){ document.getElementById('gerr').textContent='Set ADMIN_PASSWORD in Vercel first.'; return null; }
+    return r.json();
+  }).then(function(d){
+    if(!d) return;
+    sessionStorage.setItem('ik', KEY);
+    showDash();
+    DATA = d; render(d);
+  }).catch(function(e){ document.getElementById('gerr').textContent='Error: '+e.message; });
+}
+
+function render(d){
+  document.getElementById('kTotal').textContent = d.total.toLocaleString();
+  document.getElementById('kHandles').textContent = d.withHandle.toLocaleString();
+  document.getElementById('kEmails').textContent = d.withEmail.toLocaleString();
+  var tierMap = {member:0,insider:0,founding:0};
+  (d.byTier||[]).forEach(function(t){ tierMap[t.tier]=t.c; });
+  document.getElementById('kPaid').textContent = (tierMap.insider + tierMap.founding).toLocaleString();
+  var today = new Date().toISOString().slice(0,10);
+  var td = (d.byDay||[]).find(function(x){return x.day===today;});
+  document.getElementById('kToday').textContent = (td? '+'+td.c : '0') + ' today';
+
+  // tiers
+  var colors = {member:'#7B3FE4',insider:'#9b5cf0',founding:'#E0457B'};
+  var maxT = Math.max(1, tierMap.member, tierMap.insider, tierMap.founding);
+  var html = '';
+  ['member','insider','founding'].forEach(function(t){
+    var pct = Math.round(tierMap[t]/maxT*100);
+    html += '<div class="tierbar"><span class="nm">'+t+'</span><span class="track"><span class="fill" style="width:'+pct+'%;background:'+colors[t]+'"></span></span><span class="ct">'+tierMap[t]+'</span></div>';
+  });
+  document.getElementById('tiers').innerHTML = html;
+
+  // chart
+  var labels = (d.byDay||[]).map(function(x){return x.day.slice(5);});
+  var counts = (d.byDay||[]).map(function(x){return x.c;});
+  if(chart) chart.destroy();
+  var ctx = document.getElementById('chart');
+  var g = ctx.getContext('2d').createLinearGradient(0,0,0,140);
+  g.addColorStop(0,'rgba(123,63,228,.75)'); g.addColorStop(1,'rgba(224,69,123,.55)');
+  chart = new Chart(ctx, {type:'bar', data:{labels:labels, datasets:[{data:counts, backgroundColor:g, borderRadius:6, maxBarThickness:34}]},
+    options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true, ticks:{precision:0}}, x:{grid:{display:false}}}}});
+
+  // table
+  var rows = d.recent||[];
+  document.getElementById('recCount').textContent = rows.length + ' shown';
+  document.getElementById('empty').style.display = rows.length? 'none':'block';
+  document.getElementById('rows').innerHTML = rows.map(function(r){
+    var when = new Date(r.created_at).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+    return '<tr><td class="mut">'+when+'</td><td>'+(r.handle? '<span class="handle">indiggi.app/'+r.handle+'</span>':'<span class="mut">—</span>')+
+      '</td><td>'+(r.email||'<span class="mut">—</span>')+'</td><td><span class="pill '+r.tier+'">'+r.tier+'</span></td><td class="mut">'+(r.referral||'—')+'</td></tr>';
+  }).join('');
+}
+
+function exportCsv(){
+  if(!DATA) return;
+  var rows = DATA.recent||[];
+  var csv = 'created_at,handle,email,tier,referral\n' + rows.map(function(r){
+    return [r.created_at, r.handle||'', r.email||'', r.tier, (r.referral||'').replace(/,/g,' ')].join(',');
+  }).join('\n');
+  var a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'indiggi-registrations.csv'; a.click();
+}
+</script>
+</body></html>

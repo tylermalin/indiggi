@@ -416,9 +416,10 @@ footer a:hover{color:#fff;}
 
 <script>
 function slug(v){return (v||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'').slice(0,20);}
+function postReg(d){try{fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).catch(function(){});}catch(e){}}
 function prev(id){document.getElementById(id).value=slug(document.getElementById(id).value);}
-function reserve(id){var s=slug(document.getElementById(id).value);var m=document.getElementById(id.replace('in','msg'));if(!s){m.style.color='#E0457B';m.textContent='Enter a name to reserve your handle.';return;}m.style.color=id==='h2in'?'#8ff5da':'#0E9B86';m.innerHTML='🎉 <b>indiggi.app/'+s+'</b> is reserved — check your email for your Early Member Bonus.';}
-function claim(id,mid){id=id||'email';mid=mid||'emsg';var v=(document.getElementById(id).value||'').trim();var m=document.getElementById(mid);if(!/.+@.+\..+/.test(v)){m.style.color='#ffb3d0';m.textContent='Enter a valid email to claim your bonus.';return;}m.style.color='#8ff5da';m.innerHTML="✓ You're on the founding list. We'll email your Early Member Bonus.";document.getElementById(id).value='';}
+function reserve(id){var s=slug(document.getElementById(id).value);var m=document.getElementById(id.replace('in','msg'));if(!s){m.style.color='#E0457B';m.textContent='Enter a name to reserve your handle.';return;}m.style.color=id==='h2in'?'#8ff5da':'#0E9B86';m.innerHTML='🎉 <b>indiggi.app/'+s+'</b> is reserved — check your email for your Early Member Bonus.';postReg({handle:s,referral:id==='h2in'?'final':'hero'});}
+function claim(id,mid){id=id||'email';mid=mid||'emsg';var v=(document.getElementById(id).value||'').trim();var m=document.getElementById(mid);if(!/.+@.+\..+/.test(v)){m.style.color='#ffb3d0';m.textContent='Enter a valid email to claim your bonus.';return;}m.style.color='#8ff5da';m.innerHTML="✓ You're on the founding list. We'll email your Early Member Bonus.";postReg({email:v,referral:id==='nlmail'?'footer':'final'});document.getElementById(id).value='';}
 function scrollReserve(){document.getElementById('reserve').scrollIntoView({behavior:'smooth'});}
 function qa(el){el.classList.toggle('open');}
 </script>
