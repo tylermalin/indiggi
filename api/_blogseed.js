@@ -138,6 +138,38 @@ We've simply forgotten how to see it.`
     title: 'The Missing Ministry of Culture',
     category: 'Culture',
     excerpt: "America is one of the only major countries without a Minister of Culture. What if we treated culture as infrastructure, not decoration?",
+    bodyHtml: `<p>More than fifteen years ago, I had a conversation I'll never forget.</p>
+<p>I was working on a series of videos for a water initiative when Q looked at me and asked a simple question:</p>
+<blockquote>"Young Blood… where do you see the world heading?"</blockquote>
+<p>I shared something that had been on my mind for years: I believed we were misunderstanding culture. We treated it as entertainment. As marketing. As demographics. As something to observe rather than something to build.</p>
+<p>He listened quietly. Then he said something that changed the direction of my thinking.</p>
+<blockquote>"America is one of the only major countries in the world that doesn't have a Minister of Culture."</blockquote>
+<h2>01 // The Systemic Blindspot</h2>
+<p>That sentence stayed with me. I couldn't let it go.</p>
+<p>How could one of the most culturally influential nations on Earth have no institution dedicated to understanding, developing, and protecting one of its greatest assets?</p>
+<ul>
+<li>We have departments for commerce.</li>
+<li>We have departments for energy.</li>
+<li>We have departments for transportation and agriculture.</li>
+</ul>
+<p>We invest billions building physical infrastructure. Yet one of the greatest drivers of innovation, influence, trust, creativity, and economic value has largely been left to chance.</p>
+<p><b>Culture.</b></p>
+<p>For generations, creators, entrepreneurs, artists, and communities have built movements without the systems needed to recognize their full value. Great ideas often struggle for one reason: <b>Capital.</b> Not because they lack vision, but because our systems struggle to recognize cultural value before it becomes financial value.</p>
+<p>We've become remarkably good at measuring what already exists.</p>
+<p>We're far less capable of measuring what is emerging.</p>
+<blockquote>The Gap — that's where the future will be built.</blockquote>
+<h2>02 // The Infrastructure of Creativity</h2>
+<p>Imagine a world where culture isn't treated as an afterthought, but as infrastructure.</p>
+<ul>
+<li>Where shared values become <b>measurable.</b></li>
+<li>Where creativity becomes <b>investable.</b></li>
+<li>Where communities become <b>visible</b> long before markets discover them.</li>
+</ul>
+<p>That's the question I've been chasing since that conversation.</p>
+<p>Indiggi isn't an answer to every problem. But it is an attempt to build something I spent years looking for and could never find.</p>
+<p>If culture shapes economies, influences technology, creates movements, and determines where value flows, then perhaps it's time we stop treating it like decoration. Perhaps it's time we start building the infrastructure it has always deserved.</p>
+<p>That's the conversation we're inviting the world into.</p>
+<p>And we're just getting started.</p>`,
     bodyText: `More than fifteen years ago, I had a conversation I'll never forget.
 I was working on a series of videos for a water initiative when Q looked at me and asked a simple question.
 "Young Blood… where do you see the world heading?"
@@ -190,7 +222,7 @@ const COVERS = {
 };
 
 export function seedPosts() {
-  return RAW.map(p => ({ slug: p.slug, title: p.title, category: p.category, excerpt: p.excerpt, body: linesToHtml(p.bodyText), cover_url: COVERS[p.slug] || null }));
+  return RAW.map(p => ({ slug: p.slug, title: p.title, category: p.category, excerpt: p.excerpt, body: p.bodyHtml || linesToHtml(p.bodyText), cover_url: COVERS[p.slug] || null }));
 }
 
 // Insert the seed posts (published) only if the blog is empty. Idempotent.
