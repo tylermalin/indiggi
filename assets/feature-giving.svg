@@ -1,0 +1,24 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Karma and The Circle">
+  <defs>
+    <linearGradient id="g" x1="120" y1="110" x2="280" y2="270" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B2E9E"/><stop offset=".52" stop-color="#7B3FE4"/><stop offset="1" stop-color="#E0457B"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eef0fb"/><stop offset="1" stop-color="#f7f5fc"/>
+    </linearGradient>
+    <filter id="sh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#3a1f6e" flood-opacity="0.18"/></filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <rect x="32" y="30" width="196" height="36" rx="18" fill="#fff" stroke="#e6e2f2"/>
+  <circle cx="52" cy="48" r="5" fill="#2B2E9E"/>
+  <text x="66" y="53" font-family="'DM Sans',Arial,sans-serif" font-size="14.5" font-weight="700" fill="#150f26">Karma · The Circle</text>
+  <circle cx="200" cy="186" r="80" fill="none" stroke="#e6e2f2" stroke-width="24"/>
+  <circle cx="200" cy="186" r="80" fill="none" stroke="url(#g)" stroke-width="24" stroke-linecap="round" stroke-dasharray="362 503" transform="rotate(-90 200 186)"/>
+  <text x="200" y="182" text-anchor="middle" font-family="'DM Sans',Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="-1.5" fill="#150f26">$248K</text>
+  <text x="200" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="13.5" font-weight="600" fill="#6b6683">Karma given this month</text>
+  <rect x="32" y="300" width="336" height="68" rx="20" fill="#fff" stroke="#e6e2f2" filter="url(#sh)"/>
+  <circle cx="62" cy="334" r="16" fill="url(#g)"/>
+  <path d="M55.5,334 l4.5,4.5 l8.5,-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="90" y="329" font-family="'DM Sans',Arial,sans-serif" font-size="15" font-weight="700" fill="#150f26">First AME Church · fully funded</text>
+  <text x="90" y="350" font-family="Arial,sans-serif" font-size="12.5" fill="#6b6683">+1,200 Karma earned back this week</text>
+</svg>

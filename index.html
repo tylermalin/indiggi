@@ -22,7 +22,7 @@ img{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
 .wrap{max-width:1160px;margin:0 auto;padding:0 26px;}
 .grad-t{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
-.eyebrow{font-family:'Inter';font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--pk);}
+.eyebrow{font-family:'Inter';font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--navy);}
 .sec{padding:96px 0;}
 .center{text-align:center;}
 .muted{color:var(--grey);}
@@ -38,10 +38,10 @@ a{color:inherit;text-decoration:none;}
 .pill{display:inline-flex;align-items:center;gap:7px;font-family:'Inter';font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:20px;background:var(--soft);color:var(--pp);border:1px solid var(--line);}
 
 /* nav */
-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);border-top:3px solid var(--navy);}
 nav{display:flex;align-items:center;justify-content:space-between;height:72px;}
 nav .links{display:flex;gap:32px;font-size:14.5px;font-weight:500;color:var(--grey);}
-nav .links a:hover{color:var(--ink);}
+nav .links a:hover{color:var(--navy);}
 nav .right{display:flex;align-items:center;gap:12px;}
 .logo{height:26px;}
 @media(max-width:860px){nav .links{display:none;}}
@@ -103,7 +103,7 @@ nav .right{display:flex;align-items:center;gap:12px;}
 .zoom .imgwrap{aspect-ratio:1/1;overflow:hidden;background:#e9e6f3;border-bottom:1px solid var(--line);}
 .zoom .imgwrap img{width:100%;height:100%;object-fit:cover;display:block;}
 .zoom .cap{padding:24px 28px 28px;}
-.zoom .cap .eb{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pk);}
+.zoom .cap .eb{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy);}
 .zoom .cap h3{font-size:23px;margin-top:10px;}
 .zoom .cap p{color:var(--grey);font-size:15px;margin-top:9px;font-weight:400;}
 @media(max-width:860px){.zooms{grid-template-columns:1fr;}}
@@ -134,7 +134,8 @@ nav .right{display:flex;align-items:center;gap:12px;}
 .frow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:20px;}
 .fmini{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow-sm);}
 .fmini .ic{width:44px;height:44px;border-radius:13px;background:var(--soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
-.fmini .ic svg{width:22px;height:22px;stroke:var(--pp);fill:none;stroke-width:2;}
+.fmini .ic{background:#eceefb;}
+.fmini .ic svg{width:22px;height:22px;stroke:var(--navy);fill:none;stroke-width:2;}
 .fmini h3{font-size:18px;}.fmini p{color:var(--grey);font-size:14px;margin-top:7px;}
 @media(max-width:860px){.fbento{grid-template-columns:1fr;}.frow{grid-template-columns:1fr;}}
 
@@ -148,7 +149,7 @@ nav .right{display:flex;align-items:center;gap:12px;}
 .split h2{font-size:46px;}
 .split p{color:var(--grey);font-size:15.5px;margin-top:16px;font-weight:400;}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
-.tag{font-size:13px;font-weight:600;padding:8px 15px;border-radius:20px;background:var(--soft);border:1px solid var(--line);color:var(--pp);}
+.tag{font-size:13px;font-weight:600;padding:8px 15px;border-radius:20px;background:#eceefb;border:1px solid #d9ddf5;color:var(--navy);}
 @media(max-width:860px){.split{grid-template-columns:1fr;gap:30px;}}
 
 /* reviews */
@@ -175,6 +176,12 @@ nav .right{display:flex;align-items:center;gap:12px;}
 .plan li .ck{color:var(--jade);font-weight:900;}.plan.pop li .ck{color:#8ff5da;}
 .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-family:'Inter';font-size:11px;font-weight:700;letter-spacing:.5px;padding:6px 14px;border-radius:14px;}
 @media(max-width:860px){.plans{grid-template-columns:1fr;}.plan.pop{transform:none;}}
+.csoon{max-width:620px;margin:0 auto;text-align:center;background:linear-gradient(160deg,#150f26,#2b1b4d 55%,#2B2E9E);border-radius:var(--r);padding:52px 44px;color:#fff;box-shadow:var(--shadow);}
+.csoon h3{font-size:27px;margin-top:20px;color:#fff;}
+.csoon p{font-size:15.5px;color:rgba(255,255,255,.82);margin:14px auto 26px;max-width:440px;font-weight:400;}
+.csbadge{display:inline-flex;align-items:center;gap:8px;font-family:'Inter';font-weight:700;font-size:13px;padding:9px 17px;border-radius:24px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:#fff;}
+.csbadge .dot{width:8px;height:8px;border-radius:50%;background:#7CF5C6;box-shadow:0 0 0 4px rgba(124,245,198,.22);}
+.csoon .btn.grad{background:#fff;color:var(--navy);}
 
 /* FAQ two-column */
 .faq2{display:grid;grid-template-columns:.82fr 1.18fr;gap:60px;align-items:start;}
@@ -185,7 +192,7 @@ nav .right{display:flex;align-items:center;gap:12px;}
 .qa{border-bottom:1px solid var(--line);padding:24px 4px;cursor:pointer;}
 .qa:first-child{border-top:1px solid var(--line);}
 .qa .qh{display:flex;justify-content:space-between;align-items:center;gap:18px;font-family:'Inter';font-weight:600;font-size:17px;}
-.qa .chev{color:var(--pp);transition:.25s;flex-shrink:0;font-size:14px;}
+.qa .chev{color:var(--navy);transition:.25s;flex-shrink:0;font-size:14px;}
 .qa.open .chev{transform:rotate(180deg);}
 .qa .ans{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--grey);font-size:14.5px;font-weight:400;}
 .qa.open .ans{max-height:200px;}
@@ -205,7 +212,7 @@ nav .right{display:flex;align-items:center;gap:12px;}
 .story:hover{transform:translateY(-4px);}
 .story .thumb{height:180px;background-size:cover;background-position:center;}
 .story .b{padding:22px;}
-.story .k{font-family:'Inter';font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--pk);}
+.story .k{font-family:'Inter';font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--navy);}
 .story h3{font-size:18px;margin-top:8px;}.story .m{font-size:12.5px;color:var(--grey);margin-top:10px;font-weight:400;}
 @media(max-width:860px){.stories{grid-template-columns:1fr;}}
 
@@ -219,7 +226,10 @@ nav .right{display:flex;align-items:center;gap:12px;}
 .livetag{display:inline-flex;align-items:center;gap:8px;font-family:'Inter';font-size:12.5px;font-weight:700;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:8px 15px;border-radius:22px;}
 .livetag .ld{width:8px;height:8px;border-radius:50%;background:#7CF5C6;box-shadow:0 0 0 4px rgba(124,245,198,.25);animation:lp 1.6s infinite;}
 @keyframes lp{50%{opacity:.4;}}
-@media(max-width:860px){.final{grid-template-columns:1fr;padding:38px 26px;}}
+.phonecol{min-width:0;}
+.final > div{min-width:0;}
+@media(max-width:980px){.final{grid-template-columns:1fr;padding:44px 30px;}.phonecol{margin-top:8px;}}
+@media(max-width:860px){.final{padding:38px 26px;}}
 
 /* footer */
 footer{background:#100d1a;color:#b7b1c9;padding:64px 0 32px;}
@@ -281,10 +291,10 @@ footer a:hover{color:#fff;}
 <section class="sec" id="showcase" data-section="showcase"><div class="wrap">
   <div class="shead"><span class="eyebrow">One app, your whole life</span><h2 data-edit="showcase.h2">Design a smarter lifestyle with one app that keeps your money, your scene, and your people simple to run.</h2><p>Money Life, Karma, Giving, and your nights — all in one place, all handled by KAI. Verified, portable, and yours.</p></div>
   <div class="zooms">
-    <div class="zoom"><div class="imgwrap"><img src="assets/feature-kai.jpg" alt="KAI voice concierge" loading="lazy"></div><div class="cap"><span class="eb">KAI · Voice concierge</span><h3>Ask for anything.</h3><p>Your day, your money, your night — just say it, and KAI moves for you.</p></div></div>
-    <div class="zoom"><div class="imgwrap"><img src="assets/feature-wallet.jpg" alt="Wallet and INCard" loading="lazy"></div><div class="cap"><span class="eb">Wallet · INCard</span><h3>One balance, everything.</h3><p>Spend, invest, and own fractional real assets from a single card.</p></div></div>
-    <div class="zoom"><div class="imgwrap"><img src="assets/feature-giving.jpg" alt="Karma and The Circle" loading="lazy"></div><div class="cap"><span class="eb">Karma · The Circle</span><h3>You spend, we give.</h3><p>Everyday spending feeds your community giving pool — automatically.</p></div></div>
-    <div class="zoom"><div class="imgwrap"><img src="assets/feature-tonight.jpg" alt="The Map and InLife" loading="lazy"></div><div class="cap"><span class="eb">The Map · InLife</span><h3>Your scene, tonight.</h3><p>Concierge to the rooms, sets, and nights that are actually yours.</p></div></div>
+    <div class="zoom"><div class="imgwrap"><img src="assets/feature-kai.svg" alt="KAI voice concierge" loading="lazy"></div><div class="cap"><span class="eb">KAI · Voice concierge</span><h3>Ask for anything.</h3><p>Your day, your money, your night — just say it, and KAI moves for you.</p></div></div>
+    <div class="zoom"><div class="imgwrap"><img src="assets/feature-wallet.svg" alt="Wallet and INCard" loading="lazy"></div><div class="cap"><span class="eb">Wallet · INCard</span><h3>One balance, everything.</h3><p>Spend, invest, and own fractional real assets from a single card.</p></div></div>
+    <div class="zoom"><div class="imgwrap"><img src="assets/feature-giving.svg" alt="Karma and The Circle" loading="lazy"></div><div class="cap"><span class="eb">Karma · The Circle</span><h3>You spend, we give.</h3><p>Everyday spending feeds your community giving pool — automatically.</p></div></div>
+    <div class="zoom"><div class="imgwrap"><img src="assets/feature-tonight.svg" alt="The Map and InLife" loading="lazy"></div><div class="cap"><span class="eb">The Map · InLife</span><h3>Your scene, tonight.</h3><p>Concierge to the rooms, sets, and nights that are actually yours.</p></div></div>
   </div>
 </div></section>
 
@@ -362,11 +372,12 @@ footer a:hover{color:#fff;}
 
 <!-- PRICING -->
 <section class="sec" id="plans" data-section="plans"><div class="wrap">
-  <div class="shead"><span class="eyebrow">Choose your level</span><h2>One app, every part of your life.</h2><p>Start where you are. Move up anytime. Reserve now to lock founding perks.</p></div>
-  <div class="plans">
-    <div class="plan"><div class="pn">Member</div><div class="pr">Free</div><div class="pd">You're in — the whole world of Indiggi from day one.</div><ul><li><span class="ck">✓</span> KAI across money, giving &amp; schedule</li><li><span class="ck">✓</span> Karma on everyday spend + The Circle</li><li><span class="ck">✓</span> INCard, your money in one place</li></ul><button class="btn" style="background:#fff;color:var(--pp)" onclick="scrollReserve()">Claim Early Access</button></div>
-    <div class="plan pop"><span class="badge">MOST POPULAR</span><div class="pn">Insider</div><div class="pr">$9<small>/mo</small></div><div class="pd">Closer to the culture — early access, more Karma, more room.</div><ul><li><span class="ck">✓</span> Everything in Member</li><li><span class="ck">✓</span> Early drops, member events, priority access</li><li><span class="ck">✓</span> Boosted Karma earn rate</li><li><span class="ck">✓</span> Insider rooms &amp; community spaces</li></ul><button class="btn" style="background:#fff;color:var(--pp)" onclick="scrollReserve()">Reserve Insider</button></div>
-    <div class="plan"><div class="pn">Founding Member</div><div class="pr">Invite</div><div class="pd">Built it with us — a permanent place in the story.</div><ul><li><span class="ck">✓</span> Everything in Insider, for life</li><li><span class="ck">✓</span> Founders INCard + revenue share</li><li><span class="ck">✓</span> Your handle, reserved first</li></ul><button class="btn" style="background:#fff;color:var(--pp)" onclick="scrollReserve()">Claim Founding Bonus</button></div>
+  <div class="shead"><span class="eyebrow">Membership</span><h2>Founding levels are coming soon.</h2><p>We're finalizing the founding tiers. Reserve now to lock your handle and founding perks — no card, no commitment.</p></div>
+  <div class="csoon">
+    <span class="csbadge"><span class="dot"></span>Coming Soon</span>
+    <h3>Founding membership opens at launch.</h3>
+    <p>The first 1,000 members lock lifetime founding benefits. Get on the list now and we'll bring you in first.</p>
+    <button class="btn grad" onclick="scrollReserve()">Reserve your spot</button>
   </div>
 </div></section>
 

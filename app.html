@@ -92,7 +92,10 @@ body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:radi
 .incard{background:var(--grad-clay);border-radius:20px;padding:20px;color:#fff;position:relative;min-height:180px;margin-top:14px;box-shadow:0 16px 34px rgba(120,50,25,.30);display:flex;flex-direction:column;justify-content:space-between;}
 .incard .chip{width:34px;height:26px;border-radius:6px;background:linear-gradient(135deg,#f2d9a8,#c99a54);}
 .incard .founders{position:absolute;top:20px;right:20px;font-size:12px;font-weight:700;opacity:.9;}
-.incard .inlogo{font-size:52px;font-weight:900;font-style:italic;letter-spacing:-2px;line-height:1;}
+.incard .inlogo{font-size:60px;font-weight:900;font-style:italic;letter-spacing:-3px;line-height:1;background:linear-gradient(120deg,#7B3FE4,#E0457B);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.incard .chip{background:linear-gradient(135deg,#d9dee9,#9aa2b6) !important;}
+.incard .no{color:#e8e4f2;}
+.incard .founders{color:#b7b1c9;letter-spacing:1px;}
 .incard .row{display:flex;justify-content:space-between;align-items:flex-end;}
 .incard .no{font-size:15px;letter-spacing:2px;font-weight:700;}
 .incard .visa{font-size:20px;font-weight:900;font-style:italic;}
@@ -197,6 +200,13 @@ body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:radi
 .eq i:nth-child(4){height:60%;animation-delay:.45s;}
 .eq i:nth-child(5){height:85%;animation-delay:.6s;}
 @keyframes eq{0%,100%{transform:scaleY(.5);}50%{transform:scaleY(1);}}
+.voicehero{display:flex;flex-direction:column;align-items:center;text-align:center;margin:10px 0 22px;cursor:pointer;}
+.voicehero .orb.big{margin-bottom:16px;animation:orbpulse 2.4s ease-in-out infinite;}
+@keyframes orbpulse{0%,100%{box-shadow:0 0 0 14px rgba(71,51,199,.10),0 0 0 30px rgba(71,51,199,.05);}50%{box-shadow:0 0 0 20px rgba(71,51,199,.16),0 0 0 44px rgba(71,51,199,.06);}}
+.speakpill{display:inline-flex;align-items:center;gap:7px;background:var(--grad);color:#fff;font-size:12px;font-weight:800;letter-spacing:1.5px;padding:10px 18px;border-radius:24px;box-shadow:var(--glow);margin-bottom:14px;}
+.speakpill svg{width:14px;height:14px;}
+.voicehero h3{font-size:27px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.voicehero p{font-size:13.5px;color:var(--grey);margin-top:5px;max-width:290px;line-height:1.45;}
 
 /* KAI home */
 .khd{display:flex;align-items:center;gap:12px;padding:8px 0 14px;}
@@ -384,7 +394,9 @@ body{background:#e9e6f3 !important;}
 .gt,.cn,.nm,.tt,.pt,.fn,.tn,.dt{color:var(--ink);}
 
 /* gradient accent objects */
-.incard{background:var(--grad) !important;color:#fff;box-shadow:var(--glow);}
+.incard{background:#0e0b18 !important;color:#fff;box-shadow:0 22px 46px rgba(15,10,30,.5);overflow:hidden;}
+.incard::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.10) 1.4px,transparent 0);background-size:16px 16px;opacity:.7;z-index:0;pointer-events:none;}
+.incard>*{position:relative;z-index:1;}
 
 /* buttons */
 .btn{background:var(--grad);box-shadow:var(--glow);}
@@ -611,9 +623,11 @@ body.embed *{animation:none !important;transition:none !important;}
           <span class="lab">KAI · Life Intelligence</span>
           <div class="me2">T<span class="on2"></span></div>
         </div>
-        <div class="greet">
-          <div class="orb"><div class="eq"><i></i><i></i><i></i><i></i><i></i></div></div>
-          <div><h3>Hi Ty.</h3><p>I circle your whole life. Ask me anything, or tap a move.</p></div>
+        <div class="voicehero" onclick="toast('🎙️ KAI is listening…')">
+          <div class="orb big"><div class="eq"><i></i><i></i><i></i><i></i><i></i></div></div>
+          <span class="speakpill"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 15a3 3 0 003-3V6a3 3 0 00-6 0v6a3 3 0 003 3z"/><path fill="none" stroke="#fff" stroke-width="2" d="M6 11a6 6 0 0012 0M12 18v3"/></svg>TAP TO SPEAK</span>
+          <h3>Hi Ty.</h3>
+          <p>I circle your whole life. Ask me anything, or tap a move.</p>
         </div>
         <div id="kai-convo" style="display:none;">
           <div class="bubble ka">Good morning, Ty. Your day is light until 2, savings auto move runs today, and your church gift is queued for Sunday. Want me to handle any of it now?</div>

@@ -1,0 +1,29 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Map and tonight">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B2E9E"/><stop offset=".52" stop-color="#7B3FE4"/><stop offset="1" stop-color="#E0457B"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eef0fb"/><stop offset="1" stop-color="#f7f5fc"/>
+    </linearGradient>
+    <filter id="sh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#3a1f6e" flood-opacity="0.18"/></filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <rect x="32" y="30" width="176" height="36" rx="18" fill="#fff" stroke="#e6e2f2"/>
+  <circle cx="52" cy="48" r="5" fill="#2B2E9E"/>
+  <text x="66" y="53" font-family="'DM Sans',Arial,sans-serif" font-size="14.5" font-weight="700" fill="#150f26">The Map · Tonight</text>
+  <g filter="url(#sh)"><rect x="32" y="84" width="336" height="188" rx="22" fill="#e7eafb"/></g>
+  <g stroke="#d3d8f2" stroke-width="7" stroke-linecap="round">
+    <path d="M32,150 H368"/><path d="M32,214 H368"/><path d="M120,84 V272"/><path d="M256,84 V272"/>
+  </g>
+  <g stroke="#c7cdee" stroke-width="4" stroke-linecap="round"><path d="M32,120 H368"/><path d="M188,84 V272"/></g>
+  <g transform="translate(200,168)">
+    <path d="M0,-34 C-19,-34 -30,-20 -30,-4 C-30,16 0,40 0,40 C0,40 30,16 30,-4 C30,-20 19,-34 0,-34 Z" fill="url(#g)" filter="url(#sh)"/>
+    <circle cx="0" cy="-4" r="11" fill="#fff"/>
+  </g>
+  <rect x="32" y="292" width="336" height="80" rx="20" fill="#fff" stroke="#e6e2f2" filter="url(#sh)"/>
+  <rect x="48" y="308" width="48" height="48" rx="13" fill="url(#g)"/>
+  <text x="70" y="338" text-anchor="middle" font-family="'DM Sans',Arial,sans-serif" font-size="22" font-weight="800" fill="#fff">8</text>
+  <text x="112" y="326" font-family="'DM Sans',Arial,sans-serif" font-size="15.5" font-weight="700" fill="#150f26">Rooftop set · Arts District</text>
+  <text x="112" y="348" font-family="Arial,sans-serif" font-size="12.5" fill="#6b6683">Fri 8pm · 2 from your Circle going</text>
+</svg>

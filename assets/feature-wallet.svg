@@ -1,0 +1,26 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wallet and INCard">
+  <defs>
+    <linearGradient id="pk" x1="90" y1="180" x2="150" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7B3FE4"/><stop offset="1" stop-color="#E0457B"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eef0fb"/><stop offset="1" stop-color="#f7f5fc"/>
+    </linearGradient>
+    <filter id="sh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#150f26" flood-opacity="0.28"/></filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <text x="36" y="60" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="#2B2E9E">AVAILABLE BALANCE</text>
+  <text x="34" y="104" font-family="'DM Sans',Arial,sans-serif" font-size="42" font-weight="800" letter-spacing="-1.5" fill="#150f26">$12,480.55</text>
+  <g filter="url(#sh)">
+    <rect x="40" y="150" width="320" height="200" rx="26" fill="#0e0b18"/>
+    <rect x="40" y="150" width="320" height="200" rx="26" fill="url(#pk)" fill-opacity="0.06"/>
+  </g>
+  <g opacity=".14" fill="#fff"><circle cx="300" cy="196" r="3"/><circle cx="320" cy="196" r="3"/><circle cx="310" cy="214" r="3"/><circle cx="330" cy="214" r="3"/><circle cx="300" cy="232" r="3"/><circle cx="320" cy="232" r="3"/></g>
+  <g transform="translate(58,176) scale(0.62)" fill="none" stroke="url(#pk)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M42,53 C39,80 42,102 57,99 C71,96 68,73 68,59 C68,48 80,46 88,54 C98,63 98,80 98,96 C99,105 108,102 115,90"/>
+  </g>
+  <circle cx="84" cy="184" r="8" fill="url(#pk)"/>
+  <text x="60" y="300" font-family="'Space Mono','DM Sans',monospace" font-size="18" letter-spacing="3" fill="#cfc9e0">&#8226;&#8226;&#8226;&#8226;  &#8226;&#8226;&#8226;&#8226;  4821</text>
+  <text x="60" y="330" font-family="'DM Sans',Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#8a83a6">INDIGGI  INCARD</text>
+  <text x="300" y="330" font-family="'DM Sans',Arial,sans-serif" font-size="15" font-weight="800" fill="#fff">VISA</text>
+</svg>

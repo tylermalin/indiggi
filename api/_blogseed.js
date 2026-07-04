@@ -11,6 +11,24 @@ const RAW = [
     title: "We Don't Look Alike. We Think Alike.",
     category: 'Culture',
     excerpt: "People aren't connected by appearance. They're connected by values — and shared values are what build the communities that become markets.",
+    bodyHtml: `<p class="lead-paragraph">For decades we've divided people into categories.</p>
+<ul class="structure-list"><li>Legacy Segmentation // Age &amp; Race</li><li>Economic Brackets // Income &amp; Education</li><li>Geographic Boundaries // Zip Codes</li></ul>
+<p>Marketing has been built around these labels. Politics has been shaped by them. Entire industries have depended on them. Yet something has always felt incomplete.</p>
+<p>People who look completely different often buy the same products. Support the same causes. Listen to the same music. Build the same communities. Dream the same dreams.</p>
+<p>Why? <strong>Because people aren't connected by appearance. They're connected by values.</strong></p>
+<blockquote class="thesis-quote"><p>Shared values create shared behavior. Shared behavior creates communities. Communities create markets.</p></blockquote>
+<div class="section-header">01 // The Invisible Geography</div>
+<p>This is why two people living on opposite sides of the world can feel more connected to each other than to someone living next door.</p>
+<ul class="structure-list"><li>They share a way of thinking.</li><li>They share purpose.</li><li>They share identity.</li></ul>
+<p>Technology has made these invisible communities easier to find, but it didn't create them. <strong>Culture did.</strong></p>
+<p>The future won't be built by companies that know the most about demographics. It will be built by companies that understand shared values. That's the next frontier.</p>
+<div class="emphasis-box"><strong>The Next Frontier</strong>Not knowing who people are. Understanding why they believe what they believe.</div>
+<div class="section-header">02 // The Conviction Engine</div>
+<p>Understanding what inspires them. Understanding what brings them together. The strongest communities have never been built on similarity. They've been built on <span class="bold-anchor">shared conviction</span>.</p>
+<p><strong>We don't look alike. We don't act alike. But we do think alike.</strong> And that changes everything.</p>
+<p>If we can understand how values shape communities, we can build better products, stronger organizations, healthier economies, and more meaningful relationships.</p>
+<p>The future belongs to those who understand the invisible connections that unite people long before any algorithm can detect them.</p>
+<p>That's the world <strong>Indiggi</strong> believes is possible.</p>`,
     bodyText: `For decades we've divided people into categories.
 Age.
 Race.
@@ -60,6 +78,29 @@ That's the world Indiggi believes is possible.`
     title: 'Culture Is Technology',
     category: 'Culture',
     excerpt: "Technology doesn't change the world. People do — and people move because of culture. Culture has always been humanity's original operating system.",
+    bodyHtml: `<p class="lead-paragraph">For decades we've been taught that technology changes the world.</p>
+<ul class="structure-list"><li>The internet changed the world.</li><li>The smartphone changed the world.</li><li>Artificial Intelligence is changing the world.</li></ul>
+<p>I don't believe that's entirely true. Technology doesn't change the world. <strong>People do.</strong> And people move because of culture.</p>
+<p>Culture tells us what matters. What is valuable. Who we trust. What we buy. What we reject. What we dream about. What we aspire to become. Technology simply accelerates those decisions.</p>
+<blockquote class="thesis-quote"><p>That is why I believe culture is technology. Not because culture is software. Because culture performs the same function.</p></blockquote>
+<div class="section-header">01 // The Original Operating System</div>
+<p>Technology reduces uncertainty. Technology creates repeatable outcomes. Technology allows people to coordinate at scale. <strong>Culture has always done exactly the same thing.</strong></p>
+<ul class="structure-list"><li>Before there were operating systems, there were cultures.</li><li>Before there were algorithms, there were shared beliefs.</li><li>Before there were networks, there were communities.</li></ul>
+<p>Culture has always been humanity's original operating system. It is the invisible infrastructure that allows millions of people—who may never meet—to think together, move together, and build together. Which leads me to something I've believed for years:</p>
+<div class="emphasis-box"><strong>The Core Thesis</strong>We don't look alike. We don't act alike. But we do think alike.</div>
+<p>That sentence changes everything. Markets are not built because people look the same. Markets emerge because people share meaning.</p>
+<p>A sneaker becomes more than rubber and leather because of culture. Music becomes more than sound because of culture. Money becomes more than paper because of culture. Even Artificial Intelligence only becomes useful when it understands the culture of the people it serves.</p>
+<p>The future will not belong to the companies with the biggest models. It will belong to the companies that <span class="bold-anchor">understand people the best</span>.</p>
+<div class="section-header">02 // The Inevitable Engine</div>
+<p>For too long we've treated culture as decoration. Something to market with. Something to advertise around. Something to borrow when it's popular. But culture isn't window dressing. <strong>It is infrastructure.</strong></p>
+<p>Every major technology company in history has been powered by a cultural movement:</p>
+<p><strong>Apple</strong> wasn't just building computers; it challenged conformity. <strong>Nike</strong> never sold shoes; it sold identity. <strong>Tesla</strong> didn't simply build electric cars; it created a movement around the future. The technology mattered. But the culture made the technology inevitable.</p>
+<p>For generations we've measured factories, buildings, patents, software, and financial assets. Yet the greatest force behind all of them has remained largely invisible.</p>
+<p><em>Culture.</em></p>
+<p>By the time Wall Street recognizes it, culture has already moved. By the time economists measure it, culture has already evolved. By the time balance sheets reflect it, culture has already created billions of dollars in value. The <span class="bold-anchor">invisible marketplace always moves first</span>.</p>
+<p>That's why the future won't be built by people who simply build better technology. It will be built by those who understand the invisible systems that shape human behavior before markets ever notice.</p>
+<p>That's why <strong>Indiggi</strong> exists. Not to build another app. Not to build another platform. But to help build the infrastructure for culture itself.</p>
+<p>Because culture isn't the future of technology. <strong>Culture has always been the technology.</strong> We've simply forgotten how to see it.</p>`,
     bodyText: `For decades we've been taught that technology changes the world.
 The internet changed the world.
 The smartphone changed the world.
