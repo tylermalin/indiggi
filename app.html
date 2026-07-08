@@ -526,7 +526,8 @@ body{background:#e9e6f3 !important;}
 .wadd{font-size:12px;font-weight:800;color:var(--purple);margin-top:10px;cursor:pointer;}
 /* embed mode: show only the device (for landing-page iframes) */
 body.embed{display:block;padding:0;background:transparent;min-height:0;}
-body.embed .head,body.embed .hint,body.embed .foot{display:none;}
+body.embed .head,body.embed .hint,body.embed .foot{display:none !important;}
+body.embed{overflow:hidden;}
 body.embed .device{margin:0;}
 body.embed *{animation:none !important;transition:none !important;}
 body.embed .screens,body.embed .dlist{scrollbar-width:none;-ms-overflow-style:none;}
