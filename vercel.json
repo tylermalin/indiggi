@@ -1,7 +1,8 @@
 {
   "rewrites": [
     { "source": "/blog", "destination": "/blog.html" },
-    { "source": "/post", "destination": "/post.html" },
+    { "source": "/post", "destination": "/api/post" },
+    { "source": "/post.html", "destination": "/api/post" },
     { "source": "/admin", "destination": "/admin.html" },
     { "source": "/progress", "destination": "/progress.html" },
     { "source": "/app", "destination": "/app.html" }

@@ -49,6 +49,7 @@ nav .right{display:flex;align-items:center;gap:12px;}
 /* phone mockups */
 .ph{overflow:hidden;background:#e9e6f3;flex-shrink:0;position:relative;box-shadow:0 44px 80px -30px rgba(60,30,130,.5),0 12px 26px rgba(20,10,50,.12);}
 .ph iframe{border:0;width:392px;height:830px;transform-origin:top left;display:block;pointer-events:none;background:transparent;}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;}
 .ph.live iframe{pointer-events:auto;}
 .ph-big{width:300px;height:635px;border-radius:42px;}
 .ph-big iframe{transform:scale(.7653);}
@@ -208,7 +209,7 @@ nav .right{display:flex;align-items:center;gap:12px;}
 
 /* stories */
 .stories{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.story{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm);cursor:pointer;transition:.16s;}
+.story{display:block;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm);cursor:pointer;transition:.16s;color:inherit;text-decoration:none;}
 .story:hover{transform:translateY(-4px);}
 .story .thumb{height:180px;background-size:cover;background-position:center;}
 .story .b{padding:22px;}
@@ -305,7 +306,7 @@ footer a:hover{color:#fff;}
     <div class="fcard grad">
       <h3>KAI, your voice concierge</h3>
       <p>Ask for anything — move money, hold a table, plan your day. KAI knows your life and moves for you.</p>
-      <div class="phoneslot"><div class="ph ph-mid"><iframe src="app.html?embed=1#kai" title="KAI" loading="lazy" scrolling="no"></iframe></div></div>
+      <div class="phoneslot"><div class="ph ph-mid"><img src="assets/feature-kai-screen.png" alt="KAI voice concierge" loading="lazy"></div></div>
     </div>
     <div class="fcard dark">
       <h3>KAI moves before you ask</h3>
@@ -413,9 +414,9 @@ footer a:hover{color:#fff;}
 <section class="sec" id="stories" data-section="stories" style="background:var(--soft);"><div class="wrap">
   <div class="shead"><span class="eyebrow">The journal</span><h2>Culture starts with a story.</h2></div>
   <div class="stories">
-    <div class="story"><div class="thumb" style="background:linear-gradient(150deg,#5B2AAE,#152344);"></div><div class="b"><span class="k">Culture</span><h3>Why culture is the new technology</h3><div class="m">5 min read · Founders' note</div></div></div>
-    <div class="story"><div class="thumb" style="background:linear-gradient(150deg,#E0457B,#7B3FE4);"></div><div class="b"><span class="k">Money</span><h3>One balance for spending, investing &amp; giving</h3><div class="m">4 min read · Product</div></div></div>
-    <div class="story"><div class="thumb" style="background:linear-gradient(150deg,#0E9B86,#1e5bd6);"></div><div class="b"><span class="k">The Circle</span><h3>How everyday spend funds your community</h3><div class="m">6 min read · Karma</div></div></div>
+    <a class="story" href="post.html?slug=we-dont-look-alike-we-think-alike"><div class="thumb" style="background-image:url('assets/cover-think-alike.svg');"></div><div class="b"><span class="k">Culture</span><h3>We Don't Look Alike. We Think Alike.</h3><div class="m">2 min read · Founders' note</div></div></a>
+    <a class="story" href="post.html?slug=culture-is-technology"><div class="thumb" style="background-image:url('assets/cover-culture-technology.svg');"></div><div class="b"><span class="k">Culture</span><h3>Culture Is Technology</h3><div class="m">3 min read · Founders' note</div></div></a>
+    <a class="story" href="post.html?slug=the-missing-ministry-of-culture"><div class="thumb" style="background-image:url('assets/cover-ministry-culture.svg');"></div><div class="b"><span class="k">Culture</span><h3>The Missing Ministry of Culture</h3><div class="m">2 min read · Founders' note</div></div></a>
   </div>
 </div></section>
 
@@ -445,10 +446,9 @@ footer a:hover{color:#fff;}
     <span class="eyebrow" style="color:#ffb3d0;">Register now</span>
     <h2>Take Indiggi<br>with you.</h2>
     <p>Claim your Early Member Bonus and reserve your handle before we launch. The first 1,000 lock founding perks for life.</p>
-    <div class="reserve"><span class="pfx">indiggi.app/</span><input id="h2in" placeholder="yourname" oninput="prev('h2in')" onkeydown="if(event.key==='Enter')reserve('h2in')"><button class="btn grad" onclick="reserve('h2in')">Reserve</button></div>
+    <div class="reserve"><span class="pfx">indiggi.app/</span><input id="h2in" placeholder="yourname" oninput="prev('h2in')" onkeydown="if(event.key==='Enter')document.getElementById('h2email').focus()"></div>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;"><input id="h2email" type="email" placeholder="you@email.com" style="flex:1;min-width:200px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:28px;padding:14px 18px;color:#fff;outline:none;font-size:15px;font-family:'Inter';font-weight:500;" onkeydown="if(event.key==='Enter')registerNow('h2in','h2email','h2msg')"><button class="btn grad" onclick="registerNow('h2in','h2email','h2msg')">Register Now</button></div>
     <div class="rmsg" id="h2msg" style="color:#8ff5da;"></div>
-    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;"><input id="email" type="email" placeholder="you@email.com" style="flex:1;min-width:200px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:28px;padding:14px 18px;color:#fff;outline:none;font-size:15px;font-family:'Inter';font-weight:500;"><button class="btn grad" onclick="claim()">Claim Early Member Bonus</button></div>
-    <div class="rmsg" id="emsg" style="color:#8ff5da;"></div>
     <p style="color:rgba(255,255,255,.6);font-size:12.5px;margin-top:14px;">Coming Soon to iOS &amp; Android · No card required</p>
   </div>
   <div class="phonecol">
@@ -474,6 +474,7 @@ function postReg(d){try{fetch('/api/register',{method:'POST',headers:{'Content-T
 function prev(id){document.getElementById(id).value=slug(document.getElementById(id).value);}
 function reserve(id){var s=slug(document.getElementById(id).value);var m=document.getElementById(id.replace('in','msg'));if(!s){m.style.color='#E0457B';m.textContent='Enter a name to reserve your handle.';return;}m.style.color=id==='h2in'?'#8ff5da':'#0E9B86';m.innerHTML='🎉 <b>indiggi.app/'+s+'</b> is reserved — check your email for your Early Member Bonus.';postReg({handle:s,referral:id==='h2in'?'final':'hero'});}
 function claim(id,mid){id=id||'email';mid=mid||'emsg';var v=(document.getElementById(id).value||'').trim();var m=document.getElementById(mid);if(!/.+@.+\..+/.test(v)){m.style.color='#ffb3d0';m.textContent='Enter a valid email to claim your bonus.';return;}m.style.color='#8ff5da';m.innerHTML="✓ You're on the founding list. We'll email your Early Member Bonus.";postReg({email:v,referral:id==='nlmail'?'footer':'final'});document.getElementById(id).value='';}
+function registerNow(hid,eid,mid){var s=slug(document.getElementById(hid).value);var v=(document.getElementById(eid).value||'').trim();var m=document.getElementById(mid);if(!s){m.style.color='#ffb3d0';m.textContent='Enter a name to reserve your handle.';return;}if(!/.+@.+\..+/.test(v)){m.style.color='#ffb3d0';m.textContent='Enter a valid email to register.';return;}m.style.color='#8ff5da';m.innerHTML='🎉 <b>indiggi.app/'+s+'</b> is reserved — check your email for your Early Member Bonus.';postReg({handle:s,email:v,referral:'final'});}
 function scrollReserve(){document.getElementById('reserve').scrollIntoView({behavior:'smooth'});}
 function qa(el){el.classList.toggle('open');}
 </script>
